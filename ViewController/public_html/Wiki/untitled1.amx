@@ -9,10 +9,45 @@
       <amx:commandButton id="cb2" text="Buscar"/>
     </amx:facet>
     <amx:inputText id="it1"/>
-    <amx:listView styleClass="adfmf-listView-insetList" var="row" id="lv1">
+    <amx:listView var="row" id="lv1">
       <amx:listItem id="li1">
-        <amx:outputText value="ListItem Text" id="ot2"/>
+        <amx:outputText value="Pera Cruda" id="ot2"/>
+        <amx:outputText value="Pera Herbida" id="ot3"/>
+        <amx:outputText value="Enchiladas Suizas" id="ot4"/>
+        <amx:showPopupBehavior id="spb1" popupId="p1" align="overlapBottom" alignId="ot2"/>
       </amx:listItem>
     </amx:listView>
   </amx:panelPage>
+  
+  
+  <amx:popup id="p1">
+    <amx:panelGroupLayout id="pgl1">
+      <amx:commandButton text="commandButton1" id="cb1">
+        <amx:showPopupBehavior id="spb2" popupId="p2" align="overlapBottom" alignId="ot3"/>
+      </amx:commandButton>
+    </amx:panelGroupLayout>
+  </amx:popup>
+  
+  
+  <amx:popup id="p2">
+    <amx:panelFormLayout id="pfl1"/>
+    <amx:commandButton text="commandButton4" id="cb5">
+      <amx:closePopupBehavior id="cpb1" popupId="p1"/>
+    </amx:commandButton>
+    <amx:commandButton text="commandButton5" id="cb6">
+      <amx:showPopupBehavior id="spb3" popupId="p3" alignId="ot3"/>
+      <amx:closePopupBehavior id="cpb2" popupId="p2"/>
+    </amx:commandButton>
+  </amx:popup>
+  
+  <amx:popup id="p3">
+    <amx:panelLabelAndMessage label="label1" id="plam1">
+      <amx:commandButton text="commandButton2" id="cb3">
+        <amx:closePopupBehavior id="cpb3" popupId="p3"/>
+      </amx:commandButton>
+      <amx:commandButton text="commandButton3" id="cb4"/>
+    </amx:panelLabelAndMessage>
+  </amx:popup>
+  
+  
 </amx:view>
