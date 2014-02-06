@@ -1,0 +1,3 @@
+#:__PROLOG__:ADF_LibraryDependencies
+#:__EPILOG__:
+oracle.adf.library.rc.dependencies.LibDepsServiceStrategy ADF_LibraryDependencies

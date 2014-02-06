@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart  animationDuration="1500"
+        animationIndicators="all"
+        animationDownColor="#0000FF"
+        animationUpColor="#FF0000"
+        animationOnDataChange="none"
+        animationOnDisplay="none"
+        fotnoteStyle="font-family: Helvetica, sans-serif; font-size: 10px; color: #403020"
+        subtitleStyle="font-family: Helvetica, sans-serif; font-size: 14px; color: #3F3FEF"
+        titleStyle="font-family: Helvetica, sans-serif; font-weight: 900; font-size: 14px; color: navy"
+        pieFeelerColor="rgb(129,129,31)"
+        pieLabelStyle="font-family: Helvetica, sans-serif; font-size: 11px; color: #403020"
+        sliceLabelStyle="font-family: Helvetica, sans-serif; font-size: 11px; color: #403020" >
+    <titleSeparator lowerColor="#1F1F1F" upperColor="#DFDFDF" visibility="hidden" />
+    <legend backgroundColor="#EFEFEF" borderColor="#7A7A7A"
+            textStyle="font-family: Helvetica, sans-serif; font-size: 11px; color: #272727"
+            titleStyle="font-family: Helvetica, sans-serif; font-size: 12px; color: #3F3FEF" />
+    <xAxis titleStyle="font-family: Helvetica, sans-serif; font-size: 12px; color: #AFAFAF" />
+    <yAxis titleStyle="font-family: Helvetica, sans-serif; font-size: 12px; color: #AFAFAF" />
+    <y2Axis titleStyle="font-family: Helvetica, sans-serif; font-size: 12px; color: #AFAFAF" />
+<!--
+    <chartDataItem borderColor="rgba(0,0,0,0)"
+                   markerColor="#C00000"
+                   markerDisplayed="false"
+                   markerShape="circle"
+                   markerSize="8" />
+-->
+    <seriesStyle lineStyle="solid" lineWidth="3" seriesEffect="gradient"/>
+    <defaultColors>
+        <color index="0" value="#003366" />
+        <color index="1" value="#CC3300" />
+        <color index="2" value="#666699" />
+        <color index="3" value="#006666" />
+        <color index="4" value="#FF9900" />
+        <color index="5" value="#993366" />
+        <color index="6" value="#99CC33" />
+        <color index="7" value="#624390" />
+        <color index="8" value="#669933" />
+        <color index="9" value="#FFCC33" />
+        <color index="10" value="#006699" />
+        <color index="11" value="#EBEA79" />
+    </defaultColors>
+    <defaultShapes>
+        <shape index="0" value="circle" />
+        <shape index="1" value="square" />
+        <shape index="2" value="plus" />
+        <shape index="3" value="diamond" />
+        <shape index="4" value="triangleUp" />
+        <shape index="5" value="triangleDown" />
+        <shape index="6" value="human" />
+    </defaultShapes>
+</chart>

@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View3">
+      <property
+         name="activityId">untitled1</property>
+      <property
+         name="page">/test/untitled1.amx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>untitled1&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">449.79883</property>
+      <property
+         name="x">510.5</property>
+   </View>
+   <View
+      id="View4">
+      <property
+         name="activityId">untitled11</property>
+      <property
+         name="page">/test/untitled1.amx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>untitled11&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">209.79883</property>
+      <property
+         name="x">146.5</property>
+   </View>
+</SDM>

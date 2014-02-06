@@ -1,0 +1,3872 @@
+/* Copyright (c) 2005, 2011, Oracle and/or its affiliates. All rights reserved. */
+.amx-carousel {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  outline: 0px;
+  -webkit-tap-highlight-color: transparent;
+}
+.amx-carousel_view,
+.amx-carousel_control-area,
+.amx-carouselItem {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: hidden;
+}
+.amx-carousel_view.p_AMXOneByOne {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px;
+  border: 0px solid #CCCCCC;
+}
+.amx-carousel_item {
+  display: none;
+  background-color: white;
+  color: black;
+  overflow: hidden;
+  position: absolute;
+}
+.amx-carousel_item.p_AMXCircular {
+  border: 0px solid #CCCCCC;
+  border-width: 1px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px;
+}
+.amx-carousel_item-overlay {
+  -webkit-tap-highlight-color: transparent;
+  background-color: white;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  position: absolute;
+  display: none;
+}
+.amx-carousel_control-area.p_AMXSmall,
+.amx-carousel_control-area.p_AMXCompact {
+  top: auto;
+}
+.amx-carousel_item-text {
+  font-size: 11px;
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.amx-carousel_item-text.p_AMXVertical,
+.amx-carousel_control-area.p_AMXSmall.p_AMXVertical,
+.amx-carousel_control-area.p_AMXCompact.p_AMXVertical {
+  z-index: 301;
+  padding: 2px;
+  color: #3E403D;
+  background-color: #F7FAFD;
+  border-color: #BDBFC1;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px;
+  border: 0px solid #BDBFC1;
+}
+.amx-carousel_item-text.p_AMXSmall,
+.amx-carousel_item-text.p_AMXCompact {
+  padding: 0px 2px;
+}
+.amx-carousel_item-text.p_AMXVertical.p_AMXSmall,
+.amx-carousel_item-text.p_AMXVertical.p_AMXCompact,
+.amx-carousel_item-text.p_AMXCircular.p_AMXVertical.p_AMXSmall,
+.amx-carousel_item-text.p_AMXCircular.p_AMXVertical.p_AMXCompact {
+  border: 0px solid transparent;
+  -webkit-box-shadow: none;
+}
+.amx-carousel_spin-info {
+  white-space: nowrap;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  overflow: hidden;
+  text-align: center;
+  font-weight: normal;
+  font-size: 12px;
+  color: #5D5D5D;
+}
+HTML[dir=ltr] .amx-carousel_spin-info.p_AMXFull.p_AMXVertical {
+  left: auto;
+  top: 0px;
+  text-align: left;
+  white-space: normal;
+  font-size: 10px;
+}
+HTML[dir=rtl] .amx-carousel_spin-info.p_AMXFull.p_AMXVertical {
+  right: auto;
+  top: 0px;
+  text-align: right;
+  white-space: normal;
+  font-size: 10px;
+}
+.amx-carousel_spin-info.p_AMXSmall.p_AMXVertical,
+.amx-carousel_spin-info.p_AMXCompact.p_AMXVertical {
+  top: auto;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+}
+/* Only iOS 5 supports webkit-linear-gradient so using webkit-gradient here instead. */
+.amx-carousel_spin-bar {
+  background-repeat: repeat-x;
+  background-position: 0 12px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAASCAIAAAAVNSPrAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADtJREFUCFs9xqkVADEIQMHHR9ArPWw6S01YDsG6jBrcnfMddhczAwVVBUBEiAhmhu4mM6kqMvO9qrj3/sL9ImMLtVYcAAAAAElFTkSuQmCC');
+  -webkit-background-size: 1px 9px; /* Note: the actual image is 2x; 1x18 */
+  overflow: hidden;
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  height: 32px;
+}
+.amx-carousel_spin-bar.p_AMXVertical {
+  background-repeat: repeat-y;
+  background-position: 12px 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAABCAIAAABc7mk1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADVJREFUCB0dwbsRAEAEBcDxBHrVw+lMTVKfwM3YJVW1Z7srImAwMwAiioiZ6e7MrKo8ddz9A9+PIkA2ItleAAAAAElFTkSuQmCC');
+  -webkit-background-size: 9px 1px; /* Note: the actual image is 2x; 18x1 */
+  top: 10%;
+  bottom: 10%;
+  width: 32px;
+  left: auto;
+  right: auto;
+  height: auto;
+}
+.amx-carousel_spin-h-previous-icon-style.p_AMXDisabled,
+.amx-carousel_spin-h-next-icon-style.p_AMXDisabled,
+.amx-carousel_spin-v-previous-icon-style.p_AMXDisabled,
+.amx-carousel_spin-v-next-icon-style.p_AMXDisabled {
+  cursor: default;
+}
+.amx-carousel_spin-h-previous-icon-style {
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 32px;
+  width: 11px;
+}
+HTML[dir=ltr] .amx-carousel_spin-h-previous-icon-style,
+HTML[dir=rtl] .amx-carousel_spin-h-next-icon-style {
+  right: 85%;
+}
+HTML[dir=ltr] .amx-carousel_spin-h-next-icon-style,
+HTML[dir=rtl] .amx-carousel_spin-h-previous-icon-style {
+  left: 85%;
+}
+HTML[dir=ltr] .amx-carousel_spin-h-previous-icon-style.p_AMXCompact,
+HTML[dir=ltr] .amx-carousel_spin-h-previous-icon-style.p_AMXSmall,
+HTML[dir=ltr] .amx-carousel_spin-v-previous-icon-style.p_AMXCompact,
+HTML[dir=ltr] .amx-carousel_spin-v-previous-icon-style.p_AMXSmall,
+HTML[dir=rtl] .amx-carousel_spin-h-next-icon-style.p_AMXCompact,
+HTML[dir=rtl] .amx-carousel_spin-h-next-icon-style.p_AMXSmall,
+HTML[dir=rtl] .amx-carousel_spin-v-next-icon-style.p_AMXCompact,
+HTML[dir=rtl] .amx-carousel_spin-v-next-icon-style.p_AMXSmall {
+  left: 0px;
+  right: auto;
+}
+HTML[dir=rtl] .amx-carousel_spin-h-previous-icon-style.p_AMXCompact,
+HTML[dir=rtl] .amx-carousel_spin-h-previous-icon-style.p_AMXSmall,
+HTML[dir=rtl] .amx-carousel_spin-v-previous-icon-style.p_AMXCompact,
+HTML[dir=rtl] .amx-carousel_spin-v-previous-icon-style.p_AMXSmall,
+HTML[dir=ltr] .amx-carousel_spin-h-next-icon-style.p_AMXCompact,
+HTML[dir=ltr] .amx-carousel_spin-h-next-icon-style.p_AMXSmall,
+HTML[dir=ltr] .amx-carousel_spin-v-next-icon-style.p_AMXCompact,
+HTML[dir=ltr] .amx-carousel_spin-v-next-icon-style.p_AMXSmall {
+  left: auto;
+  right: 0px;
+}
+.amx-carousel_spin-h-previous-icon-style.p_AMXFull {
+  background-position: 0 12px;
+  -webkit-background-size: 11px 9px; /* Note: the actual image is 2x; 22x18 */
+}
+HTML[dir=ltr] .amx-carousel_spin-h-previous-icon-style.p_AMXFull,
+HTML[dir=rtl] .amx-carousel_spin-h-next-icon-style.p_AMXFull {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAASCAYAAABfJS4tAAABhUlEQVR42rXUy2rCQAAF0K77X/0FoWCxWLCg2B8Q+wsKLjQIrgQRsVEQ4wMEEURQN7rwsZC4MLqJqGl8gHA7Y5Co04xK6eKs5uZOZpKZB7fbfemRsBFhok0sCdzrsvSJSBHFjJhBq9XCWB5jNp3d66z4mSiJX+KhbKpMuVRV5Y6fvmmpUqlgrs6v2mw26Ha73MxxT1O5XA6LxYJrtVpht9shkUjgxW7nZmmxjSjSpWmaZmm73UJRFPh8PlpKcfO0OCxJEnRd/9V6vcZ+vwfdpjenkxYemTnWobjd6/VoAYO+5TeZPRgM0iKGmWXR4uVoNMJkMmH0+318eL1GEcvMsoziwWAAWZYZdEJBEKyKzSzL2IpqtYrhcGhJyufx7nIxxZxnjI8Xj8fR6XS4Go0GPv3+02Je3vzd6vU6ms3mVUIkgleHgxbzcuYBiUajqNVqNxFFER6Ph5c5P9KxWAzlcvkmhUKBN85eQqFQCNlsFuSI/4X1tRkIBEBXkEwmkU6n7/ZvF/0Pi1uoV3eKYlQAAAAASUVORK5CYII=');
+}
+.amx-carousel_spin-h-thumb-container,
+.amx-carousel_spin-v-thumb-container {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+}
+.amx-carousel_spin-h-thumb-icon-style,
+.amx-carousel_spin-v-thumb-icon-style {
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 19px;
+  width: 19px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #797979;
+  -webkit-box-shadow: inset 0 0 0 1px #FFFFFF;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0%,rgba(205,206,205,1)),color-stop(2%,rgba(205,206,205,1)),color-stop(45%,rgba(230,230,230,1)),color-stop(84%,rgba(246,246,246,1)),color-stop(98%,rgba(246,244,244,1)),color-stop(100%,rgba(246,244,244,0)));
+  top: 7px;
+  left: 7px;
+}
+.amx-carousel_spin-h-thumb-icon-style.p_AMXDisabled,
+.amx-carousel_spin-v-thumb-icon-style.p_AMXDisabled {
+  background-image: none;
+  background-color: #F6F4F4;
+}
+.amx-carousel_spin-h-next-icon-style {
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 32px;
+  width: 11px;
+}
+.amx-carousel_spin-h-next-icon-style.p_AMXFull {
+  background-position: 0 12px;
+  -webkit-background-size: 11px 9px; /* Note: the actual image is 2x; 22x18 */
+}
+HTML[dir=ltr] .amx-carousel_spin-h-next-icon-style.p_AMXFull,
+HTML[dir=rtl] .amx-carousel_spin-h-previous-icon-style.p_AMXFull {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAASCAYAAABfJS4tAAABk0lEQVR42rXUy2rCQBQG4Fn7Xn0FoWCxWLCg2BcQ+woKLjQIrgSRYqMgaisIIoigbnThZSFx4WUTsabeQPibo1Urery0dPGRyZDzTzKZGWGz2fALH7qKzqcz6gw68ZMY9Ae4VkfpoFwuIybHaJA33YvuZi+43+uDo6oqXU+iQeRXmQZ4191ug4fqEJxarYbZbEbts7LZ7Cb8ZhU8Go3AuTOZEA6HsVgsMB6Pqe+kRCKB72kxCE3TwKFg4nQ60ev1MJ/PqZ9DU7eZc6OYTCZgUOjWg8Wy+tzlconpdMrWpFIpCvcJeohBgQc8Hg8+NY3e/mhNvV6n4IrodrtgUNBRTw4HGo3G0Zp2u71a50JRFDDYYEmSKOBoTbPZXAe3Wi0wDgIfrVakkkmcqsnlcuupqFarYOyFPrtcKBaL1H9SKBRa/7xSqQQOBd6bzZD8fro/q1Ao7JZbPp8Hx263Q5Zlal8kEAjsNkgmkwEnnU7T9SLBYHB/S9M2/It4PA6v13t4CEWjUVwrEoms3tDtdrPH5r8d9F/IhKhXM1SWrAAAAABJRU5ErkJggg==');
+}
+.amx-carousel_spin-v-previous-icon-style {
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 11px;
+  width: 32px;
+  bottom: 90%;
+}
+.amx-carousel_spin-v-previous-icon-style.p_AMXFull {
+  background-position: 12px 0;
+  -webkit-background-size: 9px 11px; /* Note: the actual image is 2x; 18x22 */
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWCAYAAADNX8xBAAABg0lEQVR42u3Ty2rCQBQGYNe+V15BKFgsFiwo9gXEvoKCCw2CK0GkpFEQoxUEEURQN7rwspC4MHETiVpvEPg7BxIKaUJjd4UufhI4cz5mTia+aDRqj58lwJJlGbHsKOZ71qz57X12hGN5ZWlKkoTpdIrlcon5fI5Op4NisQiqmWs4N+iO5b1Wq0HTNByPR5xOJ6zXa8iyjMVigfF4jF6vh3w+D1pLPXaIo0K73Yau6zgcDq7QYDBAt9tFoVCwMM6C/LRV8U3EVtt6hlqtFjKZDKiXDJ85vOZKXt0MVatVa2YBgrIVsQJVUW+GaJ6pVApkEDQaDoeO0OVywWw2oy/nBlmzGhG0o2PZIdrNB3s+x+Pged4VKpfLIIMgbNTNN8gwDKTTadwHg6BI9bojJAgCyHCE6Eh0FQiw8hSJoN/ve4f2+z0URcFjOGwiX3lJJr1D1+sViUSCGh3D53I/Q+fzGaVSyRWhPIRCEEXRHaL/azKZOAO2xGIxNBoNR+g3F/If+vPQJ0PyqFd64mMEAAAAAElFTkSuQmCC');
+}
+.amx-carousel_spin-v-next-icon-style {
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 11px;
+  width: 32px;
+  top: 90%;
+}
+.amx-carousel_spin-v-next-icon-style.p_AMXFull {
+  background-position: 12px 0;
+  -webkit-background-size: 9px 11px; /* Note: the actual image is 2x; 18x22 */
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAWCAYAAADNX8xBAAABgUlEQVR42u3Ty2rCYBAF4K59r76CIFgsFiwo9gXEvoKCCw2CK0Ek2CiIsQqCCCJoN7rwspC4MLqJeKk3EE5zwBSqTTXdFboYEviZj8ycPzderxfTyRQTdYKZNsN8PsdqtcJ6vcZms8F4PIaiKBgMBmi322g2m6jVaiiXy8jn88hkMqDxD/1pSNM0dDod3DmdF8vn86FYLJp/0Xa7RSqV+hG5d7kgSdLl0fb7PQKBgCkkxGLX7Wi5XEJVVTy43WfIczBobdm73Q6VSuUL8ujxoNFoWE/tcDggHA5/QnKhcDG1xUgZnUGM/l1/Pvn9EATBNP50Og0ahN5arda394gj9no9DIdDUyiRSIAGoWhWyv76QoZCIdAgZNfrleNZhXK5HNhLg5BNL1F6kSxDkUgE7KVBiHWrV4mRXwkZuymxlwYRoxw84Nz878yger2OeDxuIA72nkIs6iLnlmUZ3W4XTKzf76NarSKZTBo7EY0vMYOMndmZBGPlHWEd36PHM9tp3wdgXqhX2eIBBgAAAABJRU5ErkJggg==');
+}
+.amx-carousel_spin-h-previous-icon-style.p_AMXCompact,
+.amx-carousel_spin-h-previous-icon-style.p_AMXSmall {
+  width: 18px;
+  height: 17px;
+  top: 0px;
+  bottom: auto;
+  left: 0px;
+  right: auto;
+}
+HTML[dir=ltr] .amx-carousel_spin-h-previous-icon-style.p_AMXCompact,
+HTML[dir=ltr] .amx-carousel_spin-h-previous-icon-style.p_AMXSmall,
+HTML[dir=rtl] .amx-carousel_spin-h-next-icon-style.p_AMXCompact,
+HTML[dir=rtl] .amx-carousel_spin-h-next-icon-style.p_AMXSmall {
+  background-image: url(images/carousel.png);
+  background-position: 0 -34px;
+}
+.amx-carousel_spin-v-previous-icon-style.p_AMXCompact,
+.amx-carousel_spin-v-previous-icon-style.p_AMXSmall {
+  width: 18px;
+  height: 17px;
+  top: 0px;
+  bottom: auto;
+  left: 0px;
+  right: auto;
+  background-image: url(images/carousel.png);
+  background-position: 0 0;
+}
+.amx-carousel_spin-h-next-icon-style.p_AMXCompact,
+.amx-carousel_spin-h-next-icon-style.p_AMXSmall {
+  width: 18px;
+  height: 17px;
+  top: 0px;
+  bottom: auto;
+  left: auto;
+  right: 0px;
+}
+HTML[dir=ltr] .amx-carousel_spin-h-next-icon-style.p_AMXCompact,
+HTML[dir=ltr] .amx-carousel_spin-h-next-icon-style.p_AMXSmall,
+HTML[dir=rtl] .amx-carousel_spin-h-previous-icon-style.p_AMXCompact,
+HTML[dir=rtl] .amx-carousel_spin-h-previous-icon-style.p_AMXSmall {
+  background-image: url(images/carousel.png);
+  background-position: 0 -17px;
+}
+.amx-carousel_spin-v-next-icon-style.p_AMXCompact,
+.amx-carousel_spin-v-next-icon-style.p_AMXSmall {
+  width: 18px;
+  height: 17px;
+  top: 0px;
+  bottom: auto;
+  left: auto;
+  right: 0px;
+  background-image: url(images/carousel.png);
+  background-position: 0 -51px;
+}
+HTML[dir=ltr] .amx-carousel_spin-h-previous-icon-style.p_AMXCompact.p_AMXDisabled,
+HTML[dir=ltr] .amx-carousel_spin-h-previous-icon-style.p_AMXSmall.p_AMXDisabled,
+HTML[dir=rtl] .amx-carousel_spin-h-next-icon-style.p_AMXCompact.p_AMXDisabled,
+HTML[dir=rtl] .amx-carousel_spin-h-next-icon-style.p_AMXSmall.p_AMXDisabled {
+  background-image: url(images/carousel.png);
+  background-position: -18px -34px;
+}
+HTML[dir=ltr] .amx-carousel_spin-h-next-icon-style.p_AMXCompact.p_AMXDisabled,
+HTML[dir=ltr] .amx-carousel_spin-h-next-icon-style.p_AMXSmall.p_AMXDisabled,
+HTML[dir=rtl] .amx-carousel_spin-h-previous-icon-style.p_AMXCompact.p_AMXDisabled,
+HTML[dir=rtl] .amx-carousel_spin-h-previous-icon-style.p_AMXSmall.p_AMXDisabled {
+  background-image: url(images/carousel.png);
+  background-position: -18px -17px;
+}
+.amx-carousel_spin-v-previous-icon-style.p_AMXCompact.p_AMXDisabled,
+.amx-carousel_spin-v-previous-icon-style.p_AMXSmall.p_AMXDisabled {
+  background-image: url(images/carousel.png);
+  background-position: -18px 0;
+}
+.amx-carousel_spin-v-next-icon-style.p_AMXCompact.p_AMXDisabled,
+.amx-carousel_spin-v-next-icon-style.p_AMXSmall.p_AMXDisabled {
+  background-image: url(images/carousel.png);
+  background-position: -18px -51px;
+}
+.amx-carousel_spin-bar.p_AMXDisabled,
+.amx-carousel_spin-h-previous-icon-style.p_AMXFull.p_AMXDisabled,
+.amx-carousel_spin-h-next-icon-style.p_AMXFull.p_AMXDisabled,
+.amx-carousel_spin-v-previous-icon-style.p_AMXFull.p_AMXDisabled,
+.amx-carousel_spin-v-next-icon-style.p_AMXFull.p_AMXDisabled {
+  opacity: 0.40;
+}
+.amx-carousel_item-overlay[theme="dark"] {
+  background-color: #000000;
+}
+.amx-carousel_item-text.p_AMXCircular.p_AMXVertical,
+.amx-carousel_control-area.p_AMXCircular.p_AMXSmall.p_AMXVertical,
+.amx-carousel_control-area.p_AMXCircular.p_AMXCompact.p_AMXVertical {
+  -webkit-box-shadow: rgba(0, 35, 76, 0.35) 0px 0px 3px;
+  border: 1px solid #797979;
+  border-top-width: 0px;
+}
+.amx-carousel_item.p_AMXCircular.p_AMXSelected {
+  border-color: #797979;
+  border-width: 1px;
+  -webkit-box-shadow: rgba(0, 35, 76, 0.35) 0px 0px 3px;
+}
+.amx-carousel.p_AMXVertical .amx-carousel_item.p_AMXCircular.p_AMXSelected {
+  border-bottom-color: transparent;
+}
+.transparentScreen {
+  position:absolute;
+  left:0;top:0;right:0;bottom:0;
+  z-index:5;
+}
+
+.amx-view {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 10;
+}
+
+/* ------ <amx:ouputText> ------ */
+.amx-outputText {
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
+  clear: both;
+  color: #fff;
+  -webkit-user-select: text;
+}
+
+.amx-outputText-truncateAt {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.amx-panelPage-content > .amx-outputText {
+  display: block;
+  padding: 0 19px;
+  text-shadow:  1px 1px 1px rgba(0, 0, 0, 0.60);
+}
+
+.amx-outputText.amx-text-sectiontitle {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  margin: 8px 0;
+  padding: 0 19px;
+}
+.amx-panelPage-content > .amx-outputText.amx-text-sectiontitle {
+  text-shadow: none;
+}
+/* ------ </amx:outputText> ------ */
+
+/* ------ <amx:commandLink> ------ */
+A,
+.amx-goLink,
+.amx-commandLink {
+  color: #C9ECFF;
+  cursor: pointer;
+  text-decoration:none;
+  font-size: 14px;
+}
+.amx-goLink.amx-disabled,
+.amx-commandLink.amx-disabled {
+  opacity: 0.40;
+}
+/* facet variant */
+.amx-panelPage-facet-primary .amx-commandLink,
+.amx-panelPage-facet-secondary .amx-commandLink,
+.amx-panelPage-facet-footer .amx-commandLink {
+  display: inline-block;
+  margin: 12px 6px 0px 6px;
+}
+.amx-panelPage-facet-primary .amx-commandLink img,
+.amx-panelPage-facet-secondary .amx-commandLink img,
+.amx-panelPage-facet-footer .amx-commandLink img {
+  width: 18px;
+  height: 18px;
+}
+.amx-panelPage-facet-primary .amx-commandLink label,
+.amx-panelPage-facet-secondary .amx-commandLink label,
+.amx-panelPage-facet-footer .amx-commandLink label {
+  display: inline-block;
+  padding: 0 0 30px 0;
+}
+
+.amx-panelPage-facet-secondary .amx-commandLink {
+  float: right;
+}
+/* /facet variant */
+/* ------ </amx:commandLink> ------ */
+
+/* ------ <amx:commandButton-back> ------ */
+HTML[dir=ltr] .amx-panelPage-facet-primary .amx-commandButton.amx-commandButton-back {
+  left: 10px;
+  text-align: left;
+  padding-left: 0px;
+}
+HTML[dir=rtl] .amx-panelPage-facet-primary .amx-commandButton.amx-commandButton-back {
+  right: 10px;
+  text-align: right;
+  padding-right: 0px;
+}
+
+/* The browser in DT Mode and the Generic Android browser do not support Angular back button thus the 2 styles below */
+.amx-dtmode .amx-panelPage-facet-primary .amx-commandButton-back:before,
+.amx-android-generic .amx-panelPage-facet-primary .amx-commandButton-back:before {
+  display: none;
+}
+HTML[dir=ltr].amx-dtmode .amx-panelPage-facet-primary .amx-commandButton-back,
+HTML[dir=ltr].amx-android-generic .amx-panelPage-facet-primary .amx-commandButton-back {
+  padding-left: 5px;
+  left: 1px;
+}
+HTML[dir=rtl].amx-dtmode .amx-panelPage-facet-primary .amx-commandButton-back,
+HTML[dir=rtl].amx-android-generic .amx-panelPage-facet-primary .amx-commandButton-back {
+  padding-right: 5px;
+  right: 1px;
+}
+
+.amx-panelPage-facet-primary .amx-commandButton-back:before {
+  position: absolute;
+  content: '';
+  height: 22px;
+  width: 23px;
+  background-repeat: no-repeat;
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -webkit-border-bottom-left-radius: 9.5px;
+  border-left: 1.7px solid black;
+  border-top: 1.7px solid black;
+  -webkit-mask-image: -webkit-gradient(linear, left top, right bottom,
+    from(#000000),
+    color-stop(0.4, #000000),
+    color-stop(0.45, transparent),
+    to(transparent));
+}
+HTML[dir=ltr] .amx-panelPage-facet-primary .amx-commandButton-back:before {
+  left: -8px;
+  top: 2px;
+  -webkit-transform: rotate(-46deg) skew(-10deg, -10deg);
+  background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0, #2F6BAC), color-stop(0.45, #214D81), color-stop(0.46, #2C588D), color-stop(1.00, #7DA8D9));
+}
+HTML[dir=rtl] .amx-panelPage-facet-primary .amx-commandButton-back:before {
+  right: -8px;
+  top: 3px;
+  -webkit-transform: rotate(134deg) skew(-10deg, -10deg);
+  background-image: -webkit-gradient(linear, right top, left bottom, color-stop(0, #2F6BAC), color-stop(0.479, #214D81), color-stop(0.48, #2C588D), color-stop(1.00, #7DA8D9));
+}
+
+HTML[dir=ltr] .amx-panelPage-facet-primary .amx-commandButton-back.amx-selected:before {
+  background-image: -webkit-gradient(linear, left bottom, right top,
+    from(rgba(121,182,239,1)),
+    color-stop(0.45, rgba(55,125,207,1)),
+    color-stop(0.46, rgba(78,137,202,1)),
+    to(rgba(180,201,226,1)));
+}
+HTML[dir=rtl] .amx-panelPage-facet-primary .amx-commandButton-back.amx-selected:before {
+  background-image: -webkit-gradient(linear, right top, left bottom,
+    from(rgba(121,182,239,1)),
+    color-stop(0.479, rgba(55,125,207,1)),
+    color-stop(0.48, rgba(78,137,202,1)),
+    to(rgba(180,201,226,1)));
+}
+.amx-panelPage-facet-primary .adfmf-commandButton-alert.amx-commandButton-back.amx-selected:before {
+  background-image: -webkit-gradient(linear, left bottom, right top,
+    from(rgba(121,182,239,1)),
+    color-stop(0.45, rgba(55,125,207,1)),
+    color-stop(0.46, rgba(78,137,202,1)),
+    to(rgba(180,201,226,1)));
+}
+/* ------ </amx:commandButton-back> ------ */
+
+/* ------ <amx:commandButton> ------ */
+.amx-commandButton{
+    position: relative;
+    min-width: 27px;
+    min-height: 16px;
+    margin: 5px;
+    padding: 4px 4px 3px 4px;
+    display: inline-block;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #2F6BAC), color-stop(0.48, #214D81), color-stop(0.49, #2C588D), color-stop(1.00, #6D98C9));
+    -webkit-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+    border: 1px solid black;
+    border-radius: 5px;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.amx-commandButton-icon{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin: 2px 0px 0px 0px;
+    padding: 0px 5px 0px 5px;
+}
+
+.amx-commandButton-label{
+    display: inline-block;
+    margin: 0px;
+    padding: 1px 4px 0px 4px;
+    font-family: 'Helvetica Neue',Arial,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.60);
+    vertical-align: top;
+}
+
+.amx-commandButton.amx-label-no-text .amx-commandButton-label{
+    padding: 0px;
+}
+
+.amx-commandButton.amx-iconPosition-leading .amx-commandButton-icon{
+    float: left;
+}
+
+.amx-commandButton.amx-iconPosition-trailing .amx-commandButton-icon{
+    float: right;
+}
+
+.amx-commandButton.amx-selected{
+	background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, #79b6ef),
+    color-stop(0.48, #377dcf),
+    color-stop(0.49, #4e89ca),
+    color-stop(1.00, #b4c9e2) );
+}
+
+.amx-commandButton.amx-disabled{
+	opacity: 0.40;
+}
+
+.amx-commandButton.amx-disabled .amx-commandButton-label{
+	color: rgba(255,255,255,.6);
+}
+
+.adfmf-commandButton-rounded{
+    -webkit-box-shadow: inset 1px 0px 0px 0px rgba(0, 0, 0, 0.75), inset 0px 0px 1px 2px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+}
+
+/* facet variant */
+.adfmf-commandButton-rounded .amx-commandButton-label {
+    font-size: 16px;
+}
+
+
+.amx-listItem .amx-commandButton{
+    margin: 4px;
+}
+
+.amx-panelFormLayout .amx-commandButton {
+    margin: 0;
+}
+
+.amx-panelPage-facet-primary .amx-commandButton,
+.amx-panelPage-facet-secondary .amx-commandButton,
+.amx-panelPage-facet-footer .amx-commandButton {
+  background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #2F6BAC), color-stop(0.45, #214D81), color-stop(0.46, #2C588D), color-stop(1.00, #6D98C9));
+  padding: 4px 4px 3px 4px;
+  margin: 7px 5px 5px 5px;
+}
+
+.amx-android-generic .amx-panelPage-facet-primary .amx-commandButton,
+.amx-android-generic .amx-panelPage-facet-secondary .amx-commandButton,
+.amx-android-generic .amx-panelPage-facet-footer .amx-commandButton {
+  margin-top: 6px;
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.amx-selected,
+.amx-panelPage-facet-secondary .amx-commandButton.amx-selected,
+.amx-panelPage-facet-footer .amx-commandButton.amx-selected {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #79b6ef), color-stop(0.45, #377dcf), color-stop(0.46, #4e89ca),color-stop(1.00, #b4c9e2) );
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.amx-disabled,
+.amx-panelPage-facet-secondary .amx-commandButton.amx-disabled,
+.amx-panelPage-facet-footer .amx-commandButton.amx-disabled {
+  opacity: 0.40;
+}
+
+.amx-panelPage-facet-primary .amx-commandButton-label,
+.amx-panelPage-facet-secondary .amx-commandButton-label,
+.amx-panelPage-facet-footer .amx-commandButton-label {
+  font-size: 13px;
+  padding: 2px 4px 0px 4px;
+}
+
+HTML[dir=ltr] .amx-panelPage-facet-secondary > * {
+  float: right;
+}
+HTML[dir=rtl] .amx-panelPage-facet-secondary > * {
+  float: left;
+}
+/* /facet variant */
+
+/* Alert */
+.amx-commandButton.adfmf-commandButton-alert,
+.amx-commandButton.amx-button-alert{
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #9d2120), color-stop(0.48, #5e1211), color-stop(0.49, #612c2d), color-stop(1.00, #d37f82));
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.adfmf-commandButton-alert,
+.amx-panelPage-facet-primary .amx-commandButton.amx-button-alert,
+.amx-panelPage-facet-secondary .amx-commandButton.adfmf-commandButton-alert,
+.amx-panelPage-facet-secondary .amx-commandButton.amx-button-alert,
+.amx-panelPage-facet-footer .amx-commandButton.adfmf-commandButton-alert,
+.amx-panelPage-facet-footer .amx-commandButton.amx-button-alert {
+  background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #9d2120), color-stop(0.45, #5e1211), color-stop(0.46, #612c2d), color-stop(1.00, #d37f82));
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.adfmf-commandButton-alert.amx-commandButton-back:before {
+  background-image: -webkit-gradient( linear, left bottom, right top, color-stop(0, #BB2120), color-stop(0.45, #5e1211), color-stop(0.46, #612c2d), color-stop(1.00, #fe9a9e));
+}
+
+.amx-commandButton.adfmf-commandButton-alert.amx-selected,
+.amx-commandButton.amx-button-alert.amx-selected{
+	background-image: -webkit-gradient(linear, left bottom, left top,
+			color-stop(0, #c92a29),
+			color-stop(0.48, #801817),
+			color-stop(0.49, #9b4549),
+			color-stop(1.00, #f9979b) );
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.adfmf-commandButton-alert.amx-selected,
+.amx-panelPage-facet-primary .amx-commandButton.amx-button-alert.amx-selected,
+.amx-panelPage-facet-secondary .amx-commandButton.adfmf-commandButton-alert.amx-selected,
+.amx-panelPage-facet-secondary .amx-commandButton.amx-button-alert.amx-selected,
+.amx-panelPage-facet-footer .amx-commandButton.adfmf-commandButton-alert.amx-selected,
+.amx-panelPage-facet-footer .amx-commandButton.amx-button-alert.amx-selected {
+  background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, #c92a29),
+    color-stop(0.45, #801817),
+    color-stop(0.46, #9b4549),
+    color-stop(1.00, #f9979b) );
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.adfmf-commandButton-alert.amx-selected.amx-commandButton-back:before {
+  background-image: -webkit-gradient( linear, left bottom, right top, color-stop(0, #f12a29), color-stop(0.45, #801817), color-stop(0.46, #9b4549), color-stop(1.00, #ffaeb2));
+}
+
+
+/* /Alert */
+/* Highlight */
+.amx-commandButton.adfmf-commandButton-highlight,
+.amx-commandButton.amx-button-hightlight{
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #6d8fb6), color-stop(0.48, #212e3e), color-stop(0.49, #384457),color-stop(0.94, #a2aec0), color-stop(1.00, #d7d7d7));
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.adfmf-commandButton-highlight,
+.amx-panelPage-facet-primary .amx-commandButton.amx-button-hightlight,
+.amx-panelPage-facet-secondary .amx-commandButton.adfmf-commandButton-highlight,
+.amx-panelPage-facet-secondary .amx-commandButton.amx-button-hightlight,
+.amx-panelPage-facet-footer .amx-commandButton.adfmf-commandButton-highlight,
+.amx-panelPage-facet-footer .amx-commandButton.amx-button-hightlight {
+  background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #6d8fb6), color-stop(0.45, #212e3e), color-stop(0.46, #384457),color-stop(0.94, #a2aec0), color-stop(1.00, #d7d7d7));
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.adfmf-commandButton-highlight.amx-commandButton-back:before {
+  background-image: -webkit-gradient( linear, left bottom, right top, color-stop(0, #8bb7de), color-stop(0.45, #212e3e), color-stop(0.46, #384457), color-stop(0.94, #c0ccde), color-stop(1.00, #d7d7d7));
+}
+
+.amx-commandButton.adfmf-commandButton-highlight.amx-selected,
+.amx-commandButton.amx-button-hightlight.amx-selected{
+	background-image: -webkit-gradient(linear, left bottom, left top,
+			color-stop(0, #99c8fc),
+			color-stop(0.48, #31465d),
+			color-stop(0.49, #495871),
+			color-stop(0.94, #cedef4),
+			color-stop(1.00, #ffffff) );
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.adfmf-commandButton-highlight.amx-selected,
+.amx-panelPage-facet-primary .amx-commandButton.amx-button-hightlight.amx-selected,
+.amx-panelPage-facet-secondary .amx-commandButton.adfmf-commandButton-highlight.amx-selected,
+.amx-panelPage-facet-secondary .amx-commandButton.amx-button-hightlight.amx-selected,
+.amx-panelPage-facet-footer .amx-commandButton.adfmf-commandButton-highlight.amx-selected,
+.amx-panelPage-facet-footer .amx-commandButton.amx-button-hightlight.amx-selected {
+  background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, #99c8fc),
+    color-stop(0.45, #31465d),
+    color-stop(0.46, #495871),
+    color-stop(0.94, #cedef4),
+    color-stop(1.00, #ffffff) );
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.adfmf-commandButton-highlight.amx-selected.amx-commandButton-back:before {
+  background-image: -webkit-gradient( linear, left bottom, right top, color-stop(0, #a6e8ff), color-stop(0.45, #31465d), color-stop(0.46, #495871), color-stop(0.94, #ebffff), color-stop(1.00, #ffffff));
+}
+
+/* ------ </amx:commandButton> ------ */
+
+/* --------- <amx:inputText> --------- */
+.amx-inputText .field-value .wrap {
+  background: #ffffff;
+  padding: 8px;
+  -webkit-border-radius: 8px;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,1); /* iOS 4 */
+  box-shadow: 1px 1px 3px rgba(0,0,0,1);
+}
+.adfmf-panelGroupLayout-groupBox .amx-inputText .field-value .wrap,
+.amx-style-groupbox .amx-inputText .field-value .wrap,
+.amx-panelFormLayout .amx-inputText .field-value .wrap {
+  padding: 0px;
+  -webkit-border-radius: 0px;
+  -webkit-box-shadow: none; /* iOS 4 */
+  box-shadow: none;
+}
+.amx-inputText .field-value input,
+.amx-inputText .field-value textarea {
+  -webkit-box-sizing: border-box; /* iOS 4 */
+  box-sizing: border-box;
+  padding: 0;
+  width: 100%;
+  -webkit-appearance: none;
+}
+.amx-inputText .field-value textarea {
+  display: block;
+}
+.amx-inputText.amx-simple{
+	font-size: 14px;
+	position: relative;
+}
+
+.amx-inputText.amx-simple input, .amx-inputText.amx-simple textarea{
+	font-size: inherit;
+}
+.amx-panelFormLayout .amx-inputText.amx-simple input,
+.amx-panelFormLayout .amx-inputText.amx-simple textarea {
+  position: static;
+}
+.amx-inputText.amx-disabled{
+	opacity:0.40;
+}
+.amx-inputText.amx-disabled input, .amx-inputText.amx-disabled textarea{
+	background:none;
+}
+.adfmf-panelGroupLayout-groupBox .amx-inputText .field-value .readOnlyLabel,
+.amx-style-groupbox .amx-inputText .field-value .readOnlyLabel,
+.amx-panelFormLayout .amx-inputText .field-value .readOnlyLabel {
+  white-space: nowrap;
+  display: block;
+  word-break: initial; 
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color:#000000;
+  font-size:18px;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+}
+
+/* --------- </amx:inputText> --------- */
+/* VERSION 55 */
+* {
+    -webkit-user-select: none;
+}
+
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  50%  { opacity: 0; }
+  75%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-webkit-keyframes fade-in {
+  0%   { opacity: 0; }
+  50%  { opacity: 0; }
+  75%  { opacity: 0; }
+  100% { opacity: 1; }
+} 
+
+.amx-loading.hidden {
+  display: none;
+}
+
+.amx-loading.hiding {
+  opacity: 0;  
+  -webkit-transition: all .25s ease-in-out;
+}
+.amx-loading.beforeShowing {
+  opacity: 0;  
+}
+.amx-loading.showing {
+  animation-name: fade-in;
+  -webkit-animation-name: fade-in;
+  
+  animation-duration: 500ms;
+  -webkit-animation-duration: 500ms; 
+}
+
+.amx-loading {
+  background-image: url('images/activityIndicator.gif');
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: 75px 75px; /* Note: the actual image is 150x150 */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+}
+/* The loading indicator should not be displayed at design time */
+.amx-dtmode .amx-loading {
+  display: none;
+}
+
+/* Workaround for a bug in the design time preview panel that steals focus from
+   the code editor. */
+.amx-dtmode SELECT,
+.amx-dtmode INPUT {
+  -webkit-appearance: none;
+}
+
+input, textarea{
+	-webkit-user-select: text;
+}
+body{
+	margin: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+    -webkit-text-size-adjust: none;
+}
+
+label{
+}
+a{
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-touch-callout: none;
+}
+.ui-page{
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+}
+
+.amx-scrollable {
+  -webkit-backface-visibility: hidden;
+  
+  /* 
+   * Added the following to enable native iPhone scrolling in iOS 5.0 and above.
+   * Note that a change to the PhoneGap javascript library was also required
+   * because the outer iFrame created by PhoneGap was interfering with the
+   * ability to use native scrolling. The change was originally made to the
+   * phonegap-1.0.0.js file, and whenever our PhoneGap library is updated to
+   * a newer version, this change may need to be replicated in the new version
+   * of PhoneGap. See the discussion at the PhoneGap discussion groups at the
+   * following location for more info:
+   *
+   *    http://groups.google.com/group/phonegap/msg/7beee231774af8c9
+   *
+   */
+  -webkit-overflow-scrolling: touch;
+  /* Note that this causes the panelSplitter's flip animations to appear in
+     2D instead of 3D in the iOS simulator but not in desktop Safari 6
+     because this style does nothing in desktop Safari 6. */
+}
+
+/*
+ * When a series of DVT gauges (SVG elements) are in a scrollable area of an
+ * app built using Xcode 4.5.* (works with Xcode 4.6.*), sometimes iOS 6 will
+ * not allow 1-finger scrolling (although 2-finger scrolling works).
+ * This selector serves as a workaround for this Apple bug.
+ */
+.amx-ios .amx-scrollable:after {
+  content: ' ';
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Adding this translateZ helps speed up the scrolling on iOS devices. */
+.amx-scrollable > * {
+    -webkit-transform: translateZ(0px);
+  /* Note that this also causes bleed-through on desktop Safari 6
+     when doing flip transitions in the panelSplitter but not
+     in the iOS simulator because -webkit-overflow-scrolling: touch;
+     from .amx-scrollable corrects the issue there (not available on
+     desktop Safari 6). */
+}
+
+/* The generic Android browser does not support hidden backface-visibility.
+   In order for Android to use programmatic scrolling, we must set overflow to hidden */
+.amx-android-generic .amx-scrollable {
+  -webkit-backface-visibility: visible;
+  overflow: hidden;
+}
+/* Android will not repaint nested scrollable areas if translateZ is in use so we need to override it here. */
+.amx-android-generic .amx-scrollable > * {
+  -webkit-transform: none;
+}
+
+.amx-view {
+  -webkit-backface-visibility: hidden;
+}
+/* The generic Android browser does not support hidden backface-visibility */
+.amx-android-generic .amx-view {
+  -webkit-backface-visibility: visible;
+}
+
+/* In low memory situations, we need to drop use of expensive styles that consume large amounts of memory. */
+.adfmf-low-memory .amx-scrollable,
+.adfmf-low-memory.amx-scrollable {
+  -webkit-backface-visibility: visible;
+  -webkit-overflow-scrolling: auto;
+}
+.adfmf-low-memory .amx-scrollable > *,
+.adfmf-low-memory.amx-scrollable > * {
+  -webkit-transform: none;
+}
+
+/* In order to save memory on iOS, use this "adfmf-limited-scrolling" marker styleClass on your root component to disable the amx-scrollable selector and then use the adfmf-scrollable styleClass on components that you really do want scrolling on. Note that this only works on iOS (Android uses a different scrolling technique). */
+.amx-ios .adfmf-limited-scrolling .amx-scrollable,
+.amx-ios .adfmf-limited-scrolling.amx-scrollable {
+  -webkit-overflow-scrolling: auto;
+  overflow: visible;
+}
+.amx-ios .adfmf-limited-scrolling .amx-scrollable > *,
+.amx-ios .adfmf-limited-scrolling.amx-scrollable > * {
+  -webkit-transform: none;
+}
+
+/* adfmf-scrollable overrides (note messageBox is always active since there is no component to add a styleClass to it) */
+.amx-ios .adfmf-limited-scrolling .amx-listView.adfmf-scrollable,
+.amx-ios .adfmf-limited-scrolling .amx-panelPage.adfmf-scrollable > .amx-panelPage-content,
+.amx-ios .adfmf-limited-scrolling .amx-panelFormLayout.adfmf-scrollable,
+.amx-ios .adfmf-limited-scrolling .amx-panelGroupLayout.adfmf-scrollable,
+.amx-ios .adfmf-limited-scrolling .amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_contentContainer,
+.amx-ios .adfmf-limited-scrolling .amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_navLandscape,
+.amx-ios .adfmf-limited-scrolling .amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_navPortrait,
+.amx-ios .adfmf-limited-scrolling .amx-popup.adfmf-scrollable,
+.amx-ios .adfmf-limited-scrolling .amx-tableLayout.adfmf-scrollable,
+.amx-ios .adfmf-limited-scrolling .messageBox.amx-scrollable,
+.amx-ios .adfmf-limited-scrolling.amx-listView.adfmf-scrollable,
+.amx-ios .adfmf-limited-scrolling.amx-panelPage.adfmf-scrollable > .amx-panelPage-content,
+.amx-ios .adfmf-limited-scrolling.amx-panelFormLayout.adfmf-scrollable,
+.amx-ios .adfmf-limited-scrolling.amx-panelGroupLayout.adfmf-scrollable,
+.amx-ios .adfmf-limited-scrolling.amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_contentContainer,
+.amx-ios .adfmf-limited-scrolling.amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_navLandscape,
+.amx-ios .adfmf-limited-scrolling.amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_navPortrait,
+.amx-ios .adfmf-limited-scrolling.amx-popup.adfmf-scrollable,
+.amx-ios .adfmf-limited-scrolling.amx-tableLayout.adfmf-scrollable {
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+}
+.amx-ios .adfmf-limited-scrolling .amx-listView.adfmf-scrollable > *,
+.amx-ios .adfmf-limited-scrolling .amx-panelPage.adfmf-scrollable > .amx-panelPage-content > *,
+.amx-ios .adfmf-limited-scrolling .amx-panelFormLayout.adfmf-scrollable > *,
+.amx-ios .adfmf-limited-scrolling .amx-panelGroupLayout.adfmf-scrollable > *,
+.amx-ios .adfmf-limited-scrolling .amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_contentContainer > *,
+.amx-ios .adfmf-limited-scrolling .amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_navLandscape > *,
+.amx-ios .adfmf-limited-scrolling .amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_navPortrait > *,
+.amx-ios .adfmf-limited-scrolling .amx-popup.adfmf-scrollable > *,
+.amx-ios .adfmf-limited-scrolling .amx-tableLayout.adfmf-scrollable > *,
+.amx-ios .adfmf-limited-scrolling .messageBox.amx-scrollable > *,
+.amx-ios .adfmf-limited-scrolling.amx-listView.adfmf-scrollable > *,
+.amx-ios .adfmf-limited-scrolling.amx-panelPage.adfmf-scrollable > .amx-panelPage-content > *,
+.amx-ios .adfmf-limited-scrolling.amx-panelFormLayout.adfmf-scrollable > *,
+.amx-ios .adfmf-limited-scrolling.amx-panelGroupLayout.adfmf-scrollable > *,
+.amx-ios .adfmf-limited-scrolling.amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_contentContainer > *,
+.amx-ios .adfmf-limited-scrolling.amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_navLandscape > *,
+.amx-ios .adfmf-limited-scrolling.amx-panelSplitter.adfmf-scrollable > .amx-panelSplitter_inner > .amx-panelSplitter_navPortrait > *,
+.amx-ios .adfmf-limited-scrolling.amx-popup.adfmf-scrollable > *,
+.amx-ios .adfmf-limited-scrolling.amx-tableLayout.adfmf-scrollable > * {
+    -webkit-transform: translateZ(0px);
+}
+
+#amxUIFlush{
+	position: absolute;
+	top: 100px; left: 50%;
+	height: 100px;
+	width: 100px;
+	overflow: hidden;
+	border: solid 1px black;
+	z-index: -1;
+	/*color: rgba(0,0,0,0);*/
+}
+
+#amxDebug{
+	position: absolute;
+	top: 0; left: 5%; right: 5%;
+	height: 60px;
+	background: rgba(255,255,255,.6);
+	color: #333;
+	font-size: 12px;
+	border: solid 1px #999;
+	z-index: 1000;
+	overflow: auto;
+}
+
+#bodyPage.transitioning {
+  -webkit-perspective: 2000;
+}
+#bodyPage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index:0;
+  background-color: #505568;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABBCAYAAABhNaJ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowMjgwMTE3NDA3MjA2ODExOERCQkE5MTM5QjY2OTE5MSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowRkY2Rjk2NkU0RDAxMUUxOEZGMUZDMDYzNzgyMTRCMiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowRkY2Rjk2NUU0RDAxMUUxOEZGMUZDMDYzNzgyMTRCMiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDk4MDExNzQwNzIwNjgxMTgwODM5MERFMzA5ODdDQ0IiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDI4MDExNzQwNzIwNjgxMThEQkJBOTEzOUI2NjkxOTEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6vFI1IAAAD8UlEQVR42uxaTU/bQBDdOHYSNx+QIJBSKsEBVOiFX9Be+4u5VMolh5y5lNLmklaqOCDKRyAOMQ59z9goBwfiD7JYmpW2oHhn2H0znnnZvsLOzo6aHZPJRI1GI86S67pbDw8PbXxsYzaDJReYTqFQOLUs6/ft7e1E5XiY4S84qHIcR+FAxfF4/NEwjE/VatWqVCqqVCop03xcen9/3yJIWLN5d3d3gOfHmD8vLy+9PAJQYAbw8Iw6Dl/BAb/Ytr2GwytEWCHSkYa0QYbQhsCdA6Du1dXVOG8AGPwH0eS0cdivjUZjbWVlxY/6vMP7yOEZ13AtbWjbarXs3AHAKCKVkfHG53cYjDx+X9wB1tKGtvSxvr5u5AoAvs+I3h5SeA2p/2zUn8sG2tIHfeXtFbCKxeJ+uVyOFfmoTKAP+mq321ZuAEDE3mPTJRa8tIM+6AtgbOcGAIwtbDpR6ke9CvQFn+3c8ABsts5NZzUCX61F1+/u7ka2WLTjsDv55MzzvCf/7D7kJ5yDwSAdAIianebdj6oFOEA5qf1LTHQ6nV7gcwfPfSZKk7QZ4KMKx9mkFBjjNIEzXUyUGeDgj1lZAUBAMUdxDz/LRGu12lwmSjA4+RyZYMHmAMB9ACFLxEQNRH8YopsVANj0MI6NTiZq4PB/6CyrLkAAELnTRW10M1EDm/3LffBdSzvoA5twEZlBnKKnk4kSABeThUSlaYe0DQA4Pjo6cuPwJ51M1P8uAMMTGP7Du5RoE7ShLX2wIseMnlYmagREYwrjLt4lp9lsqjhFkWtpQ1v66PV6XkzwtDJRgy1oOByyCrMdfsNhzjc2NlhUXqzCXMO1tKFtt9t1EmRP5kwUPhdmombArtT19TX78Qip3EFr2cPPffRmK+jPfrEK+3BQdTldAPEDz086nY6XMGpamehTrpNrg0iwJXloTd/r9XofQGyvrq5GXorij5xi7eDw8HCSdsM6magZRUdxMAVqOQEj+8XJ6jpDRf3nNzc3/szgvdXKRCOrHTdDIDjPzs5e9etowEQbBFYHEzX7/b7e7+OPTHSTRZUZuGwmqv0CUzcTfQsAaGWi2gHQzUS1A6CdieoGQDcTNdUbGFqZaNrWk3bM3gozqixkYJ8KTLSE2rCNz16ViZq6r6V1M1Ezqiov81paNxMthAqRqGtpIB91La2Ca2lGwsVmRSAhAgkRSIhAQgQSIpBQ+RRI8H+Ht4JblCyut8L7PXKHhW5aoohYnJH2Qke7QGJei12UiabOABFIiEBCBBIikBCBhAgkRCAhAgkRSIhAQgQSIpAQgUQwRCCxzAsJEUiIQEIEEiKQEIGECCREIBFGddkCif8CDABZgF92u0hj9QAAAABJRU5ErkJggg=='), -webkit-gradient(radial, 50% 50%, 1, 50% 50%, 400, from(#7c8592), to(#505568)); /* iOS 4 */
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABBCAYAAABhNaJ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowMjgwMTE3NDA3MjA2ODExOERCQkE5MTM5QjY2OTE5MSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowRkY2Rjk2NkU0RDAxMUUxOEZGMUZDMDYzNzgyMTRCMiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowRkY2Rjk2NUU0RDAxMUUxOEZGMUZDMDYzNzgyMTRCMiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDk4MDExNzQwNzIwNjgxMTgwODM5MERFMzA5ODdDQ0IiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDI4MDExNzQwNzIwNjgxMThEQkJBOTEzOUI2NjkxOTEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6vFI1IAAAD8UlEQVR42uxaTU/bQBDdOHYSNx+QIJBSKsEBVOiFX9Be+4u5VMolh5y5lNLmklaqOCDKRyAOMQ59z9goBwfiD7JYmpW2oHhn2H0znnnZvsLOzo6aHZPJRI1GI86S67pbDw8PbXxsYzaDJReYTqFQOLUs6/ft7e1E5XiY4S84qHIcR+FAxfF4/NEwjE/VatWqVCqqVCop03xcen9/3yJIWLN5d3d3gOfHmD8vLy+9PAJQYAbw8Iw6Dl/BAb/Ytr2GwytEWCHSkYa0QYbQhsCdA6Du1dXVOG8AGPwH0eS0cdivjUZjbWVlxY/6vMP7yOEZ13AtbWjbarXs3AHAKCKVkfHG53cYjDx+X9wB1tKGtvSxvr5u5AoAvs+I3h5SeA2p/2zUn8sG2tIHfeXtFbCKxeJ+uVyOFfmoTKAP+mq321ZuAEDE3mPTJRa8tIM+6AtgbOcGAIwtbDpR6ke9CvQFn+3c8ABsts5NZzUCX61F1+/u7ka2WLTjsDv55MzzvCf/7D7kJ5yDwSAdAIianebdj6oFOEA5qf1LTHQ6nV7gcwfPfSZKk7QZ4KMKx9mkFBjjNIEzXUyUGeDgj1lZAUBAMUdxDz/LRGu12lwmSjA4+RyZYMHmAMB9ACFLxEQNRH8YopsVANj0MI6NTiZq4PB/6CyrLkAAELnTRW10M1EDm/3LffBdSzvoA5twEZlBnKKnk4kSABeThUSlaYe0DQA4Pjo6cuPwJ51M1P8uAMMTGP7Du5RoE7ShLX2wIseMnlYmagREYwrjLt4lp9lsqjhFkWtpQ1v66PV6XkzwtDJRgy1oOByyCrMdfsNhzjc2NlhUXqzCXMO1tKFtt9t1EmRP5kwUPhdmombArtT19TX78Qip3EFr2cPPffRmK+jPfrEK+3BQdTldAPEDz086nY6XMGpamehTrpNrg0iwJXloTd/r9XofQGyvrq5GXorij5xi7eDw8HCSdsM6magZRUdxMAVqOQEj+8XJ6jpDRf3nNzc3/szgvdXKRCOrHTdDIDjPzs5e9etowEQbBFYHEzX7/b7e7+OPTHSTRZUZuGwmqv0CUzcTfQsAaGWi2gHQzUS1A6CdieoGQDcTNdUbGFqZaNrWk3bM3gozqixkYJ8KTLSE2rCNz16ViZq6r6V1M1Ezqiov81paNxMthAqRqGtpIB91La2Ca2lGwsVmRSAhAgkRSIhAQgQSIpBQ+RRI8H+Ht4JblCyut8L7PXKHhW5aoohYnJH2Qke7QGJei12UiabOABFIiEBCBBIikBCBhAgkRCAhAgkRSIhAQgQSIpAQgUQwRCCxzAsJEUiIQEIEEiKQEIGECCREIBFGddkCif8CDABZgF92u0hj9QAAAABJRU5ErkJggg=='), -webkit-gradient(linear,0% 0%, 0% 100%, from(#242e36), to(#060606)); /* iOS 5+ */
+  background-repeat: repeat, no-repeat;
+  -webkit-background-size: 32px 33px, contain; /* actual size is 64x65 */
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+}
+
+#bodyPage.amx-debug:after {
+  pointer-events: none;
+  z-index: 1;
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  -webkit-background-size: 12px 12px; /* actual size is 24x24 */
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABZklEQVR42tWSPUsDQRCGJ9qopFbOXGxE0DZ/QCxFC1vttRTstEwjFiJomz8gYqlFBIn4FbEQbRRFUKL5Ddqd84Ivt5f1ctnLpfDggWV2d56ZnZNDGXFhVpkzY58y1haX5KtK8Mta1oJBJjcYylKwiaSXMgoo2MpKUGLVr1IEWJNSFoIKkt1o5XoB6LpAQaVbwSKr/To6DfhhbXSxlFaQY5I7rfi7Vmd+rBEzJbk0gnVcromHZ7EEiJ2JR8GGq2CY1T2KHyt4Ep8C4LkItnHpioONESg4Q8FOp4JpVvUmxUTBe/S3nelEsI/Dt1JgkjgBwVkKDpIEy6yGl0nLb2rtn4QDX4kT9DH5vfhWgubARNDMTwGsrf2H6MD7/xKUsXnOwToIyEU48HKrYJz2Zw7W4YnIS3Tgk6ZgF8Frq/qkIdvUwy72KJintcGDKTogH4rRxQIExwz0gCo76IWkyg66Ql+sLf9f8ANt1YXAKU8nPgAAAABJRU5ErkJggg==');
+}
+
+/* amx container elements need to be relative */
+.amx-listView,
+.amx-listItem,
+.amx-panelGroupLayout {
+	position: relative;
+}
+
+/* single finger scrollables */
+.amx-panelPage-content,
+.amx-listView,
+.amx-panelGroupLayout,
+.amx-panelFormLayout {
+	overflow: auto;
+}
+
+.amx-node.amx-fitParent {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+/* ------ Generic Field label/value ------ */
+.field-label {
+  -webkit-box-sizing: border-box; /* iOS 4 */
+  box-sizing: border-box;
+  vertical-align: middle;
+  color: #4cc0fc;
+  font-size: 14px;
+  -webkit-user-select: text;
+}
+HTML[dir=ltr] .field-label {
+  padding: 12px 5px 12px 19px;
+}
+HTML[dir=rtl] .field-label {
+  padding: 12px 19px 12px 5px;
+}
+.field-value {
+  -webkit-box-sizing: border-box; /* iOS 4 */
+  box-sizing: border-box;
+  vertical-align: middle;
+  overflow: hidden;
+  word-break: break-all;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+}
+HTML[dir=ltr] .field-value {
+  padding: 12px 10px 12px 5px;
+}
+HTML[dir=rtl] .field-value {
+  padding: 12px 5px 12px 10px;
+}
+.field-value input,
+.field-value textarea {
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+}
+.field {
+  display: table;
+  width: 100%;
+  border-spacing: 0px;
+}
+.field.required .field-label:before {
+  content: ' ';
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAF5JREFUeNpi+P//P8N/HgYQTgDiHUD8FUqD+EAJiAIQ5wcQ/0fCIH4CEwMERAAxOwMqAPEjGEEmMPAyfgVyuBgwwTeYCYcZsIPDMAUrgPgnmuRPsDghX0DcgAcABBgA4h44YfKwCcEAAAAASUVORK5CYII=');
+  background-repeat: no-repeat;
+  width: 7px; /* 4 for the image width plus 3 padding */
+  height: 4px;
+  margin-top: -2px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-background-size: 4px 4px; /* actual size is 8x8 */
+}
+HTML[dir=ltr] .field.required .field-label:before {
+  background-position: left center;
+  margin-left: -8px;
+  margin-right: 1px;
+}
+HTML[dir=rtl] .field.required .field-label:before {
+  background-position: right center;
+  margin-left: 1px;
+  margin-right: -8px;
+}
+
+.field > .field-label {
+  white-space: nowrap;
+  display: table-cell;
+  word-break: break-all;
+}
+
+.field.amx-simple > .field-label {
+  display: none;
+}
+
+.field > .field-value {
+  width: 100%;
+  display: table-cell;
+  word-break: break-all;
+}
+
+.field.amx-simple > .field-value {
+  padding: 12px 10px 12px 10px;
+}
+
+input[type="date"], 
+input[type="datetime"], 
+input[type="datetime-local"], 
+input[type="month"], 
+input[type="time"] {
+  border: 1px solid #214D81;
+  font-weight: normal;
+  margin: 0;
+}
+
+/* ------/Generic Field label/value ------ */
+
+
+/* ------ Icons ------ */
+.ico{
+	background-image: url(images/amx.png);
+	width: 32px;
+	height: 32px;
+	-webkit-background-size: 144px 192px;
+}
+.ico-arrow-r{
+	background-position:  0px 0px;
+}
+/* ------ /Icons ------ */
+
+
+/* Debug Log */
+#log{
+	z-index: 100;
+	border: solid 1px #aaa;
+	background: rgba(255,255,255,.5);
+	position: absolute;
+	bottom: 10px;
+	width: 50%;
+	height: 60px;
+	font-size: 12px;
+}
+
+/* --------- <amx:inputDatePicker for Android> --------- */
+.amx-inputDate-content-android {
+  display: none;
+}
+.amx-inputDate-picker-wrapper {
+  width: 223px;
+  position: relative;
+  height: 230px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border-radius: 5px;
+  /* opacity: .96; */
+  background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0.00, #000103),
+    color-stop(0.1, #3b434d),
+    color-stop(0.25, #3b434d),
+    color-stop(0.52, #272d37),
+    color-stop(0.92, #171f28),
+    color-stop(0.96, #576271),
+    color-stop(0.99, #8694a7),
+    color-stop(1.00, #a4b2c7));
+  border: 1px solid #000000;
+  box-shadow: 0px 0px 2px 2px #000000;
+  z-index: 102;
+  top: 40px;
+}
+.amx-inputDate-picker-wrapper.amx-inputDate-picker-dateOnly,
+.amx-inputDate-picker-wrapper.amx-inputDate-picker-timeOnly {
+  height: 188px;
+}
+.amx-inputDate-picker-dateTab {
+  height: 26px;
+  width: 220px;
+  border: solid 1px #191919;
+  border-radius: 5px 5px 0px 0px;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  color: #FFFFFF;
+  padding: 5px 0 0 0;
+  background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, #2f6bac),
+    color-stop(0.49, #214d81),
+    color-stop(0.5, #2c588d),
+    color-stop(1.0, #6d98c9));
+}
+.amx-inputDate-picker-dateTab-text,
+.amx-inputDate-picker-timeTab-text {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-weight: bold;
+  display: block;
+  position: relative;
+  bottom: 1px;
+  text-align: center;
+}
+.amx-inputDate-picker-date-header,
+.amx-inputDate-picker-time-header {
+  background: transparent;
+  border: none;
+}
+.amx-inputDate-picker-timeTab {
+  height: 26px;
+  width: 220px;
+  border: solid 1px #191919;
+  border-radius: 0px 0px 5px 5px;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  color: #FFFFFF;
+  padding: 5px 0 0 0;
+  background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, #2f6bac),
+    color-stop(0.49, #214d81),
+    color-stop(0.5, #2c588d),
+    color-stop(1.0, #6d98c9));
+}
+.amx-inputDate-picker-dateTab-selected,
+.amx-inputDate-picker-timeTab-selected {
+  height: 26px;
+  width: 220px;
+  border: solid 1px #191919;
+  border-radius: 5px 5px 0px 0px;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  color: #fff;
+  padding: 5px 0 0 0;
+  background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, #79b6fe),
+    color-stop(0.49, #377dcf),
+    color-stop(0.5, #4e89ca),
+    color-stop(1.0, #b4c9e2));
+}
+.amx-inputDate-picker-timeTab-selected {
+  border-radius: 0px 0px 5px 5px;
+}
+.amx-inputDate-datePicker-inner-container,
+.amx-inputDate-timePicker-inner-container {
+  display: table;
+  height: 103px;
+  width: 222px;
+  background-color: whiteSmoke;
+  margin: 7px 0px 9px 0px;
+  border-radius: 10px;
+  font-size: 22px;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  text-align: center;
+  box-shadow: 0px 0px 2px 1px black;
+  border-collapse: collapse;
+}
+.amx-inputDate-datePicker-col {
+  width: 63px;
+}
+HTML[dir=ltr] .amx-inputDate-datePicker-col {
+  border-right: 2px solid #bbbbbb;
+}
+HTML[dir=rtl] .amx-inputDate-datePicker-col {
+  border-left: 2px solid #bbbbbb;
+}
+HTML[dir=ltr] .amx-inputDate-datePicker-lastCol {
+  border-right: none;
+}
+HTML[dir=rtl] .amx-inputDate-datePicker-lastCol {
+  border-left: none;
+}
+.amx-inputDate-picker-wrapper .amx-inputDate-incrementButton {
+  background-image: url('images/IncrementBtnNormal.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 27px;
+  background-size: 30px 16px;
+}
+.amx-inputDate-picker-wrapper .amx-inputDate-decrementButton {
+  background-image: url('images/IncrementBtnNormal.png');
+  -webkit-transform: rotate(180deg);
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 27px;
+  background-size: 30px 16px;
+}
+.amx-inputDate-picker-wrapper .amx-inputDate-incrementButton-selected {
+  background-image: url('images/IncrementBtnSelected.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 27px;
+  background-size: 30px 16px;
+}
+.amx-inputDate-picker-wrapper .amx-inputDate-decrementButton-selected {
+  background-image: url('images/IncrementBtnSelected.png');
+  -webkit-transform: rotate(180deg);
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 27px;
+  background-size: 30px 16px;
+}
+.amx-inputDate-picker-setButton,
+.amx-inputDate-picker-cancelButton {
+  width: 92px;
+  height: 20px;
+  padding: 10px 8px;
+  background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, #2F6BAC),
+    color-stop(0.48, #214D81),
+    color-stop(0.49, #2C588D),
+    color-stop(1.00, #6D98C9));
+  -webkit-box-shadow: inset 1px 0px 0px 0px rgba(0, 0, 0, 0.60), inset 0px 0px 1px 1px rgba(0, 0, 0, 0.60);
+  border-radius: 10px;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-family: Helvetica Neue;
+  font-size: 17px;
+}
+HTML[dir=ltr] .amx-inputDate-picker-setButton {
+  float: left;
+}
+HTML[dir=rtl] .amx-inputDate-picker-setButton {
+  float: right;
+}
+HTML[dir=ltr] .amx-inputDate-picker-cancelButton {
+  float: right;
+}
+HTML[dir=rtl] .amx-inputDate-picker-cancelButton {
+  float: left;
+}
+.amx-inputDate-picker-button-text {
+  display: inline-block;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.60);
+  vertical-align: top;
+}
+.amx-inputDate-trigger-dateTime {
+  position: relative;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #CDCDCD), color-stop(1.0, white));
+  height: 25px;
+  border-radius: 5px;
+  width: 190px;
+  border: 1px solid #2C588D;
+}
+HTML[dir=ltr] .amx-inputDate-trigger-dateTime {
+  text-align: left;
+}
+HTML[dir=rtl] .amx-inputDate-trigger-dateTime {
+  text-align: right;
+}
+.amx-inputDate-text {
+  color: #000;
+  line-height: 26px;
+  font-size: 14px;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-weight: normal;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: absolute;
+}
+HTML[dir=ltr] .amx-inputDate-text {
+  padding: 0px 2px 0 10px;
+  left: 0;
+  right: 25px;
+}
+HTML[dir=rtl] .amx-inputDate-text {
+  padding: 0px 10px 0 2px;
+  left: 25px;
+  right: 0;
+}
+.amx-panelFormLayout .amx-inputDate-text {
+  color: #000;
+}
+.amx-inputDate-triggerIconStyleWrapper {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3D568B), color-stop(1.0, #8596B8));
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 0;
+}
+HTML[dir=ltr] .amx-inputDate-triggerIconStyleWrapper {
+  border-radius: 0 3px 3px 0;
+  right: 0;
+}
+HTML[dir=rtl] .amx-inputDate-triggerIconStyleWrapper {
+  border-radius: 3px 0 0 3px;
+  left: 0;
+}
+.amx-inputDate-triggerIconStyle {
+  background-image: url('images/listView-div-arrow-down.png');
+  -webkit-background-size: 12px 7px; /* Note: the actual image is 2x; 24x14 */
+  background-repeat: no-repeat;
+  width: 12px;
+  height: 7px;
+  position: absolute;
+  top: 10px;
+}
+HTML[dir=ltr] .amx-inputDate-triggerIconStyle {
+  right: 6px;
+}
+HTML[dir=rtl] .amx-inputDate-triggerIconStyle {
+  left: 6px;
+}
+.amx-inputDate-picker-modalOverlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  opacity: .5;
+  -webkit-transition: opacity 0.3s ease-in;
+  z-index: 101;
+}
+.amx-inputDate-readOnly {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+}
+
+.amx-panelFormLayout .amx-inputDate-readOnly {
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+
+}
+/* --------- <amx:inputDatePicker for Android> --------- */
+/* --------- <amx:inputDate for iOS> --------- */
+.amx-inputDate .dateLabel{
+  font-weight: bold;
+  cursor: pointer;
+}
+.amx-inputDate.amx-disabled{
+  opacity: 0.40
+}
+.amx-inputDate .amx-inputDate-content {
+  font-size: 16px;
+}
+.amx-inputDate.amx-readOnly .amx-inputDate-content {
+  font-weight: bold;
+  color: #000000;
+}
+/* --------- </amx:inputDate for iOS> --------- */
+/* --------- <amx: inputNumberSilder> --------- */
+.amx-inputNumberSlider .field-label {
+  margin: 3px 0 0 0;
+}
+.amx-inputNumberSlider .field-value {
+  position: relative;
+}
+.amx-inputNumberSlider .field-value .disable {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,.2);
+}
+.amx-inputNumberSlider .field-value .container {
+  padding: 5px 0px;
+  z-index: -1;
+}
+.amx-panelFormLayout .amx-inputNumberSlider .field-value .container {
+  text-align: center;
+}
+.amx-inputNumberSlider .field-value .inputTextNumber {
+  display: inline-block;
+  position: relative;
+}
+HTML[dir=ltr] .amx-inputNumberSlider .field-value .inputTextNumber {
+  margin: 0 5px 0 0;
+}
+HTML[dir=rtl] .amx-inputNumberSlider .field-value .inputTextNumber {
+  margin: 0 0 0 5px;
+}
+.amx-inputNumberSlider .field-value .inputTextNumber input[type='text'] {
+  -webkit-user-select: text;
+  width: 30px;
+  height: 24px;
+  border: 1px solid #B3B3B3;
+  -webkit-border-radius: 4px;
+}
+.amx-inputNumberSlider .field-value .inputTextNumber .btn {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: #000000;
+  border: 1px solid #ABADB3;
+  background: -webkit-gradient(linear,0% 0%, 0% 100%, from(#F2F2F2), to(#D1D1D1), color-stop(0.5,#E8E8E8),color-stop(0.5,#DBDBDB));
+}
+HTML[dir=ltr] .amx-inputNumberSlider .field-value .inputTextNumber .btn {
+  right: 1px;
+}
+HTML[dir=rtl] .amx-inputNumberSlider .field-value .inputTextNumber .btn {
+  left: 1px;
+}
+.amx-inputNumberSlider .field-value .inputTextNumber .btn: hover {
+  border: 1px solid #3C7FB1;
+  background: -webkit-gradient(linear,0% 0%, 0% 100%, from(#E9F6FD), to(#A9DBF5), color-stop(0.5,#D2EDFC),color-stop(0.5,#BBE5FC));
+}
+.amx-inputNumberSlider .field-value .inputTextNumber .btn.up {
+  top: 2px;
+  -webkit-border-top-right-radius: 2px;
+  -webkit-border-top-left-radius: 2px;
+}
+.amx-inputNumberSlider .field-value .inputTextNumber .btn.down {
+  top: 14px;
+  -webkit-border-bottom-left-radius: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+}
+.amx-inputNumberSlider .field-value .slider {
+  display: inline-block;
+  background: #000000;
+  position: relative;
+  width: 98%;
+  margin: 0px 4px;
+  min-width: 100px;
+  height: 10px;
+  border: 1px solid #808080;
+  background: -webkit-gradient(linear,0% 0%, 0% 100%, from(#EEEEEE), to(#FDFDFD));
+  -webkit-border-radius: 5px;
+  cursor: pointer;
+}
+.amx-inputNumberSlider .field-value .slider .selected {
+  position: absolute;
+  top: -1px;
+  z-index: 1;
+  width: 23px;
+  height: 100%;
+  -webkit-border-radius: 5px;
+  border: 1px solid #034589;
+  background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, #79b6fe),
+    color-stop(0.49, #377dcf),
+    color-stop(0.5, #4e89ca),
+    color-stop(1.0, #b4c9e2));
+}
+HTML[dir=ltr] .amx-inputNumberSlider .field-value .slider .selected {
+  left: -1px;
+}
+HTML[dir=rtl] .amx-inputNumberSlider .field-value .slider .selected {
+  right: -1px;
+}
+.amx-inputNumberSlider .field-value .slider .valve-background {
+  width: 32px;
+  height: 22px;
+  position: absolute;
+  background: rgba(0,0,0,0.0);
+  top: -6px;
+  z-index: 2;
+}
+HTML[dir=ltr] .amx-inputNumberSlider .field-value .slider .valve-background {
+  left: 20px;
+}
+HTML[dir=rtl] .amx-inputNumberSlider .field-value .slider .valve-background {
+  left: 20px;
+}
+.amx-inputNumberSlider .field-value .slider .valve-background .valve {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  position: absolute;
+  top: 3px;
+  z-index: 3;
+  -webkit-border-radius: 10px;
+  background: -webkit-gradient(linear,0% 0%, 0% 100%, from(#FCFCFC), to(#EEEEEE));
+  cursor: pointer;
+  -webkit-box-shadow: -1px -1px 1px 0px #CBCBCB,
+    1px 1px 1px 0px #CBCBCB,
+    -1px 1px 1px 0px #CBCBCB,
+    1px -1px 1px 0px #CBCBCB;
+}
+HTML[dir=ltr] .amx-inputNumberSlider .field-value .slider .valve-background .valve {
+  left: 8px;
+}
+HTML[dir=rtl] .amx-inputNumberSlider .field-value .slider .valve-background .valve {
+  right: 8px;
+}
+
+.amx-inputNumberSlider .field-value .slider .valve-background .valve: hover {
+  background: -webkit-gradient(linear,0% 0%, 0% 100%, from(#ECECEC), to(#DBDBDB));
+}
+.amx-inputNumberSlider.amx-disabled {
+  opacity: 0.40;
+}
+.amx-inputNumberSlider.amx-readOnly .slider,.amx-inputNumberSlider.amx-readOnly .field-value .slider .valve-background .valve,.amx-inputNumberSlider.amx-readOnly .selected {
+  cursor: default;
+}
+.amx-inputNumberSlider.amx-readOnly .field-value .slider  .selected {
+  border: solid 1px #2C2C2C;
+  background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, #b3b3b3),
+    color-stop(0.49, #858585),
+    color-stop(0.5, #909090),
+    color-stop(1.0, #c7c7c7));
+}
+
+/* --------- </amx: inputNumberSilder> --------- */
+/* ------ <amx:listView> ------ */
+.amx-listView {
+  margin: 0;
+  background-color: #fff;
+}
+.amx-listView.adfmf-listView-insetList,
+.amx-listView.amx-listView-insetList {
+  margin: 12px 9px 12px 9px;
+  -webkit-border-radius: 10px;
+}
+
+.amx-listView.adfmf-listView-insetList .amx-listItem:first-child,
+.amx-listView.amx-listView-insetList .amx-listItem:first-child {
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+}
+
+.amx-listView.adfmf-listView-insetList .amx-listItem:last-child,
+.amx-listView.amx-listView-insetList .amx-listItem:last-child {
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+}
+
+.amx-listView.notSelect * {
+  -webkit-user-select: none;
+}
+
+.amx-listView.amx-listView-editMode .amx-listItem .amx-listItem-caret {
+  display: none;
+}
+
+/* --- <facets> ---*/
+.amx-listView-header {
+  background: -webkit-gradient(linear, left top, left bottom, from(#dae0e4), to(#b1bcc3));
+}
+
+.amx-listView-facet-header {
+}
+
+.amx-listView-facet-header > .amx-outputText {
+  color: #333;
+}
+
+.amx-listView-footer {
+  background: -webkit-gradient(linear, left top, left bottom, from(#dae0e4), to(#b1bcc3));
+}
+
+.amx-listView-facet-footer {
+}
+
+.amx-listView-facet-footer> .amx-outputText {
+  color: #333;
+}
+/* --- </facets> --- */
+
+/* --- <dividers> --- */
+
+.amx-listView .amx-listView-divider:first-child {
+  top: 0px;
+}
+
+.amx-listView-divider {
+  background-image: -webkit-linear-gradient(bottom, #2163B1 2%, #6097D7 8%, #6097D7 97%);
+  height: 32px;
+  position: relative;
+  box-shadow: inset 0px 1px 0 0 rgba(255, 255, 255, .7);
+  top: -1px;
+}
+
+.amx-android-generic .amx-listView-divider {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.02,#2163B1), color-stop(0.08,#6097D7), color-stop(0.97, #6097D7));
+  -webkit-box-shadow: inset 0px 1px 1px 0px rgba(255, 255, 255, .7);
+}
+
+.amx-listView-divider .amx-listView-dividerText {
+  font-weight: bold;
+  font-size: 18px;
+  color: #ffffff;
+  position: absolute;
+  margin-left: 40px;
+  top: 5px;
+  text-shadow: 0px 1px 0px rgba(0,0,0,.7);
+}
+
+.amx-listView-divider.amx-listView-nonCollapsibleDivider .amx-listView-dividerText {
+  font-weight: bold;
+  font-size: 18px;
+  color: #ffffff;
+  position: absolute;
+  margin-left: 16px;
+  top: 5px;
+  text-shadow: 0px 1px 0px rgba(0,0,0,.7);
+}
+
+.amx-listView-dividerCounter {
+  position: absolute;
+  top: 0;
+  bottom: 1px;
+  right: 0;
+}
+
+.amx-ios .amx-listView-dividerCounter {
+  background-image: -webkit-linear-gradient( bottom, #275A91 9%, #5C90CD 96%, #D0E0F3 97%);
+  -webkit-mask-image: -webkit-linear-gradient(-50deg, transparent 0%, transparent 50%, black 51%, black 100%);
+  padding: 0 60px;
+}
+
+.amx-android-generic .amx-listView-dividerCounter {
+  /*
+  Starting in Safari 5.1, it is possible to specify the gradient angle as in the mask-image above.  However, since 
+  Android is using an older Webkit version we have to use the "x% y%" point style like below.  The end point at 
+  "100% 350%" is there because we can't specify the angle explicitly and we want it to be about 45 degrees.
+  */
+  background-image: -webkit-gradient(linear, 1% 1%, 100% 250%, color-stop(0.00,#6097D7), color-stop(0.155,#6097D7), color-stop(0.156, #4883C7),color-stop(0.60, #275A91));
+  -webkit-box-shadow: inset 0px 1px 1px 0px rgba(255, 255, 255, .7);
+  padding: 0 40px;
+}
+
+.amx-listView-dividerCounterText {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  top: 3px;
+  right: -46px;
+  position: relative;
+  text-shadow: 0px 1px 0px rgba(0,0,0,.7);
+}
+
+.amx-android-generic .amx-listView-dividerCounterText {
+  right: -26px;
+}
+
+.amx-listView-disclosedIcon {
+  background-image: url(images/listView-div-arrow-down.png);
+  position: relative;
+  background-repeat: no-repeat;
+  top: 10px;
+  -webkit-background-size: 15px 10px;
+  height: 100%;
+  width: auto;
+  background-position: 16px 2px;
+}
+
+.amx-listView-undisclosedIcon {
+  background-image: url(images/listView-div-arrow-right.png);
+  background-position: 20px 9px;
+  -webkit-background-size: 10px 15px;
+  height: 100%;
+  width: auto;
+  background-repeat: no-repeat;
+}
+
+/* --- </dividers> --- */
+
+
+/* This requires a relative position so that the caret and drag handles can be positioned inside. */
+.amx-listItem {
+  position: relative;
+  border-bottom: solid 1px #BBBBBB;
+  cursor: pointer;
+  min-height: 43px;
+}
+/* Android requires a larger min-height because of its larger font sizes (or else you can't scroll quadrant layouts) */
+/* [DenisT]  Instead of specifying min-height I have added padding on top/bottom.  Without this the text isn't centered vertically*/
+.amx-android-generic .amx-listItem {
+  padding-top: 3px;
+  padding-bottom: 2px;
+}
+
+.amx-listItem.amx-listItem-selected {
+  border-bottom: solid 1px #BBBBBB;
+  cursor: pointer;
+  background-color:#2F6BAC;
+}
+.amx-listItem.move {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: solid 1px #BBBBBB;
+  cursor: move;
+}
+
+.amx-listItem-caret {
+  -webkit-background-size: 144px  192px;
+  width: 17px;
+  height: 13px;
+  position: absolute;
+  top: 50%;
+  margin-top: -7px;
+}
+HTML[dir=ltr] .amx-listItem-caret {
+  background-image: url(images/amx.png);
+  background-position: 7px 0px; /* LTR and RTL slices are not perfectly centered hence the unique positions */
+  right: 5px;
+}
+HTML[dir=rtl] .amx-listItem-caret {
+  background-image: url(images/amx_rtl.png);
+  background-position: 2px 0px; /* LTR and RTL slices are not perfectly centered hence the unique positions */
+  left: 5px;
+}
+
+HTML[dir=ltr] .amx-listItem-selected > .amx-listItem-caret {
+  background-position: -11px 0px; /* LTR and RTL slices are not perfectly centered hence the unique positions */
+}
+HTML[dir=rtl] .amx-listItem-selected > .amx-listItem-caret {
+  background-position: -16px 0px; /* LTR and RTL slices are not perfectly centered hence the unique positions */
+}
+
+.amx-listItem-handle {
+  -webkit-background-size: 144px 192px;
+  width: 39px;
+  height: 31px;
+  position: absolute;
+  top: 75%;
+  margin-top: -25px;
+  cursor: move;
+}
+HTML[dir=ltr] .amx-listItem-handle {
+  background-image: url(images/amx.png);
+  background-position: 13px -27px; /* LTR and RTL slices are not perfectly centered hence the unique positions */
+  right: 0px;
+}
+HTML[dir=rtl] .amx-listItem-handle {
+  background-image: url(images/amx_rtl.png);
+  background-position: 7px -27px; /* LTR and RTL slices are not perfectly centered hence the unique positions */
+  left: 0px;
+}
+.amx-listItem-drop-spacer {
+  height: 10px;
+  -webkit-box-shadow: 0px 2px 3px 0px #a0a0a0, 0px -2px 3px 0px #a0a0a0;
+}
+
+.amx-listItem .amx-image {
+  margin-top: 7px;
+}
+
+.amx-listItem .amx-outputText {
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  white-space: nowrap;
+  text-overflow:clip;
+  overflow: hidden;
+  display: block;
+}
+
+HTML[dir=ltr] .amx-listItem > .amx-outputText {
+  margin-right: 30px;
+  padding: 10px 0 10px 10px;
+}
+HTML[dir=rtl] .amx-listItem > .amx-outputText {
+  margin-left: 30px;
+  padding: 10px 10px 10px 0;
+}
+
+HTML[dir=ltr] .amx-listItem.amx-listItem-noCaret > .amx-outputText {
+  margin-right: 10px;
+}
+HTML[dir=rtl] .amx-listItem.amx-listItem-noCaret > .amx-outputText {
+  margin-left: 10px;
+}
+
+.amx-listItem.amx-listItem-selected .amx-outputText {
+  color: #FFFFFF;
+}
+
+HTML[dir=ltr] .amx-listItem > .amx-panelGroupLayout {
+  margin-right: 30px;
+}
+HTML[dir=rtl] .amx-listItem > .amx-panelGroupLayout {
+  margin-left: 30px;
+}
+
+.amx-listItem > .amx-panelGroupLayout.amx-wrap {
+  display: block;
+}
+
+HTML[dir=ltr] .amx-listItem > .amx-tableLayout {
+  margin-right: 30px;
+}
+HTML[dir=rtl] .amx-listItem > .amx-tableLayout {
+  margin-left: 30px;
+}
+
+HTML[dir=ltr] .amx-listItem.amx-listItem-noCaret > .amx-tableLayout {
+  margin-right: 10px;
+}
+HTML[dir=rtl] .amx-listItem.amx-listItem-noCaret > .amx-tableLayout {
+  margin-left: 10px;
+}
+
+.amx-listItem .amx-tableLayout .amx-outputText.adfmf-listItem-captionText {
+  font-weight: normal;
+  font-size: 14px;
+  color: #8D8C8C;
+  margin-top: -10px;
+  margin-bottom: -2px;
+}
+
+.amx-listItem .amx-tableLayout .amx-outputText.adfmf-listItem-highlightText {
+  color: #2F6BAC;
+}
+
+.amx-listItem.amx-listItem-selected .amx-tableLayout .amx-outputText.adfmf-listItem-highlightText,
+.amx-listItem.amx-listItem-selected .amx-tableLayout .amx-outputText.adfmf-listItem-captionText {
+  color: #FFFFFF;
+}
+
+
+
+
+
+/* Start Deprecated listItem Styles */
+.amx-listItem.adfmf-listItem-hasStartIcon .amx-outputText {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  padding: 10px 0 10px 10px;
+  margin-right: 0;
+  font-weight: bold;
+  font-size: 18px;
+  color: black;
+  right: 30px
+}
+
+.amx-listItem .amx-outputText.adfmf-listItem-mainText {
+  padding: 2px 0 0 10px;
+  font-weight: bold;
+  color: #000;
+}
+.amx-listItem .amx-outputText.adfmf-listItem-subText {
+  padding: 0 0 0 10px;
+  font-weight: normal;
+  font-size: 14px;
+  margin-top: -3px;
+  color: #8D8C8C;
+}
+
+.amx-listItem.adfmf-listItem-hasStartIcon .adfmf-listItem-mainText {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  padding: 2px 0 10px 10px;
+  margin-right: 0;
+  right: 30px
+}
+
+.amx-listItem.adfmf-listItem-hasStartIcon .adfmf-listItem-subText {
+  position: absolute;
+  top: 18px;
+  left: 30px;
+  padding: 4px 0 10px 10px;
+  margin-top: 0;
+  margin-right: 0;
+  right: 30px
+}
+
+.amx-listItem .amx-outputText.adfmf-listItem-startText {
+  padding: 10px 0 10px 10px;
+  margin-right: 0;
+  font-weight: bold;
+  color: #000;
+  width: 55%;
+}
+
+.amx-listItem .amx-outputText.adfmf-listItem-endText {
+  position: absolute;
+  margin-right: 0;
+  padding: 10px 0 10px 0;
+  top: 0;
+  right: 30px;
+  text-align: right;
+  color: #2F6BAC;
+  left: 60%;
+}
+
+.amx-listItem.adfmf-listItem-hasStartIcon .amx-outputText.adfmf-listItem-startText {
+  position:absolute;
+  top: 0;
+  left: 30px;
+  padding: 10px 0 10px 10px;
+  margin-right: 0;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  width: 45%;
+}
+
+.amx-listItem .amx-outputText.adfmf-listItem-upperStartText {
+  padding: 2px 0 0 10px;
+  margin-right: 0;
+  font-weight: bold;
+  color: #000;
+  width: 55%;
+}
+
+.amx-listItem.adfmf-listItem-hasStartIcon .adfmf-listItem-upperStartText {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  padding: 2px 0 10px 10px;
+  margin-right: 0;
+  right: 30px;
+  width: 45%;
+}
+
+.amx-listItem .amx-outputText.adfmf-listItem-upperEndText {
+  position: absolute;
+  padding: 2px 0 10px 10px;
+  top: 0;
+  right: 0;
+  text-align: right;
+  color: #2F6BAC;
+  left: 60%;
+}
+
+.amx-listItem .amx-outputText.adfmf-listItem-lowerStartText {
+  padding: 0 0 1px 10px;
+  font-weight: normal;
+  font-size: 14px;
+  color: #8D8C8C;
+  right: 0;
+  margin-top: -3px;
+  width: 55%;
+}
+
+.amx-listItem.adfmf-listItem-hasStartIcon .adfmf-listItem-lowerStartText {
+  position: absolute;
+  top: 18px;
+  left: 30px;
+  padding: 4px 0 10px 10px;
+  margin-top: 0;
+  margin-right: 0;
+  right: 30px;
+  width: 45%;
+}
+
+.amx-listItem .amx-outputText.adfmf-listItem-lowerEndText {
+  position: absolute;
+  padding: 5px 0 10px 10px;
+  top: 18px;
+  right:0;
+  text-align: right;
+  color: #8D8C8C;
+  font-weight: normal;
+  font-size: 14px;
+  left: 60%;
+}
+
+.amx-listItem.adfmf-listItem-hasStartIcon.amx-listItem-noLinkIcon .amx-outputText {
+  right: 0;
+}
+
+.amx-listItem.amx-listItem-noLinkIcon .amx-outputText {
+  margin-right: 10px;
+}
+
+.amx-listItem.adfmf-listItem-hasStartIcon .adfmf-listItem-lowerEndText,
+.amx-listItem.adfmf-listItem-hasStartIcon .adfmf-listItem-upperEndText {
+  right: 30px;
+}
+
+.amx-listItem.adfmf-listItem-hasStartIcon.amx-listItem-noLinkIcon .adfmf-listItem-mainText,
+.amx-listItem.adfmf-listItem-hasStartIcon.amx-listItem-noLinkIcon .adfmf-listItem-endText,
+.amx-listItem.adfmf-listItem-hasStartIcon.amx-listItem-noLinkIcon .adfmf-listItem-upperEndText,
+.amx-listItem.adfmf-listItem-hasStartIcon.amx-listItem-noLinkIcon .adfmf-listItem-lowerEndText,
+.amx-listItem.amx-listItem-noLinkIcon .adfmf-listItem-endText,
+.amx-listItem.amx-listItem-noLinkIcon .adfmf-listItem-upperEndText,
+.amx-listItem.amx-listItem-noLinkIcon .adfmf-listItem-lowerEndText,
+.amx-listItem.adfmf-listItem-hasStartIcon.amx-listItem-noLinkIcon .adfmf-listItem-subText {
+  margin-right: 0;
+  right: 10px;
+}
+
+.amx-listItem .amx-outputText.amx-listItem-lefttext {
+  padding: 10px 0 10px 10px;
+  margin-right: 0;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  width: 45%;
+}
+.amx-listItem .amx-outputText.amx-listItem-lefttexticon {
+  position:absolute;
+  top: 0;
+  left: 30px;
+  padding: 10px 0 10px 10px;
+  margin-right: 0;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  width: 45%;
+}
+.amx-listItem .amx-outputText.amx-listItem-righttext {
+  position: absolute;
+  margin-right: 0;
+  padding: 10px 0 10px 0;
+  top: 0;
+  right: 30px;
+  text-align: right;
+  color: #2F6BAC;
+  width: 40%;
+}
+.amx-listItem .amx-outputText.amx-listItem-righttextnochevron {
+  position: absolute;
+  margin-right: 0;
+  padding: 10px 0 10px 0;
+  top: 0;
+  right: 10px;
+  text-align: right;
+  color: #2F6BAC;
+  width: 45%;
+}
+.amx-listItem .amx-outputText.amx-listItem-maintext {
+  padding: 1px 0 0 10px;
+  font-weight: bold;
+  color: #000;
+}
+.amx-listItem .amx-outputText.amx-listItem-subtext {
+  padding: 0 0 1px 10px;
+  font-weight: normal;
+  font-size: 14px;
+  color: #8D8C8C;
+}
+.amx-listItem .amx-outputText.amx-listItem-upperlefttext {
+  padding: 1px 0 0 10px;
+  margin-right: 0;
+  font-weight: bold;
+  color: #000;
+  width: 50%;
+}
+.amx-listItem .amx-outputText.amx-listItem-upperlefttexticon {
+  position:absolute;
+  top:  0;
+  left:  30px;
+  padding: 1px 0 0 10px;
+  margin-right: 0;
+  font-weight: bold;
+  color: #000;
+  width: 50%;
+}
+.amx-listItem .amx-outputText.amx-listItem-lowerlefttext {
+  padding: 0 0 1px 10px;
+  margin-right: 0;
+  font-weight: normal;
+  font-size: 14px;
+  color: #8D8C8C;
+  width: 50%;
+}
+.amx-listItem .amx-outputText.amx-listItem-lowerlefttexticon {
+    position:absolute;
+    top:  24px;
+    left:  30px;
+    padding: 0 0 1px 10px;
+    margin-right: 0;
+    font-weight: normal;
+    font-size: 14px;
+    color: #8D8C8C;
+    width: 50%;
+}
+.amx-listItem .amx-outputText.amx-listItem-upperrighttext {
+  position: absolute;
+  margin-right: 0;
+  padding: 2px 0 0 0;
+  top: 0;
+  right: 30px;
+  text-align: right;
+  color: #8D8C8C;
+  font-weight: normal;
+  width: 35%;
+  font-size: 16px;
+}
+.amx-listItem .amx-outputText.amx-listItem-upperrighttextnochevron {
+  position: absolute;
+  margin-right: 0;
+  padding: 2px 0 0 0;
+  top: 0;
+  right: 10px;
+  text-align: right;
+  color: #8D8C8C;
+  font-weight: normal;
+  width: 40%;
+  font-size: 16px;
+}
+.amx-listItem .amx-outputText.amx-listItem-lowerrighttext {
+  position: absolute;
+  margin-right: 0;
+  padding: 0 0 1px 0;
+  top: 24px;
+  right: 30px;
+  text-align: right;
+  color: #8D8C8C;
+  font-weight: normal;
+  width: 35%;
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: clip;
+  overflow: hidden;
+}
+.amx-listItem .amx-outputText.amx-listItem-lowerrighttextnochevron {
+  position: absolute;
+  margin-right: 0;
+  padding: 0 0 1px 0;
+  top: 24px;
+  right: 10px;
+  text-align: right;
+  color: #8D8C8C;
+  font-weight: normal;
+  width: 40%;
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: clip;
+  overflow: hidden;
+}
+/* Stop Deprecated listItem Styles */
+
+
+
+
+
+.amx-panelSplitter_contentContainer .amx-listItem-moreRows .amx-outputText,
+.amx-listItem-moreRows .amx-outputText {
+  color: #2f6bac;
+}
+/* ------ </amx:listView> ------ */
+
+/* ------ <Springboard> ------ */
+.amx-springboard .amx-listItem .amx-outputText {
+  color: #FFF;
+}
+
+.amx-springboard.amx-listView {
+  background-color: transparent;
+}
+
+.amx-springboard .amx-listItem {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.6);
+  border-top: solid 1px rgba(255, 255, 255, 0.23);
+}
+
+.amx-springboard .amx-listItem:first-child {
+  border-top: none;
+}
+
+.amx-springboard .amx-listItem:last-child {
+  border-bottom: none;
+}
+
+.amx-springboard .amx-listItem.amx-listItem-selected {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+/* ------ </Springboard> ------ */
+.amx-view-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.amx-view-container.transitioning {
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: all .25s ease-in-out;
+}
+
+.amx-view-container.transitioning-slow {
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: all .4s ease-in-out;
+}
+
+.amx-view-container.face {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+}
+.amx-view-container.face.front.flip {
+  /* for when -webkit-backface-visibility is not enabled 
+  z-index: -1;
+  opacity: 0;
+  */
+}
+
+.amx-view-container.current,
+.amx-view-container.showing {
+  z-index: 1;
+}
+
+.amx-view-container.new {
+  z-index: -5;
+  opacity: 0;
+}
+
+.amx-view-container.old {
+  z-index: -2;
+}
+/* ------ <amx:panelSplitter> ------ */
+.amx-panelPage-content > .amx-panelSplitter {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+.amx-panelSplitter {
+  position: relative;
+  overflow: hidden;
+  min-width: 55px;
+  min-height: 55px;
+  margin: 0px;
+  padding: 0px;
+  -webkit-transition: width 1s ease-in-out;
+  transition: width 1s ease-in-out;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.amx-panelSplitter_inner {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.amx-panelSplitter_navLandscape {
+  z-index: 1000;
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  overflow: auto;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+HTML[dir=ltr] .amx-panelSplitter_navLandscape {
+  border-right: 3px solid black;
+  left: 0;
+}
+HTML[dir=rtl] .amx-panelSplitter_navLandscape {
+  border-right: 3px solid black;
+  right: 0;
+}
+.amx-panelSplitter_contentContainer.transitioning {
+  -webkit-perspective: 2000;
+}
+.amx-panelSplitter_contentContainer {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  overflow: auto;
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.amx-panelSplitter_contentContainer .amx-outputText {
+  color: black;
+}
+.amx-panelSplitter_button {
+  z-index: 1001;
+  position: absolute;
+  top: 5px;
+  -webkit-transition-property: opacity, left, right;
+  -webkit-transition-duration: 0.5s, 0.5s;
+  -webkit-transition-timing-function: ease-in-out, ease-in-out;
+  height: 40px;
+  width: 26px;
+  -webkit-box-shadow: 5px 0px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 0px 7px rgba(0, 0, 0, 0.3);
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#bcc0c4), color-stop(3%,#878d96), color-stop(43%,#3b434f), color-stop(49%,#343b48), color-stop(51%,#1b222c), color-stop(53%,#121921), color-stop(70%,#212a33), color-stop(100%,#4e5b6a));
+  background-repeat: no-repeat;
+}
+HTML[dir=ltr] .amx-panelSplitter_button {
+  left: 0px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-right: 1px solid black;
+}
+HTML[dir=rtl] .amx-panelSplitter_button {
+  right: 0px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-left: 1px solid black;
+}
+.amx-panelSplitter_button:after {
+  display: block;
+  content: " ";
+  height: 40px;
+  width: 24px;
+  background-repeat: no-repeat;
+  -webkit-background-size: 25px 38px; /* Note: the actual image is 4x; 100x152 */
+}
+HTML[dir=ltr] .amx-panelSplitter_button:after,
+HTML[dir=rtl] .amx-panelSplitter_button.disclosed:after {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAACYBAMAAADgnFEFAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABVQTFRFAAAAAAAAAAAA////////zMzM////VLzZWwAAAAZ0Uk5TACBAfoGh6VUPhgAAAMdJREFUWMPtz0ERg1AQRMGRgAW+gkhAAxYC419CBOSSruKWffep3k2maZqmafrfXj55+6TO1Jk6U2fqTJ2pM3WmztSZOlNn6kydqTN1ps7UmTpTZ+pMnakzdabO1Jk6U2fqTJ2pM3WmztSZr8nlk4Mnl79/8OTeeHLuOrnX2nByrrXb5F48OZce9hsSR+JIHIkjcSSOxJE4EkfiSByJI3EkjsSROBJH4kgciSNxJI7EkTgSR+JIHIkjcSSOxJE4EkemaZqm6YE+1qgcEr66WK4AAAAASUVORK5CYII=');
+}
+HTML[dir=ltr] .amx-panelSplitter_button.disclosed:after,
+HTML[dir=rtl] .amx-panelSplitter_button:after {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAACYBAMAAADgnFEFAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABVQTFRFAAAAAAAAAAAA////////zMzM////VLzZWwAAAAZ0Uk5TACBAfoGh6VUPhgAAARRJREFUWIXtzStuBTEQBVFbzgKeLIVHLQ1/qJcQHBQc5P0vIWB+/oC5xbv4UaUURVEURVF09sai/GHimJSGiWNSGiaOSWmYOCalYeKYlIaJY7JPEHFMjgkhjsk5AcQxuSY6cUzuiUwck26iEsekn4jEMRkmGnFMxolEHJNpohDHZJ4IZJ48k2XyTD44Sd+cLJtnsmwE8olJtl9Kqm2QZLNpI5GNkVTnzTNZNs9k2Qhk3ghk3ihk2ihk2khk3Ehk3Ghk2Ghk2Iik34ik36ik26ik28jk3sjk3ujk2ujk2gBybgA5N4QcG0KODSL7BpF9w0g2s42RVM3sh5FsZl+MpMpJ5iRVTjInqXKSOUkvTqIoiqKI9w/sIRwSreEnTQAAAABJRU5ErkJggg==');
+}
+.amx-panelSplitter_button.no-animate {
+  -webkit-transition-property: none;
+}
+.amx-panelSplitter_navPortrait {
+  z-index: 1002;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  -webkit-transition-property: opacity, left, right;
+  -webkit-transition-duration: 0.5s, 0.5s;
+  -webkit-transition-timing-function: ease-in-out, ease-in-out;
+  overflow: auto;
+  z-index: 1000;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 5px 0px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 0px 7px rgba(0, 0, 0, 0.3);
+}
+HTML[dir=ltr] .amx-panelSplitter_navPortrait {
+  left: 0px;
+}
+HTML[dir=rtl] .amx-panelSplitter_navPortrait {
+  right: 0px;
+}
+.amx-panelSplitter_navPortrait.no-animate {
+  -webkit-transition-property: none;
+}
+.amx-panelSplitter_navPortrait,
+.amx-panelSplitter_navLandscape {
+  background-color: #C3C7D0;
+}
+.amx-panelSplitter_screenPortrait {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 900;
+}
+.amx-panelItem {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+.amx-panelItem.new {
+  z-index: -5;
+  opacity: 0;
+}
+.amx-panelItem.old {
+  z-index: -2;
+}
+.amx-panelItem.current,.amx-panelItem.showing {
+  z-index: 1;
+}
+.amx-panelItem.transitioning {
+  -webkit-transition: all .5s ease-in-out;
+}
+.amx-panelItem.transitioning-slow {
+  -webkit-transition: all .7s ease-in-out;
+}
+.amx-panelItem.face {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+}
+.amx-panelItem.face.front.flip {
+  /* for when -webkit-backface-visibility is not enabled
+  z-index: -1;
+  opacity: 0;
+  */
+}
+/* ------ <amx:panelPage> ------ */
+.amx-panelPage {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.amx-panelPage-header,
+.amx-panelPage-footer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 44px;
+  display: block;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 -1px 1px #254F7A;
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgba(45,58,73,1)),
+    color-stop(0.47, rgba(23,31,40,1)),
+    color-stop(0.48, rgba(39,45,55,1)),
+    color-stop(1.0, rgba(95,100,107,1)));
+}
+
+.amx-panelPage-facet-footer,.amx-panelPage-facet-header {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 2;
+}
+
+.amx-panelPage-facet-primary {
+  position: absolute;
+  top: 0; right: 50%; bottom: 0; left: 0;
+  z-index: 3;
+}
+HTML[dir=rtl] .amx-panelPage-facet-primary {
+  right: 0; left: 50%;
+}
+
+.amx-panelPage-facet-secondary {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 50%;
+  z-index: 3;
+}
+HTML[dir=rtl] .amx-panelPage-facet-secondary {
+  right: 50%; left: 0;
+}
+
+.amx-panelPage-content {
+  position: relative;
+  -webkit-box-flex: 1;
+}
+
+.amx-panelPage-facet-header > .amx-outputText,.amx-panelPage-facet-footer > .amx-outputText {
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px auto 0 auto;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  outline: 0 !important;
+}
+
+/* TODO: need to get rid of JQueryMobile for buttons */
+
+.amx-panelPage-header > .ui-btn > .ui-btn-inner {
+  padding: .4em 8px .5em;  
+}
+
+/* ------ </amx:panelPage> ------ */
+
+/* ------ <amx:panelLabelAndMessage> ------ */
+.amx-panelLabelAndMessage .field-value{
+  margin: 1px 0 0 0;
+}
+/* ------ </amx:panelLabelAndMessage> ------ */
+
+/* --------- <amx:panelGroupLayout> --------- */
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox,
+.amx-panelGroupLayout.amx-style-groupbox {
+  margin: 12px 9px 12px 9px;
+  border: solid 1px #EAF0F9;
+  -webkit-border-radius: 8px;
+  background: #fff;
+  -webkit-box-shadow:  1px 1px 3px rgba(0,0,0,1);
+  padding: 10px;
+  overflow: auto;
+}
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox.amx-wrap,
+.amx-panelGroupLayout.amx-style-groupbox.amx-wrap {
+  display: block;
+}
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .amx-outputText,
+.amx-panelGroupLayout.amx-style-groupbox .amx-outputText {
+  font-weight: bold;
+  font-size: 18px;
+  color: black;
+}
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .field-label,
+.amx-panelGroupLayout.amx-style-groupbox .field-label {
+  color: #2f6bac;
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .field-value,
+.amx-panelGroupLayout.amx-style-groupbox .field-value {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .amx-inputText .field-value .wrap,
+.amx-panelGroupLayout.amx-style-groupbox .amx-inputText .field-value .wrap {
+  padding: 0;
+}
+.amx-panelGroupLayout > table {
+  border-spacing: 0;
+}
+.amx-panelGroupLayout td {
+  padding: 0;
+}
+.amx-panelGroupLayout.amx-wrap > .amx-panelGroupLayout {
+  display: inline-block;
+}
+/* --------- </amx:panelGroupLayout> --------- */
+
+/* --------- <amx:panelFormLayout> --------- */
+
+/* PFL Generic Styles */
+.amx-panelFormLayout {
+  margin: 8px 9px 8px 9px;
+  padding: 0px;
+  border-radius: 8px;
+  background: #fff;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,1); /* iOS 4 */
+  box-shadow: 1px 1px 3px rgba(0,0,0,1);
+}
+.amx-panelFormLayout.amx-label-position-start .field-label,
+.amx-panelFormLayout.amx-label-position-topStart .field-label {
+  text-align: start;
+}
+.amx-panelFormLayout.amx-label-position-center .field-label,
+.amx-panelFormLayout.amx-label-position-topCenter .field-label {
+  text-align: center;
+}
+.amx-panelFormLayout.amx-label-position-end .field-label,
+.amx-panelFormLayout.amx-label-position-topEnd .field-label {
+  text-align: end;
+}
+.amx-panelFormLayout.amx-field-halign-start .field-value {
+  text-align: start;
+}
+.amx-panelFormLayout.amx-field-halign-center .field-value {
+  text-align: center;
+}
+.amx-panelFormLayout.amx-field-halign-end .field-value {
+  text-align: end;
+}
+HTML[dir=ltr] .amx-panelFormLayout.amx-layout-one-row .amx-panelFormLayout_sizing > .field-label,
+HTML[dir=ltr] .amx-panelFormLayout.amx-layout-one-row .amx-panelFormLayout_sizing > .field-value,
+HTML[dir=rtl] .amx-panelFormLayout.amx-layout-one-row .amx-panelFormLayout_sizing > .field-label,
+HTML[dir=rtl] .amx-panelFormLayout.amx-layout-one-row .amx-panelFormLayout_sizing > .field-value {
+  padding: 0;
+}
+.amx-panelFormLayout_body > *:first-child {
+  border-radius: 7.5px 7.5px 0 0;
+}
+.amx-panelFormLayout_body > *:last-child {
+  border-radius: 0 0 7.5px 7.5px;
+}
+.amx-panelFormLayout.amx-layout-one-row > .amx-panelFormLayout_body > *:nth-child(2) > *:first-child {
+  border-top-left-radius: 7.5px;
+}
+.amx-panelFormLayout.amx-layout-one-row > .amx-panelFormLayout_body > *:nth-child(2) > *:last-child {
+  border-top-right-radius: 7.5px;
+}
+.amx-panelFormLayout.amx-layout-one-row > .amx-panelFormLayout_body > *:last-child > *:first-child {
+  border-bottom-left-radius: 7.5px;
+}
+.amx-panelFormLayout.amx-layout-one-row > .amx-panelFormLayout_body > *:last-child > *:last-child {
+  border-bottom-right-radius: 7.5px;
+}
+.amx-panelFormLayout .amx-outputText {
+  color: black;
+}
+.amx-panelFormLayout .field .field-label {
+  float: none;
+  color: #2f6bac;
+  white-space: normal;
+  word-break: initial;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.amx-panelFormLayout .field .field-value {
+  float: none;
+  color: #000000;
+  font-weight bold;
+  white-space: normal;
+  word-break: initial;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .field .field-label,
+.amx-panelGroupLayout.amx-style-groupbox .field .field-label {
+  color: #2f6bac;
+}
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .field .field-value,
+.amx-panelGroupLayout.amx-style-groupbox .field .field-value {
+  float: none;
+  color: #000000;
+}
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .amx-outputText,
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .amx-goLink,
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .amx-commandLink,
+.amx-panelGroupLayout.amx-style-groupbox .amx-outputText,
+.amx-panelGroupLayout.amx-style-groupbox .amx-goLink,
+.amx-panelGroupLayout.amx-style-groupbox .amx-commandLink,
+.amx-panelFormLayout .field-value > .amx-outputText,
+.amx-panelFormLayout .field-value > .amx-goLink,
+.amx-panelFormLayout .field-value > .amx-commandLink {
+  font-size: 18px;
+}
+
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .amx-goLink,
+.amx-panelGroupLayout.adfmf-panelGroupLayout-groupBox .amx-commandLink,
+.amx-panelGroupLayout.amx-style-groupbox .amx-goLink,
+.amx-panelGroupLayout.amx-style-groupbox .amx-commandLink,
+.amx-panelFormLayout .field-value > .amx-goLink,
+.amx-panelFormLayout .field-value > .amx-commandLink {
+  color: #13ADFC;
+  font-weight: normal;
+}
+.amx-panelFormLayout .field-value > .amx-goLink:after,
+.amx-panelFormLayout .field-value > .amx-commandLink:after {
+  content: ' ';
+  background-repeat: no-repeat;
+  width: 17px; /* 9 for the image width plus 8 padding */
+  height: 13px;
+  margin-top: 5px;
+  -webkit-background-size: 9px 13px; /* actual size is 18x26 */
+}
+HTML[dir=ltr] .amx-panelFormLayout .field-value > .amx-goLink:after,
+HTML[dir=ltr] .amx-panelFormLayout .field-value > .amx-commandLink:after {
+  float: right;
+  background-position: right center;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAaCAYAAAC6nQw6AAAAw0lEQVR42qXUMQoCMRCFYUFYWLASBGFB8BKCB1lvmEoQtrIVPICVYCUIHsAbxDfg+qYQZ4Yp/jQhHyQkmdRav+36fooKOqCGc3YaadAe1U9DBNPIQCSOCdKiowbiGKETqhlMhiRGSGPnOEYoiRFKYoTyGKE89hsiNvNiXJjDigeao8sf5IU2FrLwINZhL9HVg0gpxLqQHboZyNZ6IoLc/QjTyCqOsBFZo0ccYeN2nhlE4n9tIInPn4gb0piBmJDGChF/b1g2T6rFGc2MAAAAAElFTkSuQmCC');
+}
+HTML[dir=rtl] .amx-panelFormLayout .field-value > .amx-goLink:after,
+HTML[dir=rtl] .amx-panelFormLayout .field-value > .amx-commandLink:after {
+  float: left;
+  background-position: left center;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAaCAYAAAC6nQw6AAAAt0lEQVR42qXUwQZCQRjF8YghWkXEJXqJ6EFubziriFm1jR6gVbSK6AF6g+kMHWaRe+Z2Fv9vM5/f6jOTnHNz+74P6IgimtZvY5GE8rcDCgKSCEvEHISd0MxB2JmQjZR9B7kQKdkIsxFmI8xG2Bhk/guooegihLboPQBd0UJCGK3YUkGt2A2tBGRgA5e9E9gddQJqxh7EasjB1jXkYE+0IeRiL9SVZRdLKAhEYPrz11iNEPoHi0TYB4sKT6pjfEGoAAAAAElFTkSuQmCC');
+}
+
+/* PFL One Row Layout Styles */
+.amx-panelFormLayout.amx-layout-one-row > .amx-panelFormLayout_body {
+  width: 100%;
+  table-layout: fixed;
+  display: table;
+  border-spacing: 0px;
+}
+.amx-panelFormLayout.amx-layout-one-row > .amx-panelFormLayout_body > * {
+  display: table-row;
+}
+.amx-panelFormLayout.amx-layout-one-row > .amx-panelFormLayout_body > * > * {
+  display: table-cell;
+}
+.amx-panelFormLayout.amx-layout-one-row > .amx-panelFormLayout_body > *:first-child > *,
+.amx-panelFormLayout.amx-layout-one-row > .amx-panelFormLayout_body > *:nth-child(2) > * {
+  border-top: none;
+}
+.amx-panelFormLayout.amx-layout-one-row > .amx-panelFormLayout_body > * > * {
+  border-top: solid 1px #BBBBBB;
+}
+.amx-panelFormLayout.amx-layout-one-row .field-label {
+  margin: 0;
+  width: 33%;
+}
+HTML[dir=ltr] .amx-panelFormLayout.amx-layout-one-row .field-label {
+  padding: 12px 5px 12px 10px;
+}
+HTML[dir=rtl] .amx-panelFormLayout.amx-layout-one-row .field-label {
+  padding: 12px 10px 12px 5px;
+}
+.amx-panelFormLayout.amx-layout-one-row .field-value {
+  margin: 0;
+}
+HTML[dir=ltr] .amx-panelFormLayout.amx-layout-one-row .field-value {
+  padding: 12px 10px 12px 5px;
+}
+HTML[dir=rtl] .amx-panelFormLayout.amx-layout-one-row .field-value {
+  padding: 12px 5px 12px 10px;
+}
+
+/* PFL Separate Row Layout Styles */
+.amx-panelFormLayout.amx-layout-separate-rows > .amx-panelFormLayout_body,
+.amx-panelFormLayout.amx-layout-separate-rows > .amx-panelFormLayout_body > * ,
+.amx-panelFormLayout.amx-layout-separate-rows > .amx-panelFormLayout_body > * > * {
+  display: block;
+}
+.amx-panelFormLayout.amx-layout-separate-rows > .amx-panelFormLayout_body > *:first-child {
+  border-top: none;
+}
+.amx-panelFormLayout.amx-layout-separate-rows > .amx-panelFormLayout_body > * {
+  border-top: solid 1px #BBBBBB;
+}
+.amx-panelFormLayout.amx-layout-separate-rows .field-label {
+  padding: 4px 10px 0 10px;
+}
+.amx-panelFormLayout.amx-layout-separate-rows .field-value {
+  padding: 0 10px 4px 10px;
+}
+/* --------- </amx:panelFormLayout> --------- */
+/* --------- <amx:popup> --------- */
+
+.popupTransparentScreen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0.3;
+  background: -webkit-gradient(radial, 50% 50%, 1, 50% 50%, 400, from(#666), to(#000)); /* iOS 4 */
+  background-image: -webkit-radial-gradient(circle, #666, #000); /* iOS 5+ */
+}
+.amx-popup {
+  position: absolute;
+  background: #777;
+  padding: 10px;
+  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, .8);
+  z-index: 1000;
+  overflow: auto;
+  -webkit-border-radius: 5px;
+    background-image: -webkit-gradient(
+      linear, 
+      left bottom, 
+      left top, 
+      color-stop(0, #000103), 
+      color-stop(0.01, #3b434d),
+      color-stop(0.25, #3b434d),
+      color-stop(0.52, #272d37),
+      color-stop(0.92, #171f28),
+      color-stop(0.96, #576271),
+      color-stop(0.99, #8694a7),
+      color-stop(1.0, #a4b2c7));
+}
+.amx-popup.transitioning {
+  -webkit-transition: all .25s ease-in-out;
+}
+.amx-popup.popup-holder {
+  display: none;
+}
+/* --------- </amx:popup> --------- */
+/* --------- <amx:selectBooleanSwitch> --------- */
+.amx-selectBooleanSwitch {
+  min-height: 27px;
+}
+
+.amx-selectOneChoice.amx-readOnly .field-value, 
+.amx-selectManyChoice.amx-readOnly .field-value,
+.amx-selectManyCheckbox.amx-readOnly .field-value,
+.amx-selectOneButton.amx-readOnly .field-value,
+.amx-selectBooleanCheckbox.amx-readOnly .field-value,
+.amx-selectBooleanSwitch.amx-readOnly .field-value,
+.amx-selectOneRadio.amx-readOnly .field-value,
+.amx-inputDate.amx-readOnly .field-value {
+  color: #fff;
+  font-size: 17px;
+}
+HTML[dir=ltr] .amx-selectOneChoice.amx-readOnly .field-value, 
+HTML[dir=ltr] .amx-selectManyChoice.amx-readOnly .field-value,
+HTML[dir=ltr] .amx-selectManyCheckbox.amx-readOnly .field-value,
+HTML[dir=ltr] .amx-selectOneButton.amx-readOnly .field-value,
+HTML[dir=ltr] .amx-selectBooleanCheckbox.amx-readOnly .field-value,
+HTML[dir=ltr] .amx-selectBooleanSwitch.amx-readOnly .field-value,
+HTML[dir=ltr] .amx-selectOneRadio.amx-readOnly .field-value,
+HTML[dir=ltr] .amx-inputDate.amx-readOnly .field-value {
+  padding: 12px 10px 12px 5px;
+}
+HTML[dir=rtl] .amx-selectOneChoice.amx-readOnly .field-value, 
+HTML[dir=rtl] .amx-selectManyChoice.amx-readOnly .field-value,
+HTML[dir=rtl] .amx-selectManyCheckbox.amx-readOnly .field-value,
+HTML[dir=rtl] .amx-selectOneButton.amx-readOnly .field-value,
+HTML[dir=rtl] .amx-selectBooleanCheckbox.amx-readOnly .field-value,
+HTML[dir=rtl] .amx-selectBooleanSwitch.amx-readOnly .field-value,
+HTML[dir=rtl] .amx-selectOneRadio.amx-readOnly .field-value,
+HTML[dir=rtl] .amx-inputDate.amx-readOnly .field-value {
+  padding: 12px 10px 12px 5px;
+}
+.amx-selectBooleanSwitch.amx-readOnly .field-value .readOnlyLabel {
+  padding: 0;
+}
+
+.amx-panelFormLayout .amx-selectOneChoice.amx-readOnly .field-value, 
+.amx-panelFormLayout .amx-selectManyChoice.amx-readOnly .field-value,
+.amx-panelFormLayout .amx-selectManyCheckbox.amx-readOnly .field-value,
+.amx-panelFormLayout .amx-selectOneButton.amx-readOnly .field-value,
+.amx-panelFormLayout .amx-selectBooleanCheckbox.amx-readOnly .checkbox-text,
+.amx-panelFormLayout .amx-selectBooleanSwitch.amx-readOnly .field-value,
+.amx-panelFormLayout .amx-inputDate.amx-readOnly .field-value,
+.amx-panelFormLayout .amx-selectOneRadio.amx-readOnly .field-value,
+.adfmf-panelGroupLayout-groupBox .amx-selectOneChoice.amx-readOnly .field-value, 
+.adfmf-panelGroupLayout-groupBox .amx-selectManyChoice.amx-readOnly .field-value,
+.adfmf-panelGroupLayout-groupBox .amx-selectManyCheckbox.amx-readOnly .field-value,
+.adfmf-panelGroupLayout-groupBox .amx-selectOneButton.amx-readOnly .field-value,
+.adfmf-panelGroupLayout-groupBox .amx-selectBooleanCheckbox.amx-readOnly .checkbox-text,
+.adfmf-panelGroupLayout-groupBox .amx-selectBooleanSwitch.amx-readOnly .field-value,
+.adfmf-panelGroupLayout-groupBox .amx-inputDate.amx-readOnly .field-value,
+.adfmf-panelGroupLayout-groupBox .amx-selectOneRadio.amx-readOnly .field-value {
+  color: #000;
+}
+
+.amx-selectBooleanSwitch .switch {
+  display: inline-block;
+  position: relative;
+  width: 94px;
+  height: 27px;
+  margin-bottom: -5px;
+  border: solid 1px #2C2C2C;
+  -webkit-border-radius: 5px;
+  background-image: -webkit-gradient(linear,left bottom,left top,
+    color-stop(0,#a6a6a6),
+    color-stop(.57,#e6e6e6),
+    color-stop(.58,#f6f6f6),
+    color-stop(.93,#e3e4e3),
+    color-stop(1.0,#ffffff));
+  cursor: pointer;
+}
+.amx-selectBooleanSwitch.on .switch {
+  border: solid 1px #197AD0;
+  background-image: -webkit-gradient(linear,left bottom,left top,
+    color-stop(0,#79b6fe),
+    color-stop(0.49,#377dcf),
+    color-stop(0.5,#4e89ca),
+    color-stop(1.0,#b4c9e2));
+}
+.amx-selectBooleanSwitch .switch > label {
+  position: absolute;
+  top: 50%;
+  margin-top: -8px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #6D6D6D;
+}
+.amx-selectBooleanSwitch .switch > .label-on {
+  overflow: hidden;
+  text-align: center;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.60);
+  white-space: nowrap;
+  color: #fff;
+  text-overflow: ellipsis;
+}
+HTML[dir=ltr] .amx-selectBooleanSwitch .switch > .label-on {
+  right: 50%;
+  left: 0;
+}
+HTML[dir=rtl] .amx-selectBooleanSwitch .switch > .label-on {
+  right: 0;
+  left: 50%;
+}
+.amx-selectBooleanSwitch .switch > .label-off {
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+HTML[dir=ltr] .amx-selectBooleanSwitch .switch > .label-off {
+  right: 0;
+  left: 50%;
+}
+HTML[dir=rtl] .amx-selectBooleanSwitch .switch > .label-off {
+  right: 50%;
+  left: 0;
+}
+.amx-selectBooleanSwitch .switch-button {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  width: 47px;
+  border: solid 1px #797979;
+  -webkit-border-radius: 5px;
+  background-image: -webkit-gradient(linear,left bottom,left top,
+    color-stop(0,#cdcecd),
+    color-stop(.45,#e6e6e6),
+    color-stop(.84,#f6f6f6),
+    color-stop(1.0,#f6f4f4));
+}
+HTML[dir=ltr] .amx-selectBooleanSwitch.off .switch-button {
+  left: -1px;
+}
+HTML[dir=rtl] .amx-selectBooleanSwitch.off .switch-button {
+  right: -1px;
+}
+HTML[dir=ltr] .amx-selectBooleanSwitch.on .switch-button {
+  right: -1px;
+}
+HTML[dir=rtl] .amx-selectBooleanSwitch.on .switch-button {
+  left: -1px;
+}
+.amx-selectBooleanSwitch.amx-disabled {
+  opacity: 0.40;
+}
+/* --------- </amx:selectBooleanSwitch> --------- */
+
+/* --------- <amx:selectBooleanCheckbox> --------- */
+.amx-selectBooleanCheckbox .checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 2px;
+  border: solid 1px #C3D4EE;
+  -webkit-border-radius: 5px;
+  vertical-align: middle;
+  background: #fff;
+  cursor: pointer;
+}
+.amx-selectBooleanCheckbox .checkbox-text {
+  display: inline-block;
+  margin-bottom: 2px;
+  vertical-align: middle;
+  color: #fff;
+}
+HTML[dir=ltr] .amx-selectBooleanCheckbox .checkbox-text {
+  margin: 0 0 0 7px;
+}
+HTML[dir=rtl] .amx-selectBooleanCheckbox .checkbox-text {
+  margin: 0 7px 0 0;
+}
+
+.adfmf-panelGroupLayout-groupBox .amx-selectBooleanCheckbox .checkbox-text,
+.amx-panelFormLayout .amx-selectBooleanCheckbox .checkbox-text {
+  color: #000;
+}
+
+.amx-selectBooleanCheckbox.on .checkbox {
+  border: solid 1px #fff;
+  background-image: -webkit-gradient(linear,left bottom,left top,
+    color-stop(0,#79b6fe),
+    color-stop(0.49,#377dcf),
+    color-stop(0.5,#4e89ca),
+    color-stop(1.0,#b4c9e2));
+  -webkit-box-shadow: 1px 1px rgba(0,0,0,0.2);
+}
+.amx-selectBooleanCheckbox .checkbox .img-check {
+  width: 25px;
+  height: 24px;
+  -webkit-background-size: 144px 192px;
+}
+HTML[dir=ltr] .amx-selectBooleanCheckbox .checkbox .img-check {
+  margin: 4px 0 0 -4px;
+  background-image: url(images/amx.png);
+  background-position: -52px 0; /* LTR and RTL slices are not perfectly centered hence the unique positions */
+}
+HTML[dir=rtl] .amx-selectBooleanCheckbox .checkbox .img-check {
+  margin: 4px -4px 0 0;
+  background-image: url(images/amx_rtl.png);
+  background-position: -56px 0; /* LTR and RTL slices are not perfectly centered hence the unique positions */
+}
+.amx-selectBooleanCheckbox.amx-readOnly .checkbox {
+  padding: 1px;
+  border: none;
+  background: rgba(0,0,0,0);
+  -webkit-box-shadow: none;
+}
+.amx-selectBooleanCheckbox.amx-readOnly .checkbox .img-check {
+  background-position: -32px 0;
+}
+.amx-selectBooleanCheckbox.amx-readOnly.off .checkbox {
+  border-color: #B6B6B6;
+  background: #D9D9D9;
+}
+.amx-selectBooleanCheckbox.off .checkbox .img-check {
+  display: none;
+}
+.amx-selectBooleanCheckbox.amx-disabled {
+  opacity: 0.40;
+}
+/* --------- </amx:selectBooleanCheckbox> --------- */
+
+/* --------- <amx:selectOneButton> --------- */
+.amx-selectOneButton {
+}
+.amx-selectOneButton .selectItemsContainer {
+  overflow: visible;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.60);
+}
+.amx-selectOneButton .selectItemsContainer .amx-selectItem {
+  -webkit-box-sizing: border-box; /* iOS 4 */
+  box-sizing: border-box;
+  padding: 6px 0;
+  border: solid 1px #191919;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 14px;
+  background-image: -webkit-gradient(linear,left bottom,left top,
+    color-stop(0,#2f6bac),
+    color-stop(0.49,#214d81),
+    color-stop(0.5,#2c588d),
+    color-stop(1.0,#6d98c9));
+  cursor: pointer;
+}
+HTML[dir=ltr] .amx-selectOneButton .selectItemsContainer .amx-selectItem {
+  float: left;
+  border-left: none;
+}
+HTML[dir=rtl] .amx-selectOneButton .selectItemsContainer .amx-selectItem {
+  float: right;
+  border-right: none;
+}
+HTML[dir=ltr] .amx-selectOneButton .selectItemsContainer .amx-selectItem:first-child {
+  border-left: solid 1px #191919;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+}
+HTML[dir=rtl] .amx-selectOneButton .selectItemsContainer .amx-selectItem:first-child {
+  border-right: solid 1px #191919;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+}
+HTML[dir=ltr] .amx-selectOneButton .selectItemsContainer .amx-selectItem:last-child {
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+}
+HTML[dir=rtl] .amx-selectOneButton .selectItemsContainer .amx-selectItem:last-child {
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+}
+.amx-selectOneButton .selectItemsContainer .amx-selectItem.amx-selected {
+  font-weight: bold;
+  background-image: -webkit-gradient(linear,left bottom,left top,
+    color-stop(0,#79b6fe),
+    color-stop(0.49,#377dcf),
+    color-stop(0.5,#4e89ca),
+    color-stop(1.0,#b4c9e2));
+}
+.amx-selectOneButton.amx-disabled {
+  opacity: 0.40;
+}
+/* layout vertical (both directions declared identically due to selector specificity requirements) */
+HTML[dir=ltr] .amx-selectOneButton.vertical .amx-selectItem,
+HTML[dir=rtl] .amx-selectOneButton.vertical .amx-selectItem {
+  float: none;
+  border-top: none;
+  border-right: solid 1px #191919;
+  border-bottom: solid 1px #191919;
+  border-left: solid 1px #191919;
+  -webkit-border-radius: none;
+  text-align: center;
+}
+HTML[dir=ltr] .amx-selectOneButton.vertical .amx-selectItem:first-child,
+HTML[dir=rtl] .amx-selectOneButton.vertical .amx-selectItem:first-child {
+  border-top: solid 1px #191919;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+}
+HTML[dir=ltr] .amx-selectOneButton.vertical .amx-selectItem:last-child,
+HTML[dir=rtl] .amx-selectOneButton.vertical .amx-selectItem:last-child {
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+}
+/* --------- </amx:selectOneButton> --------- */
+
+/* --------- <amx:selectOneRadio> --------- */
+
+/* TODO: this is where to style the selectOneRadio */
+.amx-selectOneRadio {
+}
+.amx-selectOneRadio .field-label {
+  vertical-align: top;
+}
+.amx-selectOneRadio .field-value {
+  font-size: 17px;
+}
+.amx-selectOneRadio.amx-readOnly .field-label {
+  vertical-align: middle;
+}
+.amx-selectOneRadio .selectItemsContainer {
+  margin: 2px 0;
+  border: solid 1px #BBBBBB;
+  -webkit-border-radius: 5px;
+  background: #ECF4FF;
+  -webkit-box-shadow: 1px 1px rgba(0,0,0,0.75);
+}
+.amx-selectOneRadio .selectItemsContainer .amx-selectItem {
+  padding: 10px;
+  border-top: 1px solid #BBBBBB;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+}
+HTML[dir=ltr] .amx-selectOneRadio .selectItemsContainer .amx-selectItem {
+  text-align: left;
+}
+HTML[dir=rtl] .amx-selectOneRadio .selectItemsContainer .amx-selectItem {
+  text-align: right;
+}
+.amx-selectOneRadio .selectItemsContainer .amx-selectItem:first-child {
+  border-top: none;
+}
+.amx-selectOneRadio .selectItemsContainer .amx-selectItem:last-child {
+}
+.amx-selectOneRadio .selectItemsContainer .amx-selectItem.amx-selected {
+}
+.amx-selectOneRadio .amx-selectItem .checkmark {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-top: 4px;
+}
+HTML[dir=ltr] .amx-selectOneRadio .amx-selectItem .checkmark {
+  float: right;
+}
+HTML[dir=rtl] .amx-selectOneRadio .amx-selectItem .checkmark {
+  float: left;
+}
+.amx-selectOneRadio .amx-selectItem.amx-selected .checkmark {
+  background-position: -37px 0;
+  background-repeat: no-repeat;
+  -webkit-background-size: 144px 192px;
+}
+HTML[dir=ltr] .amx-selectOneRadio .amx-selectItem.amx-selected .checkmark {
+  background-image: url(images/amx.png);
+}
+HTML[dir=rtl] .amx-selectOneRadio .amx-selectItem.amx-selected .checkmark {
+  background-image: url(images/amx_rtl.png);
+}
+.amx-selectOneRadio.amx-disabled {
+  opacity: 0.40;
+}
+/* --------- </amx:selectOneRadio> --------- */
+
+/* --------- <amx:selectManyCheckbox> --------- */
+.amx-selectManyCheckbox {
+  font-size: 17px;
+}
+
+.amx-selectManyCheckbox .selectItemsContainer {
+  margin: 2px 0;
+  border: solid 1px #BBBBBB;
+  -webkit-border-radius: 5px;
+  background: #ECF4FF;
+  -webkit-box-shadow: 1px 1px rgba(0,0,0,0.75);
+}
+.amx-selectManyCheckbox .field-label {  
+  vertical-align: top;
+}
+.amx-selectManyCheckbox.amx-readOnly .field-label {
+  vertical-align: middle;
+}
+.amx-selectManyCheckbox .selectItemsContainer .amx-selectItem {
+  position: relative;
+  padding: 8px;
+  border-left: none;
+  color: #969696;
+  cursor: pointer;
+}
+.amx-selectManyCheckbox .selectItemsContainer .amx-selectItem {
+  border-top: 1px solid #BBBBBB;
+  text-align: center;
+  font-weight: bold;
+}
+.amx-selectManyCheckbox .selectItemsContainer .amx-selectItem:first-child {
+  border-top: none;
+}
+.amx-selectManyCheckbox .selectItemsContainer .amx-selectItem:last-child {
+}
+.amx-selectManyCheckbox .selectItemsContainer .amx-selectItem.amx-selected {
+}
+.amx-selectManyCheckbox.amx-readOnly .amx-selectItem {
+ opacity: .6;
+}
+.amx-selectManyCheckbox .checkbox {
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+  border: solid 1px #C3D4EE;
+  -webkit-border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+HTML[dir=ltr] .amx-selectManyCheckbox .checkbox {
+  float: left;
+}
+HTML[dir=rtl] .amx-selectManyCheckbox .checkbox {
+  float: right;
+}
+.amx-selectManyCheckbox .amx-selectItem.amx-selected .checkbox {
+  border: solid 1px #fff;
+  background-image: -webkit-gradient(linear,left bottom,left top,
+    color-stop(0,#79b6fe),
+    color-stop(0.49,#377dcf),
+    color-stop(0.5,#4e89ca),
+    color-stop(1.0,#b4c9e2));
+  -webkit-box-shadow: 1px 1px rgba(0,0,0,0.2);
+}
+.amx-selectManyCheckbox .checkbox .img-check {
+  position: absolute;
+  width: 25px;
+  height: 24px;
+  -webkit-background-size: 144px 192px;
+}
+HTML[dir=ltr] .amx-selectManyCheckbox .checkbox .img-check {
+  margin: 4px 0 0 -4px;
+  background-image: url(images/amx.png);
+  background-position: -52px 0; /* LTR and RTL slices are not perfectly centered hence the unique positions */
+}
+HTML[dir=rtl] .amx-selectManyCheckbox .checkbox .img-check {
+  margin: 4px -4px 0 0;
+  background-image: url(images/amx_rtl.png);
+  background-position: -56px 0; /* LTR and RTL slices are not perfectly centered hence the unique positions */
+}
+.amx-selectManyCheckbox .checkbox-text {
+  font-weight: bold;
+  color: #000;
+}
+HTML[dir=ltr] .amx-selectManyCheckbox .checkbox-text {
+  margin: 2px 0 0 40px;
+  text-align: left;
+}
+HTML[dir=rtl] .amx-selectManyCheckbox .checkbox-text {
+  margin: 2px 40px 0 0;
+  text-align: right;
+}
+.amx-selectManyCheckbox.amx-readOnly .readOnlyLabel {
+  display: block;
+  border-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #FFFFFF;
+  text-overflow: ellipsis;
+}
+.amx-selectManyCheckbox .amx-selectItem:not(.amx-selected).checkbox .img-check {
+  display: none;
+}
+.amx-selectManyCheckbox.amx-disabled {
+  opacity: 0.40;
+}
+/* --------- </amx:selectManyCheckbox> --------- */
+
+/* --------- <amx:selectOneChoice> --------- */
+.amx-selectOneChoice .selectItemsContainer,
+.amx-selectManyChoice .selectItemsContainer {
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-size: 15px;
+  font-weight: normal;
+}
+/* The border style is separated into this block so that it can be
+   excluded from Android on the selectOneChoice control. Android has
+   a bug where a border-color will cause the dropdown indicator to
+   disappear and there's no way to override it to get it back. */
+.amx-ios .amx-selectOneChoice .selectItemsContainer,
+.amx-selectManyChoice .selectItemsContainer {
+  border: 1px solid #214D81;
+}
+.amx-selectOneChoice.amx-readOnly .selectItemsContainer,
+.amx-selectManyChoice.amx-readOnly .selectItemsContainer {
+  padding: 4px 0 4px 0;
+  border-width: 0;
+  font-weight: bold;
+  font-size: 17px;
+}
+.amx-panelFormLayout .amx-selectOneChoice.amx-readOnly .selectItemsContainer,
+.amx-panelFormLayout .amx-selectManyChoice.amx-readOnly .selectItemsContainer,
+.amx-panelGroupLayout .amx-selectOneChoice.amx-readOnly .selectItemsContainer,
+.amx-panelGroupLayout .amx-selectManyChoice.amx-readOnly .selectItemsContainer,
+.amx-panelFormLayout .amx-selectManyCheckbox .readOnlyLabel,
+.amx-panelGroupLayout .amx-selectManyCheckbox .readOnlyLabel {
+  color: #000000;
+}
+.amx-selectManyChoice.amx-disabled,
+.amx-selectOneChoice.amx-disabled {
+  opacity: 0.40;
+}
+/* --------- </amx:selectOneChoice> --------- */
+
+/* --------- <amx:selectManyChoice> --------- */
+
+/* --------- </amx:selectManyChoice> --------- */
+
+/* --------- <amx:selectManyChoice for Android> --------- */
+/* width/height scaled by 2/3 */
+.amx-selectManyChoice-root {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #CDCDCD), color-stop(1.0, white));
+  height: 25px;
+  border-radius: 5px;
+  width: 190px;
+  border: 1px solid #2C588D;
+  overflow: hidden;
+  text-align: start;
+}
+
+.amx-selectManyChoice-root-readOnly {
+  height: 25px;
+  width: 190px;
+  overflow: hidden;
+}
+
+.amx-selectManyChoice-text {
+  color: black;
+  line-height: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+  vertical-align: top;
+  font-size: 16px; /* 23.33px*/
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-weight: normal;
+  overflow: hidden;
+  width: 135px;
+  display: inline-block;
+  text-overflow: ellipsis;
+}
+
+.amx-selectManyChoice-text-readOnly {
+  color: #FFFFFF;
+  line-height: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+  vertical-align: top;
+  font-size: 17px; /* 25px */
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-weight: bold;
+  overflow: hidden;
+  width: 135px;
+  display: inline-block;
+  text-overflow: ellipsis;
+}
+
+.amx-selectManyChoice-disabled {
+  opacity:.4;
+}
+
+.amx-selectManyChoice-iconStyle {
+  bottom: 3px;
+  height: 100%;
+  position: relative;
+  color: #ffffff;
+  font-size:20px;
+  text-shadow: 0px 2px 1px #000;
+  display: inline-block;
+}
+
+.amx-selectManyChoice-iconWrapper {
+  text-align: center;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3D568B), color-stop(1.0, #8596B8));
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+}
+HTML[dir=ltr] .amx-selectManyChoice-iconWrapper {
+  border-radius: 0 4px 4px 0;
+}
+HTML[dir=rtl] .amx-selectManyChoice-iconWrapper {
+  border-radius: 4px 0 0 4px;
+}
+
+.amx-selectManyChoice-picker-label {
+  color: #FFFFFF;
+  font-size: 22px; /* 33.33px */
+  font-family: 'Droid Sans Bold','Helvetica Neue',Arial,sans-serif;
+  font-weight: bold;
+  bottom: 1px;
+  height: 25px; /* 37px */
+  top: 12px; /* 18px */
+  padding-top: 12px; /* 18px */
+  padding-bottom: 12px; /* 18px */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.amx-selectManyChoice-picker-wrapper {
+    width: 269px; /* 403px */
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 14px; /* 20px */
+    padding-right: 14px; /* 20px */
+    padding-bottom: 12px; /* 18px */
+    border-radius: 6px; /* 10px */
+    background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.00, #000103), color-stop(0.1, #3b434d), color-stop(0.25, #3b434d), color-stop(0.52, #272d37), color-stop(0.92, #171f28), color-stop(0.96, #576271), color-stop(0.99, #8694a7), color-stop(1.00, #a4b2c7));
+    border: 1px solid #000000;
+    box-shadow: 0px 0px 1px 1px #000000;
+    z-index:102;
+}
+
+.amx-selectManyChoice-picker-item {
+  position: relative;
+  cursor: pointer;
+  height: 51px; /* 76px */
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-weight: bold;
+  white-space: nowrap;
+}
+HTML[dir=ltr] .amx-selectManyChoice-picker-item {
+  padding-left: 14px; /* 20px */
+}
+HTML[dir=rtl] .amx-selectManyChoice-picker-item {
+  padding-right: 14px; /* 20px */
+}
+
+.amx-selectManyChoice-picker-item:not(:last-child){
+  border-bottom: solid 1px #BBBBBB; /* 2px */
+}
+
+.amx-selectManyChoice-picker-inner-container {
+  width: 269px; /* 403px */
+  background-color: whiteSmoke;
+  border-radius: 6px; /* 10px */
+  font-size: 18px; /* 26.67px */
+  font-weight: bold;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  box-shadow: 0px 0px 1px 1px black;
+  border-collapse: collapse;
+  margin-bottom: 12px; /* 18px */
+}
+
+.amx-selectManyChoice-picker-item-centered-label {
+  height: 51px; /* 76px */
+  line-height: 51px; /* 76px */
+  width: 225px; /* 338px */
+  vertical-align: middle;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.amx-selectManyChoice-picker-item-checkmark {
+  width: 17px; /* 25px */
+  height: 17px; /* 26px */
+  display: inline-block;
+  vertical-align: baseline;
+  -webkit-background-size: 144px 192px;
+  background-position: -37px -32px;
+}
+HTML[dir=ltr] .amx-selectManyChoice-picker-item-checkmark {
+  background-image: url(images/amx.png);
+}
+HTML[dir=rtl] .amx-selectManyChoice-picker-item-checkmark {
+  background-image: url(images/amx_rtl.png);
+}
+
+.amx-selectManyChoice-picker-button-set {
+  width: 128px; /* 192px */
+  height: 41px; /* 61px */
+  line-height: 41px; /* 61px */
+  background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #2F6BAC), color-stop(0.48, #214D81), color-stop(0.49, #2C588D), color-stop(1.00, #6D98C9));
+  -webkit-box-shadow: inset 1px 0px 0px 0px rgba(0, 0, 0, 0.60), inset 0px 0px 1px 1px rgba(0, 0, 0, 0.60);
+  border-radius: 6px; /* 10px */
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-size: 15px; /* 23.33px */
+  display: inline-block;
+}
+HTML[dir=ltr] .amx-selectManyChoice-picker-button-set {
+  margin-right: 12px; /* 18px */
+}
+HTML[dir=rtl] .amx-selectManyChoice-picker-button-set {
+  margin-left: 12px; /* 18px */
+}
+
+.amx-selectManyChoice-picker-button-cancel {
+  width: 128px; /* 192px */
+  height: 41px; /* 61px */
+  line-height: 41px; /* 61px */
+  background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #2F6BAC), color-stop(0.48, #214D81), color-stop(0.49, #2C588D), color-stop(1.00, #6D98C9));
+  -webkit-box-shadow: inset 1px 0px 0px 0px rgba(0, 0, 0, 0.60), inset 0px 0px 1px 1px rgba(0, 0, 0, 0.60);
+  border-radius: 6px; /* 10px */
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-size: 15px; /* 23.33px */
+  display: inline-block;
+}
+
+.amx-selectManyChoice-picker-modalOverlay {
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  margin:0;
+  padding:0;
+  background:#000;
+  opacity:.5;
+  -webkit-transition: opacity 0.3s ease-in;
+  z-index:101;
+}
+/* --------- </amx:selectManyChoice for Android> --------- */
+/* ------ <amx:messages> ------ */
+.amx-messages
+{
+  position: relative;
+}
+
+.amx-messages-header
+{
+  -webkit-box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+  background: #404a5a;
+  color: #FFFFFF;
+  padding: 8px 0 8px 0px;
+}
+
+.amx-messages-header-text
+{
+  position: relative;
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.80);
+  padding-left: 10px;
+  color: #FFFFFF;
+}
+
+.amx-messages-item
+{
+  position: relative;
+}
+
+.amx-messages-text
+{
+  padding: 12px 0px 0px 42px;
+  left: 0px;
+  min-height: 42px;
+  font-weight: normal;
+  font-size: 20px;
+  text-shadow: 0px 1px 2px rgba(255, 255, 255, 1.0);
+  position: relative;
+}
+
+.amx-messages-text-error
+{
+  position: relative;
+  -webkit-box-shadow: inset 0px 2px 0px 0px rgba(255, 255, 255, 0.5);
+  background: #fc918e;
+}
+
+.amx-messages-text-warning
+{
+  position: relative;
+  -webkit-box-shadow: inset 0px 2px 0px 0px rgba(255, 255, 255, 0.7);
+  background: #f9f6b3;
+}
+
+.amx-messages-icon
+{
+  background-position: 0px 0px;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 10px;
+  top: 14px;
+}
+
+.amx-messages-icon-error
+{
+  background-image: url(images/messages-error.png);
+}
+
+.amx-messages-icon-warning
+{
+  background-image: url(images/messages-warning.png);
+}
+
+.amx-messages-footer
+{
+  padding: 0px 0px 34px 0px;
+  -webkit-box-shadow: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.5);
+  background: transparent;
+  position: relative;
+}
+/* ------ </amx:messages> ------ */
+/* ------ <messageBox> ------ */
+.messageBox
+{
+  position: relative;
+  z-index: 9000;
+  min-width: 273px;
+  margin: auto;
+  display: block;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.messageBoxScreen
+{
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.messageBox .messageBoxContainer
+{
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #37404e), color-stop(29%, #434e5f), color-stop(89%, #37404e), color-stop(100%, #495364));
+  -webkit-border-radius: 10px;
+  padding: 0px 8px 0px 8px;
+  position: relative;
+}
+
+.messageBox .messageBoxContainer .messageBoxContent
+{
+  -webkit-border-radius: 2.5px;
+  background: transparent;
+  color: #060606;
+  position: relative;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.messageBox .amx-messages-header
+{
+  -webkit-box-shadow: none;
+  position: relative;
+  background: transparent;
+  left: 0px;
+  padding: 9px 0px 0px 0px;
+}
+
+.messageBox .amx-messages-header-text
+{
+  background: transparent;
+  position: relative;
+  left: 3px;
+  padding: 0px 0px 5px 0px;
+}
+
+.messageBox .amx-messages-message-item
+{
+  position: relative;
+}
+
+.messageBox .amx-messages-text
+{
+  padding-left: 37px;
+}
+
+.messageBox .amx-messages-text.amx-messages-first
+{
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+}
+
+.messageBox .amx-messages-text.amx-messages-last
+{
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+}
+
+.messageBox .amx-messages-text-error
+{
+  -webkit-box-shadow: inset 0px 2px 0px 0px rgba(255, 255, 255, 0.5);
+  background: #fc918e;
+}
+
+.messageBox .amx-messages-text-warning
+{
+  -webkit-box-shadow: inset 0px 2px 0px 0px rgba(255, 255, 255, 0.7);
+  background: #f9f6b3;
+}
+
+.messageBox .amx-messages-icon
+{
+  left: 5px;
+}
+
+.messageBox .amx-messages-footer
+{
+  padding: 13px 0px 13px 0px;
+  -webkit-box-shadow: none;
+  background: transparent;
+  position: relative;
+  text-align: center;
+}
+
+.messageBox .amx-messages-footer .amx-messages-btn
+{
+  min-width: 96px;
+}
+
+/* ------ </messageBox> ------ */

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2012, Oracle and/or its affiliates. All rights reserved. -->
+<resources>
+	<dimen name="seperator">1dp</dimen>
+	<dimen name="border">5dp</dimen>
+	<dimen name="ssl_header_space">5dp</dimen>
+</resources>

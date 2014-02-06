@@ -1,0 +1,15 @@
+<resources>
+
+    <item name="connect" type="id"/>
+    <item name="server" type="id"/>
+    <item name="svrprompt" type="id"/>
+    <item name="tenantid" type="id"/>
+    <item name="tidprompt" type="id"/>
+    <item name="password" type="id"/>
+    <item name="pwprompt" type="id"/>
+    <item name="unprompt" type="id"/>
+    <item name="username" type="id"/>
+    <item name="shutdown" type="id"/>
+    <item name="message" type="id"/>
+    
+</resources>

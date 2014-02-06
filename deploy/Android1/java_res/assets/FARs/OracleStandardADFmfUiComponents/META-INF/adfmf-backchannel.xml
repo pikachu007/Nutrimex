@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfmf:features xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:adfmf="http://xmlns.oracle.com/adf/mf">
+    <adfmf:featureReference id="ADF_HIDDEN_BACKGROUND" showOnSpringboard="false" showOnNavigationBar="false"/>
+    <adfmf:feature id="ADF_HIDDEN_BACKGROUND" name="Back Channel">
+        <adfmf:constraints/>
+        <adfmf:description>ADF Standard Backchannel HTML page used in Data Controls</adfmf:description>
+        <adfmf:content id="ADF_HIDDEN_BACKGROUND"> 
+            <adfmf:constraints /> 
+            <adfmf:localHTML url="../FARs/OracleStandardADFmfUiComponents/public_html/adf.backchannel.html" loadOnViewCreate="true"/>
+        </adfmf:content>
+    </adfmf:feature>
+</adfmf:features>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<amx:view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amx="http://xmlns.oracle.com/adf/mf/amx"
+          xmlns:dvtm="http://xmlns.oracle.com/adf/mf/amx/dvt">
+    <amx:panelPage id="pp1">
+        <amx:facet name="header">
+            <amx:outputText value="#{bindings.name.inputValue}" id="ot3"/>
+        </amx:facet>
+        <amx:listView var="row" value="#{bindings.features.collectionModel}" fetchSize="#{bindings.features.rangeSize}"
+                      id="lv1" styleClass="amx-springboard">
+            <amx:listItem showLinkIcon="false" id="li1" actionListener="#{bindings.gotoFeature.execute}">
+                <amx:tableLayout id="tl1" width="100%">
+                    <amx:rowLayout id="rl1">
+                        <amx:cellFormat id="cf11" width="46px" halign="center">
+                            <amx:image source="#{row.image}" id="i1" inlineStyle="width:36px;height:36px"/>
+                        </amx:cellFormat>
+                        <amx:cellFormat id="cf12" width="100%" height="43px">
+                            <amx:outputText value="#{row.name}" id="ot2"/>
+                        </amx:cellFormat>
+                    </amx:rowLayout>
+                </amx:tableLayout>
+                <amx:setPropertyListener from="#{row.id}" to="#{pageFlowScope.FeatureId}"/>
+            </amx:listItem>
+        </amx:listView>
+    </amx:panelPage>
+</amx:view>

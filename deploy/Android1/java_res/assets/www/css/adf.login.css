@@ -1,0 +1,13 @@
+.amx-commandButton-pressed {
+  border: 2px solid #888888;
+}
+.amx-login-rememberMe {
+  visibility: hidden;
+}
+.amx-login-rememberMe-label {
+  color: #FFFFFF;
+}
+.amx-login-label {
+  padding-top: 6px;
+  vertical-align: center;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="11.1.2.62.18" id="DataBindings"
+             SeparateXMLFiles="false" Package="mobile/springboard" ClientType="Generic">
+  <pageMap>
+    <page path="/adfmf_default_springboard/springboard.amx" usageId="mobile_springboardPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="mobile_springboardPageDef" path="adfmf_default_springboard.springboardPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="ApplicationFeatures" path="application.ApplicationFeatures"/>
+  </dataControlUsages>
+</Application>

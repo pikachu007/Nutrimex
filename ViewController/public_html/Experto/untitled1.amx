@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<amx:view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amx="http://xmlns.oracle.com/adf/mf/amx"
+          xmlns:dvtm="http://xmlns.oracle.com/adf/mf/amx/dvt">
+  <amx:loadBundle basename="mobile.ViewControllerBundle" var="viewcontrollerBundle" id="lb1"/>
+  <amx:panelPage id="pp1" inlineStyle="vertical-align:middle;">
+    <amx:facet name="header">
+      <amx:outputText value="Experto" id="ot1"/>
+    </amx:facet>
+    <amx:facet name="primary">
+      <amx:commandButton id="cb1" text="Limpiar" action="Finaliza"/>
+    </amx:facet>
+    <amx:facet name="secondary">
+      <amx:commandButton id="cb2" text="Preguntar">
+        <amx:showPopupBehavior id="spb1" popupId="p2" alignId="pp1" align="overlapBottom"/>
+      </amx:commandButton>
+    </amx:facet>
+    <amx:outputText value="Formulá tu Pregunta" id="ot2" inlineStyle="text-align:center;"/>
+    <amx:selectOneChoice id="soc1">
+      <amx:selectItem id="si1" label="Puedo"/>
+    </amx:selectOneChoice>
+    <amx:selectOneChoice id="soc2">
+      <amx:selectItem id="si2" label="Comer"/>
+    </amx:selectOneChoice>
+    <amx:selectOneChoice id="soc3">
+      <amx:selectItem id="si3" label="Torta"/>
+      <amx:selectItem label="Tacos de canasta" id="si4"/>
+      <amx:selectItem label="Aceitunas" id="si5"/>
+    </amx:selectOneChoice>
+             
+  </amx:panelPage>
+  
+  <amx:popup id="p2" animation="slideStart">
+    <amx:panelGroupLayout id="pgl2">
+      <amx:commandButton text="Aceptar" id="cb5">
+        <amx:closePopupBehavior id="cpb2" popupId="p2"/>
+      </amx:commandButton>
+      <amx:panelGroupLayout id="pgl3">
+        <amx:inputText label="Respuesta" id="it1"  readOnly="true"
+                       value="No, por que subes de peso......................................................................................................................................................................................................................................................"/>
+      </amx:panelGroupLayout>
+    </amx:panelGroupLayout>
+    
+  </amx:popup>
+  
+</amx:view>

@@ -1,0 +1,163 @@
+<!-- Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved. 11.1.2.4.0 -->
+<!DOCTYPE html>
+<html height="100%">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title></title>
+<script type="text/javascript">if(!window.adf) window.adf = {}; adf._bootstrapMode = "login";</script>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/adf.mf.login.js"></script>
+<script type="text/javascript" charset="utf-8">
+   /**
+    * Document is done loading this is called and we add a listener for the
+    * phonegap event 'deviceready'.
+    */
+   function onBodyLoad()
+   {
+      document.addEventListener("deviceready", onDeviceReady, false);
+   };
+   
+   
+   /**
+    * When this function is called, PhoneGap has been initialized and is ready to roll.
+    */
+   function onDeviceReady()
+   // function handleShowPageComplete()
+   {
+      try
+      {  /* Lets do a quick check to ensure we have all the javascript loaded before moving on */
+         if((adf.mf.login.init == undefined) || (adf.mf.login.init == null))
+         {
+            alert(adf.mf.resource.getInfoString("AMXInfoBundle", "MSG_ADFMOBILEACTIVATION_FAILED", e));
+         }
+      }
+      catch(tce)
+      {
+         console.log("*******************************************************************************");
+         console.log("*******************************************************************************");
+         console.log("ERROR: The required adf.mf.login object has not been defined for he login page.");
+         console.log("*******************************************************************************");
+         console.log("*******************************************************************************");
+         alert("ERROR: The required adf.mf.login object has not been defined for he login page.");
+      }     
+
+      try
+      {
+         //show busy cursor
+         adf.mf.login.showBusy();
+
+         // Initialize the login object.
+         adf.mf.login.init(initSuccess, initFailure);
+      }
+      catch (e)
+      {
+    	 adf.mf.login.hideBusy();
+         alert(adf.mf.resource.getInfoString("AMXInfoBundle", "MSG_ERROR_IN_ONDEVICEREADY", e));
+      }
+   };
+
+   /**
+	* Success call-back when initialization of login object is successful
+	*/
+   function initSuccess(request, response) 
+   {
+	  //Update Login Page fields
+	  document.getElementById('message').innerHTML  = (adf.mf.api.login.isAppLevelLogin()) ? adf.mf.api.login.getApplicationName() : adf.mf.api.login.getFeatureName();
+	  document.getElementById('username').value = adf.mf.api.login.getCurrentUsername();
+	  document.getElementById('password').value = '';
+	  
+	  //hide busy cursor that was started in onDeviceReady
+	  adf.mf.login.hideBusy();
+	};
+
+	/**
+	 * Failure call-back when initialization of login object fails
+	 */
+	function initFailure(request, response) 
+	{
+	   //hide busy cursor that was started in onDeviceReady
+	   adf.mf.login.hideBusy();
+	};
+</script>
+</head>
+<body id="mainBody" 
+      onload         = "onBodyLoad()"
+	  ontouchstart   = "adf.mf.login.touchStart(event)"
+	  ontouchend     = "adf.mf.login.touchEnd(event)"
+	  ontouchmove    = "adf.mf.login.touchMove(event)"
+	  ontouchcancel  = "adf.mf.login.touchCancel(event)">
+	
+	<div id="bodyPage">
+		<div class="amx-view-container current">
+			<div class="amx-node amx-view">
+				<div class="amx-node amx-panelPage">
+					<div class="amx-panelPage-header">
+						<div class="amx-panelPage-facet-header">
+							<div class="amx-node amx-outputText" id="message">Welcome</div>
+						</div>
+					</div>
+					<div
+						class="amx-panelFormLayout amx-label-position-start amx-field-halign-end amx-layout-one-row amx-node">
+						<div class="amx-panelFormLayout_body">
+							<div class="amx-panelFormLayout_sizing">
+								<div class="field-label"></div>
+								<div class="field-value"></div>
+							</div>
+							<div class="field amx-node amx-inputText"
+								onclick="adf.mf.login.focusUsername();">
+								<div class="field-label">
+									<label>Username</label>
+								</div>
+								<div class="field-value">
+									<input type="text" autocorrect="off" autocapitalize="none"
+										name="username" id="username">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="amx-panelFormLayout amx-label-position-start amx-field-halign-end amx-layout-one-row amx-node">
+						<div class="amx-panelFormLayout_body">
+							<div class="amx-panelFormLayout_sizing">
+								<div class="field-label"></div>
+								<div class="field-value"></div>
+							</div>
+							<div class="field amx-node amx-inputText"
+								onclick="adf.mf.login.focusPassword();">
+								<div class="field-label">
+									<label>Password</label>
+								</div>
+								<div class="field-value">
+									<input type="password" name="password" id="password">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="text-align: center;">
+						<div id="loginButton" class="amx-node amx-commandButton">
+							<div class="amx-node amx-commandButton-label">Login</div>
+						</div>
+					</div>
+					<div id="rememberMePanel" class="amx-layout-one-row amx-node">
+						<div id="rememberMe"
+							class="field amx-node amx-selectBooleanCheckbox"
+							onclick="adf.mf.login.toggleRememberMe();">
+							<div class="field-label">
+								<label>Remember me</label>
+							</div>
+							<div class="field-value">
+								<div class="checkbox">
+									<div class="img-check"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="amx-loading" class="amx-loading hidden"></div>
+	</div>
+</body>
+</html>

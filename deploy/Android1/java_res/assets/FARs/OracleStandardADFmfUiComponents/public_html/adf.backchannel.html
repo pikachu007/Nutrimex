@@ -1,0 +1,142 @@
+<!-- Copyright (c) 2011, 2012, Oracle and/or its affiliates. All rights reserved. -->
+<!DOCTYPE html>
+<html height="100%">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+    <script type="text/javascript">if (!window.adf) window.adf = {}; adf.wwwPath = "../../../www/";</script>
+    <script type="text/javascript" src="../../../www/js/base.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <h1>Back Channel</h1>
+      <div id="status">loading...</div>
+    </div>
+    <script type="text/javascript">
+      window.app_backchannel =
+      {
+        // Application Constructor
+        initialize: function()
+        {
+          this.bindEvents();
+        },
+        // Bind Event Listeners
+        //
+        // Bind any events that are required on startup. Common events are:
+        // 'load', 'deviceready', 'offline', and 'online'.
+        bindEvents: function()
+        {
+          document.addEventListener('showpagecomplete', window.app_backchannel.onDeviceReady, false);
+        },
+        // deviceready Event Handler
+        //
+        // The scope of 'this' is the event. In order to call the 'receivedEvent'
+        // function, we must explicity call 'window.app_backchannel.receivedEvent(...);'
+        onDeviceReady: function()
+        {
+          var addInfo = "enter onDeviceReady";
+          try
+          {
+            // Should not happen...
+            if (typeof(Cordova) == 'undefined')
+            {
+              alert("The handler onDeviceReady was called before Cordova exists.");
+            }
+            // The context of "this." does not exist because
+            // the addEventListener only records the function
+            // code and not the object that was attached so
+            // we cannot use "this.".
+            addInfo = "call this.receivedEvent";
+            window.app_backchannel.receivedEvent('deviceready');
+          }
+          catch(e)
+          {
+            alert("Error in onDeviceReady ("+addInfo+") - " + e.description);
+          }
+        },
+        _notifyJavaReady: function()
+        {
+          if (typeof(adf) == "undefined")
+          {
+            var msg = "Back Channel Hidden Feature - Error: In _notifyJavaReady the object, 'adf', is undefined.  Notification aborted.";
+            console.log(msg);
+            return;
+          }
+          if (typeof(adf.mf) == "undefined")
+          {
+            var msg = "Back Channel Hidden Feature - Error: In _notifyJavaReady the object, 'adf.mf', is undefined.  Notification aborted.";
+            console.log(msg);
+            return;
+          }
+          if (typeof(adf.mf.api) == "undefined")
+          {
+            var msg = "Back Channel Hidden Feature - Error: In _notifyJavaReady the object, 'adf.mf.api', is undefined.  Notification aborted.";
+            console.log(msg);
+            return;
+          }
+          if (typeof(adf.mf.api.invokeMethod) == "undefined")
+          {
+            var msg = "Back Channel Hidden Feature - Error: In _notifyJavaReady the object, 'adf.mf.api.invokeMethod', is undefined.  Notification aborted.";
+            console.log(msg);
+            return;
+          }
+          // Notify the embedded side
+          adf.mf.api.invokeMethod("oracle.adfmf.framework.api.Model", "deviceIsReady", this._successEmbeddedDeviceIsReady, this._failEmbeddedDeviceIsReady);
+        },
+		_failEmbeddedDeviceIsReady: function()
+		{
+        	var msg = "Back Channel Hidden Feature - Error: Embedded call to oracle.adfmf.framework.api.Model.deviceIsReady() failed.";
+        	console.log(msg);
+        	return;
+		},
+		_successEmbeddedDeviceIsReady: function()
+		{
+			// Notify the native we are ready
+      adf.mf.api.invokeContainerMethod("oracle.adfmf.lifecycle.ADFBackgroundFeatureReadyHandler", "deviceIsReady", function()
+		    {
+    		  var msg = "Back Channel Hidden Feature - Error: Native call to oracle.adfmf.lifecycle.ADFBackgroundFeatureReadyHandler.deviceIsReady() failed.";
+    		  console.log(msg);
+    		  return;
+		    },
+		    function()
+		    {
+			    // Notify the native we are ready
+        	var msg = "Back Channel Hidden Feature - Startup is complete.";
+        	console.log(msg);
+		    });
+    },
+        // 
+        receivedEvent: function(id)
+        {
+          var msg = 'Back Channel Hidden Feature: Received Event: ' + id;
+          var addInfo = "use console to log - " + msg;
+          try
+          {
+            console.log(msg);
+            addInfo = "get status div";
+            var statusElement = document.getElementById("status");
+            if (typeof(statusElement) == 'undefined')
+            {
+              alert("Could not find 'status' element.");
+              return;
+            }
+
+            if (id == 'deviceready')
+            {
+              addInfo = "update status";
+              statusElement.innerText = "device is ready...";
+              this._notifyJavaReady();
+            }
+          }
+          catch(e)
+          {
+            alert("Error in receivedEvent - ("+addInfo+") - " + e.description);
+          }
+        }
+      }
+      window.app_backchannel.initialize();
+    </script>
+  </body>
+</html>
+<!-- Created by Oracle ADF (Mobile 11.1.2.4.0) -->

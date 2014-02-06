@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="11.1.2.62.18" id="springboardPageDef"
+                Package="adfmf_default_springboard">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="root" RangeSize="25" DataControl="ApplicationFeatures" id="ApplicationFeaturesIterator"/>
+    <accessorIterator MasterBinding="ApplicationFeaturesIterator" Binds="features" RangeSize="25"
+                      DataControl="ApplicationFeatures" BeanClass="oracle.adfmf.framework.FeatureDefinition"
+                      id="featuresIterator"/>
+    <accessorIterator MasterBinding="ApplicationFeaturesIterator" Binds="applicationInformation" RangeSize="25"
+                      DataControl="ApplicationFeatures" BeanClass="oracle.adfmf.framework.ApplicationInformation"
+                      id="applicationInformationIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="featuresIterator" id="features">
+      <nodeDefinition DefName="oracle.adfmf.framework.FeatureDefinition" Name="features0">
+        <AttrNames>
+          <Item Value="image"/>
+          <Item Value="name"/>
+          <Item Value="id"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="applicationInformationIterator" id="name">
+      <AttrNames>
+        <Item Value="name"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="gotoFeature" RequiresUpdateModel="true" Action="invokeMethod" MethodName="gotoFeature"
+                  IsViewObjectMethod="false" DataControl="ApplicationFeatures"
+                  InstanceName="data.ApplicationFeatures.dataProvider">
+      <NamedData NDName="p0" NDValue="#{pageFlowScope.FeatureId}" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

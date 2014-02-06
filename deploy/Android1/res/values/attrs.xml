@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- In order for these attributes to be found, their namespace URL in preferences.xml must be of the form "http://schemas.android.com/apk/res/(Android manifest namespace)" -->
+<resources>
+	<declare-styleable name="AdfMFPreference">
+		<attr name="visible" format="boolean"/>
+		<attr name="editable" format="boolean"/>
+		<attr name="min" format="integer"/>
+		<attr name="max" format="integer"/>
+	</declare-styleable>
+</resources>

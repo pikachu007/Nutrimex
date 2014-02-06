@@ -1,0 +1,40 @@
+{
+  "generateBaseHtml": false,
+  "dtMode": false,
+  "messageBundleBaseUrl": "../../ToolsTrinidadJavascript",
+  "delayShowComplete": false,
+   "useBatchProcessing": true,
+  "cssResources": [
+  ],
+  "jsResources": [
+    "../js/JavaScriptContext.js",
+    "../js/JavaScriptExpressionFactory.js",
+    "../js/Adfel.js",
+    "../js/AdfelBridge.js",
+    "../js/AdfLocale.js",
+    "../js/Adflog.js",
+    "../js/AdfPerfTiming.js",
+    "../js/AdfResource.js",
+    "../js/ArrayELResolver.js",
+    "../js/AttributeBindingELResolver.js",
+    "../js/CompositeELResolver.js",
+    "../js/ContainerIntegration.js",
+    "../js/ELErrors.js",
+    "../js/ELParser.js",
+    "../js/ManagedBeans.js",
+    "../js/MapELResolver.js",
+    "../js/RootPropertyELResolver.js",
+    "../js/TreeBindingsELResolver.js",
+    "../js/TreeNode.js",
+    "../js/TreeNodeELResolver.js",
+    "../js/ValueExpression.js",
+    "../js/ValueReference.js",
+    "../js/Utilities.js",
+    "../gen/resource/ADFInfoBundle.js",
+    "../../../../../www/js/resource/ADFInfoBundle.js",
+    "../../../../../www/js/cordova-2.2.0.js",
+    "../../../../../www/js/adf.mf.device.integration.js"
+   ],
+  "locale":
+    "../../ToolsTrinidadJavascript/Locale.js"
+}

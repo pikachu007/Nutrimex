@@ -1,0 +1,5 @@
+#:__PROLOG__:!;ADF_DataControl
+#:ADF_DataControl:oracle.adf.library.rc.dcxdatacontrols.DataControlURLDescriptor:0,DeviceDataControl,oracle.adf.model.datacontrols.device.DeviceDataControl,application/DataControls.dcx,.xml
+#:ADF_DataControl:oracle.adf.library.rc.dcxdatacontrols.DataControlURLDescriptor:0,ApplicationFeatures,oracle.adf.model.datacontrols.application.ApplicationFeatures,application/DataControls.dcx,.xml
+#:__EPILOG__:
+oracle.adf.library.rc.dcxdatacontrols.DataControlServiceStrategy ADF_DataControl

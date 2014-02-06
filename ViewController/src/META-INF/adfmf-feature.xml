@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfmf:features xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adfmf="http://xmlns.oracle.com/adf/mf">
+  <adfmf:feature id="Experto" name="Experto">
+    <adfmf:content id="Experto.1">
+      <adfmf:amx file="Experto/untitled1.amx"/>
+    </adfmf:content>
+  </adfmf:feature>
+  <adfmf:feature id="Wiki" name="Wiki">
+    <adfmf:content id="Wiki.1">
+      <adfmf:amx file="Wiki/untitled1.amx"/>
+    </adfmf:content>
+  </adfmf:feature>
+  <adfmf:feature id="test" name="test">
+    <adfmf:content id="test.1">
+      <adfmf:amx file="test/untitled1.amx"/>
+    </adfmf:content>
+  </adfmf:feature>
+</adfmf:features>

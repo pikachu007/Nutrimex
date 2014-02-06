@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2012, Oracle and/or its affiliates. All rights reserved. -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/sslTitle"
+        style="@android:style/TextAppearance.DialogWindowTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_dialog_alert"
+        android:text="@string/security_warning" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/seperator"
+        android:layout_below="@+id/sslTitle"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/sslMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view1"
+        android:padding="@dimen/border"
+        android:text="@string/ssl_message" />
+
+    <TextView
+        android:id="@+id/sslSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sslMsg"
+        android:paddingBottom="@dimen/border"
+        android:paddingLeft="@dimen/border"
+        android:text="@string/ssl_settingsheader" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sslSettings"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ssl_continue" />
+
+        <Button
+            android:id="@+id/btn_view_certificate"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="fill"
+            android:layout_weight="1"
+            android:padding="2dp"
+            android:text="@string/ssl_view_certificate" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@android:string/cancel" />
+    </LinearLayout>
+
+</RelativeLayout>

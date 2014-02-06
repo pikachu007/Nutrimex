@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2011, 2012, Oracle and/or its affiliates. 
+All rights reserved. -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background_gray" >
+
+    <TextView
+        android:id="@+id/errorMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/indicator_input_error"
+        android:drawablePadding="5dp"
+        android:visibility="invisible" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/usernamelbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/errorMsg"
+        android:text="@string/username" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usernamelbl"
+        android:background="@drawable/text_round_corner"
+        android:inputType="text" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/passwordlbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:paddingTop="10dp"
+        android:text="@string/password" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordlbl"
+        android:background="@drawable/text_round_corner"
+        android:inputType="textPassword" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/tenantlbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:paddingTop="10dp" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/tenantVal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tenantlbl"
+        android:background="@drawable/text_round_corner"
+        android:inputType="text" >
+    </EditText>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/buttonLyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tenantVal"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:paddingTop="10dp" >
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_round_corner"
+            android:text="@string/login"
+            android:textColor="@android:color/white" >
+        </Button>
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/login"
+            android:background="@drawable/button_round_corner"
+            android:text="@string/cancel"
+            android:textColor="@android:color/white" >
+        </Button>
+    </RelativeLayout>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/progressLyt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonLyt"
+        android:gravity="center_horizontal" >
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/processing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/progressBar1"
+            android:gravity="center"
+            android:text="@string/processing"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+div#bodyGradient 
+{
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+    left:-10px;
+    width:110%;
+    height:110%;
+	background-image: url(images/adf.nativeframework.background.gradient.png);
+	background-size: cover;
+	z-index:0;
+}
+body 
+{
+	background-color: #23252e;
+	background-image: url(images/adf.nativeframework.background.pattern.png);
+	background-repeat:repeat;	
+    overflow: hidden;
+}
+div#amx-error-icon{
+    padding-top: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    width:32px;
+    height:32px;
+	background-image: url(images/adf.nativeframework.error.png);   
+    background-repeat:no-repeat;
+    float:left;
+}
+div#amx-error-name{
+    padding-left: 8px;
+    padding-bottom: 6px;
+    padding-top: 6px;
+	font-size: 20px; 
+	font-family: Arial;
+    border-bottom:2px solid black
+}

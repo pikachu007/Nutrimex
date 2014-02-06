@@ -1,0 +1,1925 @@
+/* VERSION 53 */
+* {
+    visibility: visible;
+    -webkit-user-select: none;
+}
+
+input, textarea{
+	-webkit-user-select: text;
+}
+body{
+	margin: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+}
+
+label{
+	
+}
+.ui-page{
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+}
+
+#amxUIFlush{
+	position: absolute; 
+	top: 100px; left: 50%;
+	height: 100px;
+	width: 100px;
+	overflow: hidden;
+	border: solid 1px black;
+	z-index: -1;
+	/*color: rgba(0,0,0,0);*/
+}
+
+#amxDebug{
+	position: absolute;
+	top: 0; left: 5%; right: 5%;
+	height: 60px;
+	background: rgba(255,255,255,.6);
+	color: #333;
+	font-size: 12px;
+	border: solid 1px #999;
+	z-index: 1000;
+	overflow: auto;
+}
+
+#bodyPage{
+	/* Will move to css radial (needs to have rgb)
+	 * background-image: -webkit-radial-gradient(center center, circle cover, #4e545d 3%, #23252e 95%);
+	 */
+	/*background-image: url(images/bkg-radial.png);
+	background-size: cover;*/
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;	
+	z-index:0;
+	-webkit-perspective: 2000;
+	background-color: #23252e;
+	background-image: url(images/bkg-pattern.png);
+	background-repeat:repeat;
+	font-family: Helvetica Neue;		
+}
+
+
+/* amx container elements needs to be relative */
+.amx-listView, .amx-listItem, .amx-panelGroupLayout{
+	position: relative;
+}
+
+/* single finger scrollables */
+.amx-panelPage-content, .amx-listView, .amx-panelGroupLayout, .amx-panelFormLayout{
+	overflow: auto;
+}
+
+.amx-node.amx-fitParent {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+/* ------ Generic Field label/value ------ */
+.field{
+	clear: both;
+	min-height:10px;
+	padding: 5px 0 5px 0;
+	margin: 0 auto;
+}
+.field-label{
+	float: left;
+	font-size: 14px; 
+	font-weight: normal;
+	color: #037CB4;
+	padding: 17px 10px 0px 10px; 
+	webkit-user-select: text;
+}
+.field-value{
+	padding:16px 0 15px 0;
+	overflow:hidden;
+	word-break:break-all;
+	font-size: 14px; 
+	color: #333;
+	-webkit-border-radius: 8px;
+}
+
+.field-value .readOnlyLabel{
+	height:18px;
+	padding:2px 0 0 0;
+	font-weight:bold;
+}
+
+.field-value input, .field-value textarea{
+	margin: 0px;
+	font-size: 14px; 
+	border: none;
+}
+
+/* ------ /Generic Field label/value ------ */
+
+
+/* ------ Icons ------ */
+.ico{
+	background-image: url(images/amx.png);
+	width: 32px;
+	height: 32px;
+}
+.ico-arrow-r{
+	background-position:  0px 0px;
+}
+/* ------ /Icons ------ */
+
+
+/* Debug Log */
+#log{
+	z-index: 100;
+	border: solid 1px #aaa;
+	background: rgba(255,255,255,.5);
+	position: absolute;
+	bottom: 10px;
+	width: 50%;
+	height: 60px;
+	font-size: 12px;
+	
+}
+
+.transparentScreen{
+	position:absolute;
+	left:0;top:0;right:0;bottom:0;
+	z-index:5;
+}
+
+
+.amx-view{
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	z-index: 10;
+}
+
+/* ------ <amx:ouputText> ------ */
+.amx-outputText{
+	margin: 0px;
+	padding: 0px;
+	clear: both;
+	color: #fff;
+	-webkit-user-select: text;
+}
+
+.amx-outputText-truncateAt{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;	
+}
+
+.amx-outputText.amx-text-sectiontitle{
+	font-size: 24px;
+	margin: 10px 0px 10px 20px;
+	color: #B7B9B8;
+	font-weight: bold;
+	text-shadow: #000 1px 1px 2px;
+}
+/* ------ </amx:outputText> ------ */
+
+/* ------ <amx:commandLink> ------ */
+.amx-commandLink{
+	color: #2F6BAC;
+	cursor: pointer;
+	text-decoration:none;
+}
+/* facet variant */
+.amx-panelPage-facet-primary .amx-commandLink,.amx-panelPage-facet-secondary .amx-commandLink,.amx-panelPage-facet-footer .amx-commandLink{
+	display: inline-block;
+	margin: 12px 6px 0px 6px;
+}
+.amx-panelPage-facet-primary .amx-commandLink img,.amx-panelPage-facet-secondary .amx-commandLink img,.amx-panelPage-facet-footer .amx-commandLink img{
+	width:18px;
+	height:18px;
+}
+.amx-panelPage-facet-primary .amx-commandLink label,.amx-panelPage-facet-secondary .amx-commandLink label,.amx-panelPage-facet-footer .amx-commandLink label{
+	display:inline-block;
+	padding:0 0 30px 0;
+}
+
+.amx-panelPage-facet-secondary .amx-commandLink{
+	float: right;
+}
+/* /facet variant */
+/* ------ </amx:commandLink> ------ */
+
+
+/* ------ <amx:commandButton> ------ */
+.amx-commandButton{
+	position:relative;
+	height: 32px;
+	padding:0px 10px;
+	min-width: 96px;
+	display:inline-block;
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #2f6bac), color-stop(0.48, #214d81), color-stop(0.49, #2c588d), color-stop(1.00, #6d98c9));
+	-webkit-box-shadow: inset 2px 2px 1px 1px rgba(0,0,0,0.75), inset -2px -2px 1px 1px rgba(0,0,0,0.75);
+	border: 2px solid #4E5664;
+	border-radius: 10px;
+}
+
+.amx-commandButton.amx-selected{
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #79b6ef),
+			color-stop(0.48, #377dcf), 
+			color-stop(0.49, #4e89ca),
+			color-stop(1.00, #b4c9e2) );
+}
+
+.amx-commandButton.amx-disabled{
+	opacity:.4;
+}
+
+.amx-commandButton.amx-disabled .amx-commandButton-label{
+	color: rgba(255,255,255,.6);
+}
+
+
+.amx-commandButton-label{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Helvetica Neue;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	padding-top: 7px;
+	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.60);
+	float: left;
+	margin:0 0 0 12px;
+}
+
+.amx-commandButton .amx-commandButton-icon{
+	width: 18px; 
+	height: 18px;
+	margin: 8px 0 0 0;
+	float: left;
+}
+
+.amx-commandButton.amx-iconPosition-trailing .amx-commandButton-icon{
+	float: right;
+	margin: 8px 0px 0 10px;
+}
+
+/* facet variant */
+.amx-panelPage-facet-primary .amx-commandButton,.amx-panelPage-facet-secondary .amx-commandButton,.amx-panelPage-facet-footer .amx-commandButton{
+	display: inline-block;
+	height:30px;
+	min-width:42px;
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #2f6bac), color-stop(0.48, #214d81), color-stop(0.49, #2c588d), color-stop(1.00, #6d98c9));
+	-webkit-box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.5);
+	border: 1px solid black;
+	border-radius: 5px;
+	padding:0px;
+	margin: 6px 6px 7px 6px;
+}
+.amx-panelPage-facet-primary .amx-commandButton.amx-selected,.amx-panelPage-facet-secondary .amx-commandButton.amx-selected,.amx-panelPage-facet-footer .amx-commandButton.amx-selected{
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #79b6ef), color-stop(0.48, #377dcf), color-stop(0.49, #4e89ca),color-stop(1.00, #b4c9e2) );
+	-webkit-box-shadow: 0px 3px 0px 0px rgba(255, 255, 255, 0.1), inset 0px
+		1px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.amx-panelPage-facet-primary .amx-commandButton.amx-disabled,.amx-panelPage-facet-secondary .amx-commandButton.amx-disabled,.amx-panelPage-facet-footer .amx-commandButton.amx-disabled{	
+	opacity:.4;
+}
+
+.amx-panelPage-facet-primary .amx-commandButton-label, .amx-panelPage-facet-secondary .amx-commandButton-label, .amx-panelPage-facet-footer .amx-commandButton-label{
+	font-size: 14px;
+	padding: 7px 10px 10px 10px;
+	margin:0 0 0 2px;
+}
+
+.amx-panelPage-facet-secondary .amx-commandButton{
+	float: right;
+}
+.amx-panelPage-facet-primary .amx-commandButton-icon, .amx-panelPage-facet-secondary .amx-commandButton-icon{
+	position: absolute;
+	top: 50%;
+	left: 12px;
+	margin-top: -9px;
+}
+.amx-panelPage-facet-footer .amx-commandButton{
+	min-width:130px;
+	padding:0 0 0 15px;
+}
+.amx-panelPage-facet-footer .amx-commandButton-label{
+	font-size:18px;
+	padding: 5px 8px 5px 8px;
+	margin:0 15px 0 10px;
+}
+
+.amx-panelPage-facet-footer .amx-commandButton-icon{
+	width:21px;
+	height:21px;
+	margin:5px 5px ;
+}
+/* /facet variant */
+/* Alert */
+.amx-commandButton.amx-button-alert{
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #9d2120), color-stop(0.48, #5e1211), color-stop(0.49, #612c2d), color-stop(1.00, #d37f82));
+}
+
+.amx-commandButton.amx-button-alert.amx-selected{
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #c92a29),
+			color-stop(0.48, #801817), 
+			color-stop(0.49, #9b4549),
+			color-stop(1.00, #f9979b) );
+}
+
+/* /Alert */
+/* Hightlight */
+.amx-commandButton.amx-button-hightlight{
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #6d8fb6), color-stop(0.48, #212e3e), color-stop(0.49, #384457),color-stop(0.94, #a2aec0), color-stop(1.00, #d7d7d7));
+}
+
+.amx-commandButton.amx-button-hightlight.amx-selected{
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #99c8fc),
+			color-stop(0.48, #31465d), 
+			color-stop(0.49, #495871),
+			color-stop(0.94, #cedef4),
+			color-stop(1.00, #ffffff) );
+}
+
+/* /Hightlight */
+/* back */
+.amx-commandButton.amx-button-back{
+	background-image: none;
+	border:0;
+	border-radius:0px;
+	box-shadow:none;
+	
+}
+.amx-commandButton.amx-button-back.amx-selected{
+	background-image: none;
+	border:0;
+	border-radius:0px;
+	box-shadow:none;
+}
+
+.amx-commandButton.amx-button-back > canvas{
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+
+/* /back */
+
+/* ------ </amx:commandButton> ------ */
+
+/* --------- <amx:inputText> --------- */
+.amx-inputText .field-label{
+	margin:1px 0 0 0;
+}
+.amx-inputText .field-value {
+	padding:0;
+}
+.amx-inputText .field-value .wrap{
+	font-weight:bold;
+	padding:16px 0 15px 10px;
+	background:#ffffff;
+	-webkit-border-radius: 8px;
+}
+.amx-inputText .field-value input,.amx-inputText .field-value textarea{
+	font-weight:bold;
+	padding:2px 0 0 0;
+}
+.amx-inputText.amx-simple{
+	font-size: 14px;
+	position: relative;
+	height: 30px;
+}
+
+.amx-inputText.amx-simple input, .amx-inputText.amx-simple textarea{
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	font-size: inherit;
+}
+.amx-inputText .amx-hint{
+	color:#8d8c8c;
+}
+.amx-inputText.amx-disabled{
+	opacity:.4;
+}
+.amx-inputText.amx-disabled input, .amx-inputText.amx-disabled textarea{
+	background:none;
+}
+/* --------- </amx:inputText> --------- */
+/* --------- <amx:inputDate> --------- */
+.amx-inputDate .field-label {
+	padding-top:16px !important;
+}
+.amx-inputDate .dateLabel{
+	font-weight:bold;
+	font-size:14px;
+	cursor:pointer;
+}
+.amx-inputDate.amx-disabled{
+	opacity:.5
+}
+.amx-inputDate.amx-readOnly{
+	color:#000;
+}
+/* --------- </amx:inputDate> --------- */
+.datePicker{
+	position:absolute;
+	width:100%;
+	z-index:5;
+	left:0px;
+	bottom:0px;
+}
+.datePicker.transitioning{
+	-webkit-transition: all .25s ease-in-out;
+}
+.datePicker .dateContainer{
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#A3A4A9), to(#282A39), color-stop(0.5,#474955),color-stop(0.5,#272936));
+	padding:10px 10px ;
+	border:2px solid #000105;
+	border-top:0px;
+	position:relative;
+}
+.datePicker .dateContainer .dateContent{
+	height:150px;
+	-webkit-border-radius:5px;
+	background:#131521;
+	color:#060606;
+	position:relative;
+	font-size:bold;
+	font-size:14px;
+	font-family: Helvetica Neue;
+}
+
+
+.datePicker .dateContainer .dateContent .column{
+	float:left;
+	height:100%;
+	border-left:2px solid #8D8C9A;
+	border-right:2px solid #8D8C9A;
+	overflow:hidden;
+	position:relative;
+	cursor:pointer;
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#403E46), to(#403E46), color-stop(0.2,#E9E9EA),color-stop(0.25,#FCFCFC),color-stop(0.75,#FCFCFC),color-stop(0.8,#E9E9EA));
+}
+.datePicker .dateContainer .dateContent .month{
+	margin:0 0 0 1px;
+	-webkit-border-top-left-radius:5px;
+	-webkit-border-bottom-left-radius:5px;
+}
+.datePicker .dateContainer .dateContent .date{
+	margin:0px 1px;
+}
+.datePicker .dateContainer .dateContent .year{
+	margin:0px 1px 0 0;
+	-webkit-border-top-right-radius:5px;
+	-webkit-border-bottom-right-radius:5px;
+}
+.datePicker .dateContainer .dateContent .bar{
+	position:absolute;
+	height:30px;
+	left:0px;
+	top:59px;
+	background:#000000;
+	width:100%;
+	cursor:pointer;
+	border-top:1px solid #787FA5;
+	border-bottom:1px solid #787FA5;
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(rgba(178,178,214,.6)), to(rgba(120,127,165,.6)), color-stop(0.5,rgba(178,178,214,.6)),color-stop(0.5,rgba(120,127,165,.6)))
+}
+.datePicker .dateContainer .dateContent .unit{
+	height:30px;
+	line-height:30px;
+	position:absolute;
+	right:1px;
+	cursor:pointer;
+	width:100%;
+	text-align:right;
+	font-weight:bold;
+	font-size:20px;
+	padding:0 8px 0 0 ;
+}
+
+.datePicker .dateBottom{
+	height:35px;
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#5E5E5E), to(#2C2C2C), color-stop(0.5,#2D2D2D),color-stop(0.5,#1A1A1A));
+	border:2px solid #000105;
+	border-bottom:0px;
+}
+.datePicker .dateBottom .btn{
+	color:#ffffff;
+	line-height:26px;
+	height:26px;
+	padding:0 5px;
+	border:1px solid #404040;
+	font-size:14px;
+	font-weight:bolder;
+	-webkit-border-radius:5px;
+	cursor:pointer;
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#5E5E5E), to(#080808), color-stop(0.5,#232323),color-stop(0.5,#080808));
+}
+.datePicker .dateBottom .btn:hover{
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#879AB5), to(#496892), color-stop(0.5,#5D789D),color-stop(0.5,#486790));
+}
+.datePicker .dateBottom .btn.cancel{
+	float:left;
+	margin:2px 0 0 5px;
+}
+.datePicker .dateBottom .btn.done{
+	float:right;
+	margin:2px 5px 0 0 ;
+}
+/* --------- <amx:inputNumberSilder> --------- */
+.amx-inputNumberSlider .field-label{
+	margin:3px 0 0 0;
+}
+.amx-inputNumberSlider .field-value{
+	position:relative;
+}
+.amx-inputNumberSlider .field-value .disable{
+	position:absolute;
+	top:0;left:0;
+	width:100%;
+	height:100%;
+	background:rgba(255,255,255,.2);
+}
+.amx-inputNumberSlider .field-value .container{
+	padding:5px 0px;
+	z-index:-1;
+}
+.amx-inputNumberSlider .field-value .inputTextNumber{
+	display:inline-block;
+	position:relative;
+	margin:0 5px 0 0px;
+}
+.amx-inputNumberSlider .field-value .inputTextNumber input[type='text']{
+	-webkit-user-select:text;
+	width:30px;
+	height:24px;
+	border:1px solid #B3B3B3;
+	-webkit-border-radius:4px;
+}
+.amx-inputNumberSlider .field-value .inputTextNumber .btn{
+	position:absolute;
+	width:9px;
+	height:9px;
+	right:1px;
+	background:#000000;
+	border:1px solid #ABADB3;
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#F2F2F2), to(#D1D1D1), color-stop(0.5,#E8E8E8),color-stop(0.5,#DBDBDB));
+}
+.amx-inputNumberSlider .field-value .inputTextNumber .btn:hover{
+	border:1px solid #3C7FB1;
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#E9F6FD), to(#A9DBF5), color-stop(0.5,#D2EDFC),color-stop(0.5,#BBE5FC));
+}
+.amx-inputNumberSlider .field-value .inputTextNumber .btn.up{
+	top:2px;
+	-webkit-border-top-right-radius:2px;
+	-webkit-border-top-left-radius:2px;
+}
+.amx-inputNumberSlider .field-value .inputTextNumber .btn.down{
+	top:14px;
+	-webkit-border-bottom-left-radius:2px;
+	-webkit-border-bottom-right-radius:2px;
+}
+.amx-inputNumberSlider .field-value .slider{
+	display:inline-block;
+	background:#000000;
+	position:relative;
+	width:98%;
+	min-width:100px;
+	height:10px;
+	border:1px solid #808080;
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#EEEEEE), to(#FDFDFD));
+	-webkit-border-radius:5px;
+	cursor:pointer;
+}
+.amx-inputNumberSlider .field-value .slider .selected{
+	position:absolute;
+	left:-1px;
+	top:-1px;
+	z-index: 1;
+	width:23px;
+	height:100%;
+	-webkit-border-radius:5px;
+	border:1px solid #034589;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #79b6fe),
+			color-stop(0.49, #377dcf),
+			color-stop(0.5, #4e89ca),
+			color-stop(1.0, #b4c9e2));	
+}
+.amx-inputNumberSlider .field-value .slider .valve{
+	width:16px;
+	height:16px;
+	background:#ffffff;
+	position:absolute;
+	left:19px;
+	top:-3px;
+	z-index: 2;
+	-webkit-border-radius:10px;
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#FCFCFC), to(#EEEEEE));
+	cursor:pointer;
+	-webkit-box-shadow:-1px -1px 1px 0px #CBCBCB,
+					   1px 1px 1px 0px #CBCBCB,
+					   -1px 1px 1px 0px #CBCBCB,
+					   1px -1px 1px 0px #CBCBCB;
+}
+
+.amx-inputNumberSlider .field-value .slider .valve:hover{
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#ECECEC), to(#DBDBDB));
+}
+.amx-inputNumberSlider.amx-disabled{
+	opacity:.4
+}
+.amx-inputNumberSlider.amx-readOnly .slider,.amx-inputNumberSlider.amx-readOnly .field-value .slider .valve,.amx-inputNumberSlider.amx-readOnly .selected{
+	cursor: default;
+}
+.amx-inputNumberSlider.amx-readOnly .field-value .slider  .selected{
+	border: solid 1px #2C2C2C;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #a6a6a6),
+			color-stop(.57, #e6e6e6),
+			color-stop(.58, #f6f6f6),
+			color-stop(.93, #e3e4e3),
+			color-stop(1.0, #ffffff) );
+}
+
+/* --------- </amx:inputNumberSilder> --------- */
+/* ------ <amx:listView> ------ */
+.amx-listView{
+	margin: 0;
+	-webkit-box-shadow: inset 0px 8px 8px -6px rgba(0,0,0,0.75);
+	background-color: #fff;
+}
+.amx-listView.amx-listView-insetList{
+	margin:12px 9px 12px 9px;
+	-webkit-border-radius:10px;
+}
+.amx-listView.amx-listView-insetList .amx-listItem:last-child{
+	-webkit-border-radius:10px;
+}
+.amx-listView.notSelect *{
+	-webkit-user-select:none;
+}
+
+
+
+/* --- <facets> ---*/
+.amx-listView-header{
+	background: -webkit-gradient(linear, left top, left bottom, from(#dae0e4), to(#b1bcc3));
+}
+
+.amx-listView-facet-header{
+}
+
+.amx-listView-facet-header > .amx-outputText{
+	color: #333;
+}
+
+.amx-listView-footer{
+	background: -webkit-gradient(linear, left top, left bottom, from(#dae0e4), to(#b1bcc3));
+}
+
+.amx-listView-facet-footer{
+}
+
+.amx-listView-facet-footer> .amx-outputText{
+	color: #333;
+}
+/* --- </facets> --- */
+
+/* --- <dividers> --- */
+.amx-listView-divider-actual{
+	background: -webkit-gradient(linear, left top, left bottom, from(#dae0e4), to(#b1bcc3));
+	border-bottom: solid 1px #BBBBBB;
+	height: 32px;
+	position: relative;
+}
+
+.amx-listView-divider-actual  .amx-outputText{
+	font-weight: bold;
+	font-size: 18px;
+	color: #333;
+	position: absolute;
+	margin-left: 3%;
+	top: 20%;
+}
+
+.amx-listView-divider-actual-counter{
+	position: absolute;
+	right: 50%;
+	top: 20%;
+}
+
+.amx-listView-divider-actual-indicator-expanded{
+	background-image: url(images/amx.png);
+	background-position:  0px 0px;
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 50%; right: 10px; 
+	margin-top: -18px;
+	opacity: .3;
+}
+
+.amx-listView-divider-actual-indicator-collapsed{
+	background-image: url(images/amx.png);
+	background-position:  -32px 0px;
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 50%; right: 10px; 
+	margin-top: -18px;
+	opacity: .3;
+}
+/* --- </dividers> --- */
+
+
+.amx-listItem{
+	position: relative;
+	border-bottom: solid 1px #BBBBBB;
+	cursor: pointer;
+}
+
+.amx-listItem.move{
+	position:absolute;
+	left:0;
+	right:0;
+	border-top: solid 1px #BBBBBB;
+	cursor: move;
+}
+
+.amx-listItem-caret{
+	background-image: url(images/amx.png);
+	background-position:  0px 0px;
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 50%; right: 10px; 
+	margin-top: -15px;
+}
+.amx-listItem .amx-outputText.amx-listItem-righttext{
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 50%; right: 40px; 
+	margin-top: -26px;
+	color:#2f6bac;
+	font-weight:normal;
+}
+
+.amx-listItem-handle{
+	background-image: url(images/amx.png);
+	background-position:  -32px 0px;
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 50%; right: 10px; 
+	margin-top: -14px;
+	cursor: move;
+}
+.amx-listItem-drop-spacer{
+	height:10px;
+	-webkit-box-shadow: 0px 2px 3px 0px #a0a0a0,
+						0px -2px 3px 0px #a0a0a0;
+}
+.amx-listItem  .amx-outputText{
+	padding: 15px 0 15px 10px;
+	font-weight: bold;
+	font-size: 18px;
+	color: #333;
+}
+
+/* ------ </amx:listView> ------ */
+.amx-view-container{
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	-webkit-transform-style: preserve-3d;
+	z-index:0;
+	
+}
+
+.amx-view-container.transitioning{
+	-webkit-transition: all .25s ease-in-out;
+	
+}
+
+.amx-view-container.transitioning-slow{
+	-webkit-transition: all .4s ease-in-out;
+}
+
+
+
+.amx-view-container.face {
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	
+}
+.amx-view-container.face.front.flip  {
+	/* for when -webkit-backface-visibility is not enabled 
+	z-index: -1;
+	opacity: 0;
+	*/
+}
+
+
+.amx-view-container.current,.amx-view-container.showing{
+	z-index: 1;
+}
+
+.amx-view-container.new{
+	z-index: -5;
+	opacity: 0;
+	
+}
+
+.amx-view-container.old{
+	z-index: -2;
+}
+/* ------ <amx:panelPage> ------ */
+.amx-panelPage{
+   position: absolute;
+   top: 0; right: 0; bottom: 0; left: 0;	
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+
+.amx-panelPage-header,.amx-panelPage-footer{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 44px;
+	display: block;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 0 -1px 1px #254F7A;	
+	background-image: -webkit-gradient( 
+		    linear, 
+		    left bottom, 
+		    left top, 
+		    color-stop(0, rgba(45,58,73,1)), 
+		    color-stop(0.49, rgba(23,31,40,1)), 
+		    color-stop(0.5, rgba(39,45,55,1)), 
+		    color-stop(1.0, rgba(95,100,107,1)));
+}
+
+.amx-panelPage-facet-footer,.amx-panelPage-facet-header{
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	z-index: 2;
+}
+
+
+.amx-panelPage-facet-primary{
+	position: absolute;
+	top: 0; right: 50%; bottom: 0; left: 0;
+	z-index: 3;
+}
+
+.amx-panelPage-facet-secondary{
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 50%;
+	z-index: 3;
+}
+
+.amx-panelPage-content{
+	position: relative;
+	overflow: auto;
+	-webkit-box-flex: 1;
+}
+
+.amx-panelPage-facet-header > .amx-outputText,.amx-panelPage-facet-footer > .amx-outputText{
+	display: block;
+	font-size: 20px;
+	text-align: center;
+	margin: 10px auto 0 auto;
+	padding: 0;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	outline: 0 !important;	
+}
+
+/* TODO: need to get rid of JQueryMobile for buttons */
+
+.amx-panelPage-header > .ui-btn > .ui-btn-inner{
+	padding: .4em 8px .5em;	
+}
+
+/* ------ </amx:panelPage> ------ */
+
+/* ------ <amx:panelLabelAndMessage> ------ */
+.amx-panelLabelAndMessage .field-value{
+	margin:1px 0 0 0;
+}
+/* ------ </amx:panelLabelAndMessage> ------ */
+
+
+/* --------- <amx:panelGroupLayout> --------- */
+.amx-panelGroupLayout.amx-style-groupbox{
+	margin: 12px 9px 12px 9px;
+	border: solid 1px #EAF0F9;
+	-webkit-border-radius: 8px;
+	background: #fff;
+	-webkit-box-shadow:  1px 1px 3px rgba(0,0,0,1);
+	padding: 10px;
+	overflow: auto;
+}
+.amx-panelGroupLayout.amx-style-groupbox .amx-outputText{
+	color: #333;
+}
+
+.amx-panelGroupLayout > table{
+}
+
+.amx-panelGroupLayout.amx-flow-left > .amx-node{
+	float: left;
+	clear: none;
+}
+
+.amx-panelGroupLayout.amx-flow-right > .amx-node{
+	float: right;
+	clear: none;
+}
+
+.amx-panelGroupLayout.amx-flow-center > center{
+	overflow: auto;
+}
+.amx-panelGroupLayout.amx-flow-center > center > .amx-node{
+	float: none;
+	clear: none;
+	display: inline-block;
+} 
+/* --------- </amx:panelGroupLayout> --------- */
+
+/* --------- <amx:panelFormLayout> --------- */
+.amx-panelFormLayout{
+	margin: 12px 9px 12px 9px;
+	padding:0 5px 0 0;
+	border: solid 1px #EAF0F9;
+	-webkit-border-radius: 8px;
+	background: #fff;
+	-webkit-box-shadow:  1px 1px 3px rgba(0,0,0,1);
+}
+
+/* ------ Generic Field label/value form layout ------ */
+.amx-panelFormLayout .field-label{
+	float: left;
+	width: 33%;
+	text-align: right;
+	padding: 17px 0 0 0;
+}
+.amx-panelFormLayout .field{
+	padding: 0;
+}
+.amx-panelFormLayout .field-label label{
+	padding-right: 10px;
+}
+.amx-panelFormLayout .field-value .wrap{
+	padding-left:0px;
+}
+/* ------ /Generic Field label/value form layout ------ */
+
+.amx-panelFormLayout > div:first-child{
+	border-top: none;
+}
+.amx-panelFormLayout > div{
+	border-top: solid 1px #BBBBBB;
+	padding: 10px 0px;
+}
+.amx-panelFormLayout.amx-label-alignment-top .field-label{
+	float:none;
+	width:auto;
+	padding:0 0 0 6px;
+	text-align:left;
+}
+.amx-panelFormLayout.amx-label-alignment-top .field-value{
+	padding:0 0 0 6px;
+	float:none;
+	width:auto;
+}
+.amx-panelFormLayout.amx-label-alignment-top .field-value .wrap{
+	padding:0 0 0 0px;
+}
+.amx-panelFormLayout .amx-outputText{
+	color: #333;
+}
+/* --------- </amx:panelFormLayout> --------- */
+/* ------ <amx:panelSplitter> ------ */
+.amx-panelSplitter
+{
+  position: relative;
+  margin: 5px;
+  padding: 5px;
+  -webkit-transition: width 1s ease-in-out;
+  transition: width 1s ease-in-out;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.amx-panelSplitter_inner
+{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.amx-panelSplitter_collect
+{
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  border-top: solid 3px rgb(54, 98, 150);
+  border-left: solid 3px rgb(54, 98, 150);
+  border-bottom: solid 3px rgb(54, 98, 150);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-width: thick;
+}
+
+.amx-panelSplitter_navContainer
+{
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  overflow: auto;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-width: thick;
+}
+
+.amx-panelSplitter_splitter
+{
+  float: right;
+  position: relative;
+  background-image: -webkit-gradient(linear, 50% 50%, 0% 0%, from(#558ecc), to(#3b679b));
+  -webkit-box-shadow: inset 0 0 3px #BE4B48;
+  box-shadow: inset 0 0 3px #BE4B48;
+  width: 8px;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.amx-panelSplitter_contentContainer
+{
+  position: absolute;
+  overflow: auto;
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.amx-panelSplitter_contentContainer.amx-landscape {
+  border-top: solid 3px rgb(54, 98, 150);
+  border-right: solid 3px rgb(54, 98, 150);
+  border-bottom: solid 3px rgb(54, 98, 150);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  height: 100%;
+  width: auto;
+  
+}
+
+.amx-panelSplitter_contentContainer.amx-portrait
+{
+  border-top: solid 3px rgb(54, 98, 150);
+  border-right: solid 3px rgb(54, 98, 150);
+  border-bottom: solid 3px rgb(54, 98, 150);
+  border-left: solid 3px rgb(54, 98, 150);
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  left:   0px;
+  top:    44px;
+  bottom: 0px;
+  right:  0px;
+  width: auto;
+}
+
+.amx-panelSplitter_contentContainer.amx-noNavigation
+{
+  border-top: solid 3px rgb(54, 98, 150);
+  border-right: solid 3px rgb(54, 98, 150);
+  border-bottom: solid 3px rgb(54, 98, 150);
+  border-left: solid 3px rgb(54, 98, 150);
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  width: auto;
+}
+
+.amx-panelSplitter_button
+{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 40px;
+  padding: 0px 7px;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #2f6bac), color-stop(0.48, #214d81), color-stop(0.49, #2c588d), color-stop(1.00, #6d98c9));
+  -webkit-box-shadow: inset 2px 2px 1px 1px rgba(0, 0, 0, 0.75), inset-2px-2px 1px 1px rgba(0, 0, 0, 0.75);
+  border: 2px solid #4E5664;
+  border-radius: 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+}
+
+.amx-panelSplitter_popup
+{
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  overflow: auto;
+  left: 0px;
+  top: 0px;
+  height: auto;
+  z-index: 1000;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: height .5s ease-in-out;
+}
+
+.amx-panelSplitter_popupTransparentScreen{
+	position:absolute;
+	left:0;top:0;right:0;bottom:0;
+	z-index: 900;
+}
+.amx-panelSplitter_button:hover
+{
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #79b6ef), color-stop(0.48, #377dcf), color-stop(0.49, #4e89ca), color-stop(1.00, #b4c9e2));
+}
+/* Hightlight */
+.amx-panelSplitter_button:active
+{
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #6d8fb6), color-stop(0.48, #212e3e), color-stop(0.49, #384457), color-stop(0.94, #a2aec0), color-stop(1.00, #d7d7d7));
+}
+
+.amx-panelSplitter_button_label
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Helvetica Neue;
+  font-size: 18pt;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  padding-top: 7px;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.60);
+}
+
+.amx-panelItem 
+{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.amx-panelItem.new
+{
+  z-index: -5;
+  opacity: 0;  
+}
+
+.amx-panelItem.old
+{
+  z-index: -2;
+}
+
+.amx-panelItem.current,.amx-panelItem.showing
+{
+  z-index: 1;
+}
+
+.amx-panelItem.transitioning
+{
+  -webkit-transition: all .5s ease-in-out;	
+}
+
+.amx-panelItem.transitioning-slow
+{
+  -webkit-transition: all .7s ease-in-out;
+}
+
+.amx-panelItem.face 
+{
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;	
+}
+.amx-panelItem.face.front.flip  {
+  /* for when -webkit-backface-visibility is not enabled 
+  z-index: -1;
+  opacity: 0;  
+  */
+}
+
+/* --------- <amx:popup> --------- */
+
+.popupTransparentScreen{
+	position:absolute;
+	left:0;top:0;right:0;bottom:0;
+	z-index:999;
+}
+.amx-popup{
+	position: absolute;
+	background: #777;
+	padding: 10px;
+	border: solid 2px #ddd;
+	-webkit-box-shadow: 2px 2px 7px #aaa;
+	z-index: 1000;
+}
+.amx-popup.transitioning{
+	-webkit-transition: all .25s ease-in-out;
+}
+.amx-popup.popup-holder{
+	display: none;
+}
+/* --------- </amx:popup> --------- */
+/* --------- <amx:selectBooleanSwitch> --------- */
+.amx-selectBooleanSwitch{
+	min-height: 27px;
+}
+/* TODO: Need to make this more flexible. 
+         Probably positioning label absolute with top 50%, margin-top: -..px */
+.amx-selectBooleanSwitch .field-label{
+	padding-top: 22px;
+}
+
+.amx-selectBooleanSwitch.amx-readOnly .field-value{
+	padding-top: 7px;
+	font-weight: bold;
+}
+
+.amx-selectBooleanSwitch .switch{
+	position: relative;
+	width: 94px;
+	height: 27px;
+	border: solid 1px #2C2C2C;
+	-webkit-border-radius: 5px;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #a6a6a6),
+			color-stop(.57, #e6e6e6),
+			color-stop(.58, #f6f6f6),
+			color-stop(.93, #e3e4e3),
+			color-stop(1.0, #ffffff) );
+	cursor: pointer;					
+}
+
+.amx-selectBooleanSwitch.on .switch{
+	border: solid 1px #197AD0;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #79b6fe),
+			color-stop(0.49, #377dcf),
+			color-stop(0.5, #4e89ca),
+			color-stop(1.0, #b4c9e2));			
+}
+
+.amx-selectBooleanSwitch .switch > label{
+	position: absolute;
+	top: 50%; 
+	color: #6D6D6D;
+	font-size: 15px;
+	margin-top: -8px;
+	font-weight: bold;
+}
+
+.amx-selectBooleanSwitch .switch > .label-on{
+	left: 11px;
+	color: #fff;
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.60);
+}
+.amx-selectBooleanSwitch .switch > .label-off{
+	right: 11px; 
+	
+}
+.amx-selectBooleanSwitch .switch-button{
+	position: absolute;
+	top: -1px; bottom: -1px; 
+	width: 47px;
+	border: solid 1px #797979;
+	-webkit-border-radius: 5px;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #cdcecd),
+			color-stop(.45, #e6e6e6),
+			color-stop(.84, #f6f6f6),
+			color-stop(1.0, #f6f4f4) );
+}
+
+.amx-selectBooleanSwitch.off .switch-button{
+	left: -1px; 
+}
+
+.amx-selectBooleanSwitch.on .switch-button{
+	right: -1px; 
+}
+.amx-selectBooleanSwitch.amx-readOnly .field-value{
+	padding-top:20px;
+}
+
+.amx-selectBooleanSwitch.amx-disabled{
+	opacity:.5;
+}
+
+/* --------- </amx:selectBooleanSwitch> --------- */
+
+/* --------- <amx:selectBooleanCheckbox> --------- */
+.amx-selectBooleanCheckbox .field-label{
+	padding-top: 21px;
+	overflow: visible;
+}
+.amx-selectBooleanCheckbox .checkbox{
+	float: left;
+	-webkit-border-radius: 5px;	
+	width: 20px; 
+	height: 20px;
+	border: solid 1px #C3D4EE;
+	background: #fff;
+	margin: 2px 0px;
+	cursor: pointer;
+}
+
+.amx-selectBooleanCheckbox .checkbox-text{
+	float: left; 
+	display: inline-block;
+	margin: 5px 0 0 7px;
+	font-weight: bold;
+	color: #000;
+}
+
+.amx-selectBooleanCheckbox.on .checkbox{
+	border: solid 1px #fff;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #79b6fe),
+			color-stop(0.49, #377dcf),
+			color-stop(0.5, #4e89ca),
+			color-stop(1.0, #b4c9e2));	
+	-webkit-box-shadow: 1px 1px  rgba(0,0,0,0.2);		
+}
+
+.amx-selectBooleanCheckbox .checkbox .img-check{
+	background-image: url(images/amx.png);
+	background-position:  0px -32px;
+	margin: 2px 0 0 2px;
+	width: 16px; 
+	height: 16px;
+}
+
+.amx-selectBooleanCheckbox.amx-readOnly .checkbox{
+	background: rgba(0,0,0,0);
+	-webkit-box-shadow: none;
+	border: none;
+	padding:1px;
+}
+
+.amx-selectBooleanCheckbox.amx-readOnly .checkbox .img-check{
+	background-position:  -32px -32px;
+}
+
+.amx-selectBooleanCheckbox.amx-readOnly.off .checkbox{
+	background: #D9D9D9;
+	border-color: #B6B6B6;	
+}
+
+.amx-selectBooleanCheckbox.off .checkbox .img-check{
+	display: none;
+}
+.amx-selectBooleanCheckbox.amx-disabled{
+	opacity:.5;
+}
+
+/* --------- </amx:selectBooleanCheckbox> --------- */
+
+/* --------- <amx:selectOneButton> --------- */
+.amx-selectOneButton .field-label{
+	padding-top: 25px;
+}
+.amx-selectOneButton{
+	
+}
+
+.amx-selectOneButton .selectItemsContainer{
+	overflow: visible;
+}
+
+.amx-selectOneButton .selectItemsContainer .amx-selectItem{
+	float: left;
+	border: solid 1px #191919;
+	border-left: none;
+	padding: 10px 0;
+	overflow:hidden;
+	white-space:nowrap;
+	text-align:center;
+	color: #fff;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #2f6bac),
+			color-stop(0.49, #214d81),
+			color-stop(0.5, #2c588d),
+			color-stop(1.0, #6d98c9));		
+	cursor: pointer;	
+}
+.amx-selectOneButton .selectItemsContainer .amx-selectItem:first-child{
+	border-left: solid 1px #191919;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+}
+
+.amx-selectOneButton .selectItemsContainer .amx-selectItem:last-child{
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+
+
+.amx-selectOneButton .selectItemsContainer .amx-selectItem.amx-selected{
+	font-weight: bold;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #79b6fe),
+			color-stop(0.49, #377dcf),
+			color-stop(0.5, #4e89ca),
+			color-stop(1.0, #b4c9e2));			
+}
+.amx-selectOneButton.amx-readOnly .field-value{
+	padding-top:23px;
+}
+.amx-selectOneButton.amx-disabled{
+	opacity:.5;
+}
+
+/* layout vertical */
+/* 
+.amx-selectOneButton.vertical .amx-selectItem{
+	float: none;
+	border-bottom: solid 1px #191919;
+	border-left: solid 1px #191919;
+	border-right: solid 1px #191919;
+	border-top: none;
+	-webkit-border-radius: none;
+	text-align: center;
+}
+
+.amx-selectOneButton.vertical .amx-selectItem:first-child{
+	border-top: solid 1px #191919;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+}
+.amx-selectOneButton.vertical .amx-selectItem:last-child{
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	
+}
+ */
+
+/* --------- </amx:selectOneButton> --------- */
+
+/* --------- <amx:selectOneRadio> --------- */
+/* TODO: this is where to style the selectOneRadio */
+.amx-selectOneRadio{
+	
+}
+.amx-selectOneRadio .field-label{
+	padding-top: 17px;
+}
+.amx-selectOneRadio{
+	
+}
+
+.amx-selectOneRadio .selectItemsContainer{
+	background: #ECF4FF;
+	border: solid 1px #BBBBBB;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow:  1px 1px rgba(0,0,0,0.75);
+	margin: 2px 0px;
+}
+
+.amx-selectOneRadio .selectItemsContainer .amx-selectItem{
+	border-left: none;
+	padding: 10px;
+	color:#969696;
+	
+	cursor: pointer;
+	position:relative
+}
+.amx-selectOneRadio .selectItemsContainer .amx-selectItem{
+	border-top:1px solid #BBBBBB;
+	text-align:center;
+	color: #000;
+	font-weight: bold;
+}
+.amx-selectOneRadio .selectItemsContainer .amx-selectItem:first-child{
+	border-top: none;
+}
+.amx-selectOneRadio .selectItemsContainer .amx-selectItem:last-child{
+	
+}
+
+.amx-selectOneRadio .selectItemsContainer .amx-selectItem.amx-selected{
+
+}
+
+
+.amx-selectOneRadio .amx-selectItem .innerCircle {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #a0b9f1;
+	-webkit-border-radius: 11px;
+	background: #fff;
+}
+.amx-selectOneRadio .amx-selectItem .innerCircle .smallCircle {
+	display: none;
+}
+.amx-selectOneRadio .amx-selectItem.amx-selected .innerCircle {
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+		color-stop(0, #79b6fe),
+		color-stop(0.49, #377dcf),
+		color-stop(0.5, #4e89ca),
+		color-stop(1.0, #b4c9e2));	
+}
+.amx-selectOneRadio .amx-selectItem.amx-selected .smallCircle {
+	display: block;
+	width: 10px;
+	height: 10px;
+	background: #fff;
+	margin: 5px auto;
+	-webkit-border-radius: 5px;
+}
+
+.amx-selectOneRadio.amx-readOnly .field-value{
+	padding-top:15px;
+}
+.amx-selectOneRadio.amx-disabled{
+	opacity:.5;
+}
+/* --------- </amx:selectOneRadio> --------- */
+
+
+/* --------- <amx:selectManyCheckbox> --------- */
+.amx-selectManyCheckbox .selectItemsContainer{
+	background: #ECF4FF;
+	border: solid 1px #BBBBBB;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow:  1px 1px rgba(0,0,0,0.75);
+	margin: 2px 0px;
+}
+
+.amx-selectManyCheckbox .selectItemsContainer .amx-selectItem{
+	border-left: none;
+	padding: 10px;
+	color:#969696;
+	cursor: pointer;
+	position:relative
+}
+.amx-selectManyCheckbox .selectItemsContainer .amx-selectItem{
+	border-top:1px solid #BBBBBB;
+	text-align:center;
+	color: #000;
+	font-weight: bold;
+}
+.amx-selectManyCheckbox .selectItemsContainer .amx-selectItem:first-child{
+	border-top: none;
+}
+.amx-selectManyCheckbox .selectItemsContainer .amx-selectItem:last-child{
+	
+}
+
+.amx-selectManyCheckbox .selectItemsContainer .amx-selectItem.amx-selected{
+
+}
+.amx-selectManyCheckbox.amx-readOnly .amx-selectItem{
+	opacity: .6;
+}
+
+.amx-selectManyCheckbox .field-label{
+	padding-top: 19px;
+	overflow: visible;
+}
+.amx-selectManyCheckbox .checkbox{
+	float:left;
+	-webkit-border-radius: 5px;	
+	width: 20px; 
+	height: 20px;
+	border: solid 1px #C3D4EE;
+	background: #fff;
+	margin: 2px;
+	cursor: pointer;
+}
+
+.amx-selectManyCheckbox .amx-selectItem.amx-selected .checkbox{
+	border: solid 1px #fff;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+		color-stop(0, #79b6fe),
+		color-stop(0.49, #377dcf),
+		color-stop(0.5, #4e89ca),
+		color-stop(1.0, #b4c9e2));	
+	-webkit-box-shadow: 1px 1px  rgba(0,0,0,0.2);		
+}
+
+.amx-selectManyCheckbox .checkbox .img-check{
+	background-image: url(images/amx.png);
+	background-position:  0px -32px;
+	margin: 2px 0 0 2px;
+	width: 16px; 
+	height: 16px;
+	position:absolute;
+}
+
+.amx-selectManyCheckbox .checkbox-text{
+	margin: 5px 0 0 40px;
+	text-align:left;
+	font-weight: bold;
+	color: #000;
+}
+.amx-selectManyCheckbox.amx-readOnly .field-value{
+	padding-top:17px;
+}
+.amx-selectManyCheckbox.amx-readOnly .readOnlyLabel{
+	display:block;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+/*
+.amx-selectManyCheckbox.amx-readOnly .amx-selectItem.amx-selected .checkbox{
+	background: rgba(0,0,0,0);
+	-webkit-box-shadow: none;
+	border: none;
+}
+
+
+.amx-selectManyCheckbox.amx-readOnly .amx-selectItem.amx-selected .checkbox .img-check{
+	background-position:  -32px -32px;
+}
+
+.amx-selectManyCheckbox.amx-readOnly  .amx-selectItem:not(.amx-selected) .checkbox{
+	background: #D9D9D9;
+	border-color: #B6B6B6;	
+}
+*/
+.amx-selectManyCheckbox  .amx-selectItem:not(.amx-selected) .checkbox .img-check{
+	display: none;
+}
+.amx-selectManyCheckbox.amx-disabled{
+	opacity:.5;
+}
+
+/* --------- </amx:selectManyCheckbox> --------- */
+
+/* --------- <amx:selectOneChoice> --------- */
+.amx-selectOneChoice .field-label{
+	padding-top: 20px;
+}
+.amx-selectOneChoice .selectItemsContainer{
+	width:100%;
+}
+.amx-selectOneChoice.amx-readOnly .selectItemsContainer{
+	font-weight: bold;
+	padding:4px 0 4px 0;
+}
+/* --------- </amx:selectOneChoice> --------- */
+
+/* --------- <amx:selectManyChoice> --------- */
+.amx-selectManyChoice .field-label{
+	padding-top: 25px;
+}
+.amx-selectManyChoice .displayItem{
+	cursor:pointer;
+	height: 27px;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #cdcecd),
+			color-stop(.45, #e6e6e6),
+			color-stop(.84, #f6f6f6),
+			color-stop(1.0, #f6f4f4) );
+	border: solid 1px #6a6a6a;
+	-webkit-border-radius: 5px;
+	margin: 2px 2px 2px 0;
+	position:relative;
+	color:#000000;
+
+}
+
+.amx-selectManyChoice.amx-readOnly .displayItem{
+	background: none;
+	border: none;
+}
+.amx-selectManyChoice.amx-readOnly .displayItem .arrow{
+	display:none;
+	cursor:default;
+}
+.amx-selectManyChoice .displayItem label{
+	margin:6px 0 0 8px;
+	display:block;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+
+}
+.amx-selectManyChoice .displayItem .arrow{
+	cursor:pointer;
+	position:absolute;
+	width:27px;
+	height:27px;
+	right:0;
+	top:0;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #2f6bac),
+			color-stop(0.49, #214d81),
+			color-stop(0.5, #2c588d),
+			color-stop(1.0, #6d98c9));	
+}
+.amx-selectManyChoice .displayItem .arrow.dropdown{
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+		color-stop(0, #79b6fe),
+		color-stop(0.49, #377dcf),
+		color-stop(0.5, #4e89ca),
+		color-stop(1.0, #b4c9e2));
+}
+.amx-selectManyChoice .displayItem .img-arrow{
+	background-image: url(images/amx.png);
+	background-position:  0px -64px;
+	margin: 6px 0 0 6px;
+	width: 16px; 
+	height: 16px;
+}
+.amx-selectManyChoice .displayItem .count{
+	cursor:pointer;
+	position:absolute;
+	width:26px;
+	height:20px;
+	right:45px;
+	top:3px;
+	-webkit-border-radius: 10px;
+	border:1px solid #ffffff;
+	color:#ffffff;
+	text-align:center;
+	line-height:20px;
+	font-weight:bold;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #79b6fe),
+			color-stop(0.49, #377dcf),
+			color-stop(0.5, #4e89ca),
+			color-stop(1.0, #b4c9e2));	
+}
+.amx-selectManyChoice .selectItemsContainer{
+	position:absolute;
+	display:none;
+	z-index:16;
+	background: #FFFFFF;
+	border: solid 1px #BBBBBB;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow:  1px 1px rgba(0,0,0,0.75);
+}
+/*
+.amx-selectManyChoice .selectItemsContainer .amx-selectItemsTitle{
+	padding: 10px;
+	color:#969696;
+	cursor: default;
+	position:relative
+	border-left: none;
+	border-top:1px solid #BBBBBB;
+	text-align:center;
+	color: #000;
+	border-top: none;
+	font-weight: bold;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#686B70), to(#39434C), color-stop(0.5,#383C47),color-stop(0.5,#242B33));
+}
+
+.amx-selectManyChoice .amx-selectItemsTitle .checkbox{
+	float:left;
+	-webkit-border-radius: 15px;	
+	width: 20px; 
+	height: 20px;
+	border: solid 1px #C3D4EE;
+	background: -webkit-gradient(linear,0% 0%, 0% 100%, from(#F49397), to(#C12827), color-stop(0.5,#9B4549),color-stop(0.5,#811817));
+	margin: 2px;
+	cursor: pointer;
+	color:#ffffff;
+}
+.amx-selectManyChoice .amx-selectItemsTitle .checkbox:hover{
+	background: -webkit-gradient(linear,0% 0%, 0% 100%, from(#CB787A), to(#9A2323), color-stop(0.5,#9A2323),color-stop(0.5,#7A3739));
+}
+
+.amx-selectManyChoice .amx-selectItemsTitle .checkbox-text{
+	margin: 5px 0 0 40px;
+	color: #ffffff;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}*/
+
+.amx-selectManyChoice .selectItemsContainer .amx-selectItem{
+	padding: 10px;
+	color:#969696;
+	cursor: pointer;
+	position:relative
+	border-left: none;
+	border-top:1px solid #BBBBBB;
+	text-align:center;
+	color: #000;
+	font-weight: bold;
+}
+.amx-selectManyChoice .selectItemsContainer .amx-selectItem:first-child{
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-top:0;
+}
+
+.amx-selectManyChoice .amx-selectItem .checkbox{
+	float:right;
+	-webkit-border-radius: 5px;	
+	width: 20px; 
+	height: 20px;
+	border: solid 1px #C3D4EE;
+	background: #fff;
+	margin: 2px;
+	cursor: pointer;
+}
+
+.amx-selectManyChoice .amx-selectItem.amx-selected .checkbox{
+	border: solid 1px #fff;
+	background-image: -webkit-gradient(linear, left bottom, left top, 
+			color-stop(0, #2275FC),
+			color-stop(1.0, #4DC2FC) );	
+	-webkit-box-shadow: 1px 1px  rgba(0,0,0,0.2);		
+}
+
+.amx-selectManyChoice .checkbox .img-check{
+	background-image: url(images/amx.png);
+	background-position:  -32px -64px;
+	margin: 2px 0 0 2px;
+	width: 16px; 
+	height: 16px;
+	position:absolute;
+}
+
+.amx-selectManyChoice .checkbox-text{
+	margin: 5px 40px 0 0;
+	text-align:left;
+	font-weight: bold;
+	color: #000;
+}
+
+.amx-selectManyChoice.amx-readOnly .amx-selectItem.amx-selected .checkbox{
+	background: rgba(0,0,0,0);
+	-webkit-box-shadow: none;
+	border: none;
+}
+
+
+.amx-selectManyChoice.amx-readOnly .amx-selectItem.amx-selected .checkbox .img-check{
+	background-position:  -32px -32px;
+}
+
+.amx-selectManyChoice.amx-readOnly  .amx-selectItem:not(.amx-selected) .checkbox{
+	background: #D9D9D9;
+	border-color: #B6B6B6;	
+}
+
+.amx-selectManyChoice  .amx-selectItem:not(.amx-selected) .checkbox .img-check{
+	display: none;
+}
+.amx-selectManyChoice.amx-disabled{
+	opacity:.5;
+}
+/* --------- </amx:selectManyChoice> --------- */

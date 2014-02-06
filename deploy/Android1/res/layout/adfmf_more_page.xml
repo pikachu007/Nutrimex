@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<LinearLayout android:orientation="horizontal" android:id="@+id/more_title_bar"
+		android:layout_width="fill_parent" android:layout_height="57.333dp"
+		android:background="@drawable/more_titlebar_background">
+		<TextView android:id="@+id/more_list_title" android:text="More"
+			android:textColor="#000000" android:textSize="10pt"
+			android:textStyle="bold" android:shadowColor="#c4c7ca"
+			android:shadowDy="3.0" android:shadowDx="0.0" android:shadowRadius="1.5"
+			android:layout_height="wrap_content" android:layout_gravity="center|bottom"
+			android:layout_width="wrap_content" android:layout_marginBottom="2dp"
+			android:layout_marginLeft="18.6667dp" />
+	</LinearLayout>
+	<oracle.adfmf.navbar.RearrangeableListView
+		android:id="@+id/more_list" android:layout_width="fill_parent"
+		android:layout_weight="1" android:layout_height="0px" />
+	<LinearLayout android:id="@+id/action_panel"
+		android:orientation="horizontal" android:layout_width="fill_parent"
+		android:layout_height="57.333dp" android:background="@drawable/more_action_panel_background">
+		<Button android:id="@+id/btn_done" android:layout_marginTop="8.6667dp"
+			android:layout_marginBottom="7.333dp" android:layout_marginLeft="14dp"
+			android:layout_marginRight="24.6667dp" android:layout_weight="1"
+			android:layout_width="0px" android:layout_height="fill_parent"
+			android:text="Done" />
+		<Button android:id="@+id/btn_cancel" android:layout_marginTop="8.6667dp"
+			android:layout_marginBottom="7.333dp" android:layout_marginRight="14dp"
+			android:layout_weight="1" android:layout_width="0px"
+			android:layout_height="fill_parent" android:text="Cancel" />
+	</LinearLayout>
+</LinearLayout>

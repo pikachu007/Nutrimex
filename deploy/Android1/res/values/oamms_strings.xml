@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2012, Oracle and/or its affiliates. All rights reserved. -->
+<resources>
+
+    <string name="oamms_app_name">Mobile and Social SDK for Android</string>
+    <string name="callbackexcep">Callback handler cannot be null.</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Sign in</string>
+    <string name="cancel">Cancel</string>
+    <string name="secProfileExcep">Setup API is not invoked.</string>
+    <string name="setupfailed">Application profile is invalid or it is not downloaded due to %1$s.</string>
+    <string name="authfailed">User Authentication has failed.</string>
+    <string name="authSuccess">User Authentication is Successful.</string>
+    <string name="challengeHead">Provide additional information</string>
+    <string name="challengeQues">Question</string>
+    <string name="challengeAns">Answer</string>
+    <string name="submit">Submit</string>
+    <string name="unPwdMissing">Username and Password is invalid.</string>
+    <string name="chalgMissing">Challenge answer is invalid.</string>
+    <string name="tokenMissing">This device is not yet authenticated with Mobile and Social Server.</string>
+    <string name="processing">Processing...</string>
+    <string name="mssInitFailed">Initialization of the SDK failed, as the required
+		server information is not supplied.</string>
+    <string name="sigNotValid">Failed in validating calling application signature.</string>
+    <string name="ssoActivitymissing">SSO Application name has not been provided.</string>
+    <string name="initSSOAgentSuccess">SSO Agent application has been initialized
+		successfully.</string>
+    <string name="noRpLoginUrl">Unable to open RP Authentication URL.</string>
+    <string name="servicenamenull">No authentication scheme is specified.</string>
+    <string name="serviceDomainNotSame">Authentication is rejected by the agent as the
+		service domain does not match.</string>
+    <string name="invalidConfig">Client application is not authorized to participate in SSO.</string>
+    <string name="noAgentAvail">Unable to open SSO Authentication URL.</string>
+    <string name="noUserToken">The user is not yet authenticated.</string>
+    <string name="reqFailed">Authentication request failed for user %1$s.</string>
+    <string name="ssl_settingsheader">This certificate is not from a trusted authority.</string>
+    <string name="ssl_security_certificate">Security Certificate</string>
+    <string name="ssl_issued_to">Issued to :</string>
+    <string name="ssl_common_name">Common name :</string>
+    <string name="ssl_organization">Organization :</string>
+    <string name="ssl_organization_unit">Organizational Unit :</string>
+    <string name="ssl_issued_by">Issued by :</string>
+    <string name="ssl_validity">Validity :</string>
+    <string name="ssl_issued_on">Issued on :</string>
+    <string name="ssl_expires_on">Expires on :</string>
+    <string name="security_warning">Security Warning</string>
+    <string name="ssl_continue">Accept</string>
+    <string name="ssl_view_certificate">View Certificate</string>
+    <string name="ssl_message">There are problems with the security certificate
+		for this URL.</string>
+    <string name="serial_number">Serial Number :</string>
+    <string name="fingerprint">Fingerprints :</string>
+    <string name="sha_fp">SHA1 Fingerprint :</string>
+    <string name="md5_fp">MD5 Fingerprint :</string>
+    <string name="reqDenied">Request for authentication is denied.</string>
+    <string name="invalidServerType">Authentication server type is invalid.</string>
+    <string name="invalidAppName">Application name is invalid.</string>
+    <string name="invalidServerUrl">Server Url is invalid.</string>
+    <string name="invalidServiceDomain">Service Domain is invalid.</string>
+    <string name="notConnectToServer">Could not establish a connection to the server.</string>
+    <string name="notParseResponse">Could not parse the response sent from the server.</string>
+    <string name="internalError">Internal Error</string>
+    <string name="networkNotAvail">Network un-availability.</string>
+    <string name="userCanceled">Operation cancelled by user.</string>
+    <string name="tokensNoMatch">Tokens there are requested are not available from the server.</string>
+    <string name="certificateNotAccepted">User rejected server certificate.</string>
+    <string name="invalidBasicUrl">Invalid Authentication URL.</string>
+</resources>

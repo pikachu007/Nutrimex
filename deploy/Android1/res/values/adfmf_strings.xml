@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--  Strings for the Config Service Connection Dialog  -->
+    <string name="Configuration">Configuration</string>
+	<string name="Username">Username</string>
+	<string name="TenantID">Tenant ID</string>
+	<string name="Password">Password</string>
+	<string name="Server">Server</string>
+	<string name="Connect">Connect</string>
+	<!--  Strings for the Lifecycle Dialog  -->
+	<string name="Shutdown">Shutdown</string>
+	<string name="DefaultShutdownMessage">This application is now gong to shutdown.  Please restart to begin using this application again.</string>
+</resources>

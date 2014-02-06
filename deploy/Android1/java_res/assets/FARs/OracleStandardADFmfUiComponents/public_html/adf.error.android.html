@@ -1,0 +1,199 @@
+<!-- Copyright (c) 2008, 2013, Oracle and/or its affiliates. All rights reserved. 11.1.2.4.0 -->
+<!DOCTYPE html>
+<html height="100%">
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Error</title>
+    <link id="baseStyle" rel="stylesheet" href="css/adf.error.android.css"/>
+    <link id="precachedlayout" rel="stylesheet" href="css/adf.error.android.landscape.css"/>
+    <link id="layout" rel="stylesheet" href="css/adf.error.android.portrait.css"/>
+    <script type="text/javascript">if (!window.adf) window.adf = {}; adf.wwwPath = "../../../www/";</script>
+    <script type="text/javascript" src="../../../www/js/base.js"></script>
+    <script language="javascript">
+      adf.err = {orientation:-1,data:null};
+      function dislpayNewError(parameter)
+      {
+        if (parameter == null)
+        {
+          // Ignore this because this can happen if we are re-shown
+          // with an error on app reactivate.  Leave the old error in
+          // place unless we have no data yet...
+          if (adf.err.data == nil)
+          {
+            // We have no error data so tell the user that
+            adf.err.data = {message:"The function on this error page, 'dislpayNewError', was sent a null parameter on the first show of the error page.",name:"Bad Error Page Data"};
+          }
+          else
+          {
+            return;
+          }
+        }
+        else
+        {
+          adf.err.data = parameter;
+        }
+        // Have the error display refresh
+        refreshErrorDisplay();
+      }
+
+      function handlePageShown()
+      {
+        try
+        {
+          setInterval(checkOrientation, 500);
+          // Register our activation handler so we can get the paramter passed to us
+          adf.mf.Features.registerActivationHandler(dislpayNewError, function(){alert('failed');});
+        }
+        catch (e)
+        {
+          alert("In onDeviceReady() ERROR:"+e);
+        }
+      }
+
+      function buildHtmlFor(o,d)
+      {
+        var indent = d;
+        if (typeof indent == "undefined")
+        {
+          indent = "";
+        }
+        else
+        {
+          indent += "&nbsp;&nbsp;&nbsp;";
+        }
+        var html = "";
+        var indentAdded = false;
+        for (var i in o)
+        {
+          if (typeof(o) == "object")
+          {
+            html += buildHtmlFor(o[i], indent);
+          }
+          else
+          {
+            if (!indentAdded)
+            {
+              indentAdded = true;
+              html += indent;
+            }
+            html += o[i];
+          }
+        }
+        return html  + "<br/>";
+      }
+
+      function refreshErrorDisplay()
+      {
+        if (adf.err.data == null)
+        {
+          return;
+        }
+
+        var newHtml = "";
+        // add the name
+        newHtml += "<div id='amx-error-title'>";
+        newHtml += "<div id='amx-error-icon'>";
+        newHtml += "</div>";
+        newHtml += "<div id='amx-error-name'>";
+        newHtml += adf.err.data.name;
+        newHtml += "</div>";
+        newHtml += "</div>";
+        // add the message
+        newHtml += "<div id='amx-error-message'>";
+        newHtml += adf.err.data.message;
+        newHtml += "</div>";
+        //newHtml += buildHtmlFor(adf.err.data);
+        document.getElementById("amx-error").innerHTML = newHtml;
+      }
+
+      // Check orientation
+      function checkOrientation()
+      {
+        try
+        {
+          var deviceWidth = document.body.offsetWidth;
+          //alert("in checkOrientation: " + deviceWidth);
+          var newOrientation = 0;
+          if (deviceWidth < 400)
+          {
+            newOrientation = 0;
+          }
+          else //if (deviceWidth == '480')
+          {
+            newOrientation = 1;
+          }
+
+          // If orientation changed since last check, fire either the portrait or landscape function
+          if (newOrientation != adf.err.orientation)
+          {
+            adf.err.orientation = newOrientation;
+            verifyLayoutOrentation();
+          }
+        }
+        catch (e)
+        {
+          alert("In checkOrientation() ERROR:"+e);
+        }
+      }
+
+      function verifyLayoutOrentation()
+      {
+        switch (adf.err.orientation)
+        {
+          case 0:
+            changedToPortrait();
+            break;
+          case 1:
+            changedToLandscape();
+            break;
+        }
+      }
+
+      // Landscape stuff
+      function changedToLandscape()
+      {
+        try
+        {
+          if (document.getElementById('layout').href.match(/landscape.css$/))
+          {
+            return;
+          }
+          // Change Layout
+          document.getElementById('layout').href = 'css/adf.error.android.landscape.css'
+        }
+        catch (e)
+        {
+          alert("In changedToLandscape() ERROR:"+e);
+        }
+      }
+
+      // Portrait stuff
+      function changedToPortrait()
+      {
+        try
+        {
+          if (document.getElementById('layout').href.match(/portrait.css$/))
+          {
+            return;
+          }
+          // Change Layout
+          document.getElementById('layout').href = 'css/adf.error.android.portrait.css';
+        }
+        catch (e)
+        {
+          alert("In changedToPortrait() ERROR:"+e);
+        }
+      }
+
+      document.addEventListener("showpagecomplete", handlePageShown, false);
+    </script>
+  </head>
+  <body>
+    <div id="bodyGradient">
+      <div id="amx-error">
+        This is an error message...
+      </div>
+    </div>
+  </body>
+</html>

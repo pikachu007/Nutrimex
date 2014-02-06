@@ -1,0 +1,139 @@
+
+.OraBITooltipText {
+  font-size: 11px;
+  color: red
+}
+
+.OraDVTTooltipPopup {
+  background-color: #c1ccd7;
+  color: black;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 2px;
+  opacity: 0.9;
+  position: absolute;
+  z-index: 2147483647;
+  font-size: 11px;
+  font-family: tahoma, sans-serif;
+}
+
+.OraDVTDatatipPopup {
+  background-color: #ffffff;
+  color: black;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  padding: 2px;
+  opacity: 0.9;
+  position: absolute;
+  z-index: 2147483647;
+  font-size: 11px;
+  font-family: tahoma, sans-serif;
+}
+/* Start private */
+.OraDVTUnstyledPopup {
+  position: absolute;
+  z-index: 2147483647
+}
+
+.OraDVTContextMenuPopup {
+  position: absolute;
+  z-index: 2147483647;
+}
+
+td {
+  padding: 5px;
+}
+
+.dvtm-areaChart {
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.dvtm-barChart {
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.dvtm-bubbleChart {
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.dvtm-comboChart {
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.dvtm-horizontalBarChart {
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.dvtm-lineChart {
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.dvtm-pieChart {
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.dvtm-scatterChart {
+    text-shadow: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+
+.dvtm-chartTitle {
+    font-size: 13px;
+    font-weight: 900;
+    color: navy;
+}
+
+.dvtm-chartSubtitle {
+    font-size: 11px;
+    font-weight: 400;
+    color: #7F7F7F;
+}
+
+.dvtm-chartFootnote {
+    font-size: 10px;
+    font-weight: 400;
+    color: #403020;
+}
+
+.dvtm-pieChart-pieLabel {
+    font-size: 10px;
+    font-weight: 400;
+    color: #404259;
+}
+
+.dvtm-sourceViewer {
+    white-space: pre;
+    word-wrap: normal;
+    overflow: scroll;
+    font-family: monospace;
+    font-size: 11px;
+}
+
+
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<amx:view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amx="http://xmlns.oracle.com/adf/mf/amx"
+          xmlns:dvtm="http://xmlns.oracle.com/adf/mf/amx/dvt">
+  <amx:panelPage id="pp1">
+    <amx:facet name="header">
+      <amx:outputText value="Button Action" id="ot1"/>
+    </amx:facet>
+    <amx:facet name="primary">
+      <amx:commandButton id="cb1" text="Normal">
+         <amx:showPopupBehavior id="spb1" popupId="p1" align="after" alignId="pp1"/>
+      </amx:commandButton>
+    </amx:facet>
+    <amx:facet name="secondary">
+      <amx:commandButton id="cb2" text="JAVA"  >
+        
+      </amx:commandButton>
+    </amx:facet>
+  </amx:panelPage>
+  
+  
+  <amx:popup id="p1" animation="slideDown">
+    <amx:panelGroupLayout id="pgl1" layout="vertical">
+      <amx:outputText value="hello" id="ot2"/>
+    </amx:panelGroupLayout>
+    <amx:commandButton text="Otro Igual" id="cb3">
+      <amx:showPopupBehavior id="spb2" popupId="p1" align="overlapBottom" alignId="p1"/>
+    </amx:commandButton>
+    <amx:commandButton text="close" id="cb4">
+      <amx:closePopupBehavior id="cpb1" popupId="p1"/>
+    </amx:commandButton>
+    <amx:commandButton text="Otro Diferente" id="cb6">
+      <amx:showPopupBehavior id="spb3" popupId="p2" alignId="pp1"/>
+    </amx:commandButton>
+  </amx:popup>
+  
+  <amx:popup id="p2" animation="slideStart" rendered="true">
+    <amx:panelGroupLayout id="pgl2">
+      <amx:commandButton text="Sorpresa !!! XD" id="cb5">
+        <amx:closePopupBehavior id="cpb2" popupId="p2"/>
+      </amx:commandButton>
+      <amx:commandButton text="BACK" id="cb7" action="__back"/>
+      <amx:commandButton text="Otro Igual" id="cb8">
+        <amx:showPopupBehavior id="spb4" popupId="p2" align="after" alignId="p2"/>
+      </amx:commandButton>
+      <amx:panelGroupLayout id="pgl3">
+        <amx:inputText label="Texto nuevo" id="it1" hintText="Hola"/>
+      </amx:panelGroupLayout>
+    </amx:panelGroupLayout>
+    
+  </amx:popup>
+  
+</amx:view>
+
+
+

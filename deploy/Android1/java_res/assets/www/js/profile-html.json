@@ -1,0 +1,8 @@
+{
+  "delayShowComplete" : false,
+  "generateBaseHtml" : false,
+  "dtMode" : false,
+  "locale" : "js/Locale.js",
+  "cssResources" : [ "css/amx-v1.1.css" ],
+  "jsResources" : [ "js/adf.el.js", "js/jquery-1.7.1.min.js", "js/amx.js", "js/cordova-2.2.0.js", "js/adf.mf.device.integration.js" ]
+}

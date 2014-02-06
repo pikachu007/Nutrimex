@@ -1,0 +1,7 @@
+DvtUtilBundle_RB={
+"DVT_SCALING_THOUSAND":"Mii",
+"DVT_SCALING_MILLION":"Milioane",
+"DVT_SCALING_QUADRILLION":"Cvadrilioane",
+"DVT_SCALING_TRILLION":"Trilioane",
+"DVT_SCALING_BILLION":"Miliarde"
+}

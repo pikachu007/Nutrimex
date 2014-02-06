@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">untitled1</property>
+      <property
+         name="page">/Experto/untitled1.amx</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>untitled1&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">213.09766</property>
+      <property
+         name="x">197.5</property>
+   </View>
+   <View
+      id="View11">
+      <property
+         name="activityId">untitled11</property>
+      <property
+         name="page">/Experto/untitled1.amx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>untitled11&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">262.79883</property>
+      <property
+         name="x">507.5</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase12"
+      from="View2"
+      to="View11">
+      <property
+         name="fromOutcome">Finaliza</property>
+      <property
+         name="sdm:polyPoints">R50,238.5,212.74707,466.5,262.44824,L50</property>
+   </ControlFlowCase>
+</SDM>
