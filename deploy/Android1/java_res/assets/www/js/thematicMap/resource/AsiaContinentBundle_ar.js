@@ -1,1 +1,0 @@
-var l={"AS":["AS","\u0622\u0633\u064A\u0627"]};var DvtBaseMapManager=this.DvtBaseMapManager;if (!DvtBaseMapManager) DvtBaseMapManager={};if (!DvtBaseMapManager._UNPROCESSED_MAPS) DvtBaseMapManager._UNPROCESSED_MAPS=[[],[],[]];DvtBaseMapManager._UNPROCESSED_MAPS[2].push(["asia","continent",l]);

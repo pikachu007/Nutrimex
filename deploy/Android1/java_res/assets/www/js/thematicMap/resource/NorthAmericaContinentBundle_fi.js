@@ -1,1 +1,0 @@
-var l={"NA":["NA","Pohjois-Amerikka"]};var DvtBaseMapManager=this.DvtBaseMapManager;if (!DvtBaseMapManager) DvtBaseMapManager={};if (!DvtBaseMapManager._UNPROCESSED_MAPS) DvtBaseMapManager._UNPROCESSED_MAPS=[[],[],[]];DvtBaseMapManager._UNPROCESSED_MAPS[2].push(["northAmerica","continent",l]);

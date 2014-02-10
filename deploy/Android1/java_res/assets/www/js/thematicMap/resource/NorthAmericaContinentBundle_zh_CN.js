@@ -1,1 +1,0 @@
-var l={"NA":["NA","\u5317\u7F8E\u6D32"]};var DvtBaseMapManager=this.DvtBaseMapManager;if (!DvtBaseMapManager) DvtBaseMapManager={};if (!DvtBaseMapManager._UNPROCESSED_MAPS) DvtBaseMapManager._UNPROCESSED_MAPS=[[],[],[]];DvtBaseMapManager._UNPROCESSED_MAPS[2].push(["northAmerica","continent",l]);

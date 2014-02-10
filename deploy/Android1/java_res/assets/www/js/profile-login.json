@@ -1,9 +1,0 @@
-{
-  "delayShowComplete" : false,
-  "generateBaseHtml" : false,
-  "dtMode" : false,
-  "locale" : "js/Locale.js",
-  "cssResources" : [ "css/amx.css", "css/adf.login.css", "css/amx-v1.1.css" ],
-  "useBatchProcessing" : true,
-  "jsResources" : [ "js/adf.el.js", "js/jquery-1.7.1.min.js", "js/amx.js", "js/adfc-mobile.js", "js/base-controller.js", "js/cordova-2.2.0.js", "js/adf.mf.device.integration.js" ]
-}
